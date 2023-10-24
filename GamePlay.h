@@ -10,13 +10,14 @@ class GamePlay
         virtual ~GamePlay();
 
         void cmd();
-        void update(float dt);
+        void update();
         void draw( sf::RenderWindow& window);
 
     protected:
 
     private:
         Personaje _player;
+        float _dt;
 };
 
 #endif // GAMEPLAY_H

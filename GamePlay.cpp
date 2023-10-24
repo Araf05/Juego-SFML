@@ -3,7 +3,7 @@
 GamePlay::GamePlay()
     : _player({750,600})
 {
-    //ctor
+    _dt = 0.f;
 }
 
 GamePlay::~GamePlay()
@@ -16,9 +16,10 @@ void GamePlay::cmd()
     _player.cmd();
 }
 
-void GamePlay::update(float dt)
+void GamePlay::update()
 {
-    _player.update(dt);
+    _dt++;
+    _player.update(_dt);
 
 }
 

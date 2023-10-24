@@ -5,7 +5,6 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1200, 800), "Juego 1");
     window.setFramerateLimit(60);
-    float dt= 0.0f;
 
     GamePlay gamePlay;
 
@@ -19,7 +18,7 @@ int main()
         }
         gamePlay.cmd();
 
-        gamePlay.update(dt);
+        gamePlay.update();
 
         window.clear();
         gamePlay.draw(window);

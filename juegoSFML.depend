@@ -442,11 +442,11 @@
 1698176480 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 
-1698176237 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1698179776 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	"Personaje.h"
 
-1698176496 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
+1698179756 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
 	"GamePlay.h"
 
