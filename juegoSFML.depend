@@ -439,14 +439,16 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1698014896 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1698176480 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 
-1698014896 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
-
-1698023555 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
+1698176237 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	"Personaje.h"
+
+1698176496 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
+	<SFML/Graphics.hpp>
+	"GamePlay.h"
 
 1697222294 c:\users\noe_3\documents\github\juego-sfml\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -866,16 +868,16 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1698027458 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+1698176132 c:\users\noe_3\documents\github\juego-sfml\personaje.h
 	<SFML/Graphics.hpp>
 	"Animation.h"
 
 1698170696 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1698171518 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1698176342 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1698170680 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
+1698173267 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
 	"Animation.h"
 

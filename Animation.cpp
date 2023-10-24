@@ -1,9 +1,6 @@
 #include "Animation.h"
 
-Animation::Animation()
-{
-
-}
+Animation::Animation(){}
 
 Animation::Animation(int width, int height, const char* a, int nFrame, bool repeat)
 {

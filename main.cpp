@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Personaje.h"
+#include "GamePlay.h"
 
 int main()
 {
@@ -7,7 +7,7 @@ int main()
     window.setFramerateLimit(60);
     float dt= 0.0f;
 
-    Personaje player({750,600});
+    GamePlay gamePlay;
 
     while (window.isOpen())
     {
@@ -17,12 +17,12 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        player.cmd();
+        gamePlay.cmd();
 
-        player.update(dt);
+        gamePlay.update(dt);
 
         window.clear();
-        window.draw(player);
+        gamePlay.draw(window);
 
         window.display();
     }

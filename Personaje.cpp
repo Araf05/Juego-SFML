@@ -66,7 +66,7 @@ void Personaje::cmd()
             if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
             {
                 _estado = ESTADOS_PERSONAJE::CROUCH;
-                dir.y += 0.0f;
+                //dir.y += 0.0f;
             }
         }
 
@@ -134,7 +134,7 @@ void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-//void Personaje::setIdle()
-//{
-//    _estado = ESTADOS_PERSONAJE::IDLE;
-//}
+sf::Vector2f Personaje::getPosition()
+{
+    return _pos;
+}

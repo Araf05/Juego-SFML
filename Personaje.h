@@ -11,12 +11,10 @@ class Personaje: public sf::Drawable
         Personaje(const sf::Vector2f& pos);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
         void setDirection( const sf::Vector2f& dir );
+        sf::Vector2f getPosition();
 
         void cmd();
         void update(float dt);
-//        void setIdle();
-
-    protected:
 
     private:
         enum class ESTADOS_PERSONAJE
