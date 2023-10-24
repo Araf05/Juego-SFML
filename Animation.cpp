@@ -5,7 +5,7 @@ Animation::Animation()
 
 }
 
-Animation::Animation(int width, int height, const char* a, int nFrame)
+Animation::Animation(int width, int height, const char* a, int nFrame, bool repeat)
 {
     _nFrames = nFrame;
     _texture.loadFromFile(a);
@@ -13,6 +13,7 @@ Animation::Animation(int width, int height, const char* a, int nFrame)
     {
         _frames[i] = { i*width , 0, width, height };
     }
+    _repeat = repeat;
 }
 
 
@@ -23,7 +24,7 @@ Animation::~Animation()
 
 void Animation::advance()
 {
-    if( _nFrames!= 3)
+    if(_repeat)
     {
         if(++_iFrame >= _nFrames) _iFrame = 0;
     } else
