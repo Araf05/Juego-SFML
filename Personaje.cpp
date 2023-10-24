@@ -30,11 +30,14 @@ void Personaje::cmd()
 
         if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
         {
-            if(_estado != ESTADOS_PERSONAJE::JUMP )
+            if( _estado != ESTADOS_PERSONAJE::JUMP )
             {
                 _estado = ESTADOS_PERSONAJE::RUN;
                 dir.x -= 1.0f;
-            } else dir.x -= 1.5f;
+            } else if(_estado == ESTADOS_PERSONAJE::JUMP )
+            {
+                dir.x -= 1.5f;
+            }
         }
 
         if( sf::Keyboard::isKeyPressed(sf::Keyboard::D) )
@@ -60,7 +63,7 @@ void Personaje::cmd()
 
         if( sf::Keyboard::isKeyPressed(sf::Keyboard::S) )
         {
-            if(_estado != ESTADOS_PERSONAJE::JUMP)
+            if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
             {
                 _estado = ESTADOS_PERSONAJE::CROUCH;
                 dir.y += 0.0f;
