@@ -37,3 +37,5 @@
 # generated directories
 bin/
 obj/
+
+!\SFML
