@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../Juego-SFML" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -23,6 +24,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="../juegoSFML" />
+					<Add directory="../Juego-SFML" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -43,6 +45,8 @@
 		<Unit filename="Animation.h" />
 		<Unit filename="GamePlay.cpp" />
 		<Unit filename="GamePlay.h" />
+		<Unit filename="Map.cpp" />
+		<Unit filename="Map.h" />
 		<Unit filename="Personaje.cpp" />
 		<Unit filename="Personaje.h" />
 		<Unit filename="main.cpp" />

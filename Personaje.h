@@ -9,12 +9,13 @@ class Personaje: public sf::Drawable
 {
     public:
         Personaje(const sf::Vector2f& pos);
-        void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+
         void setDirection( const sf::Vector2f& dir );
         sf::Vector2f getPosition();
 
         void cmd();
         void update(float dt);
+        void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
     private:
         enum class ESTADOS_PERSONAJE
@@ -28,7 +29,7 @@ class Personaje: public sf::Drawable
 
     private:
         sf::Vector2f _pos;
-        float _speed = 5.0f;
+        float _speed = 2.f;
         float _fJump = 3.f;
         sf::Vector2f _vel = { 0.0f, 0.0f };
         sf::Texture _texture;

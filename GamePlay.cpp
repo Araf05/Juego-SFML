@@ -18,6 +18,7 @@ void GamePlay::cmd()
 
 void GamePlay::update()
 {
+    _dt=0;
     _dt++;
     _player.update(_dt);
 

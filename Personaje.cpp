@@ -14,6 +14,8 @@ Personaje::Personaje( const sf::Vector2f& pos )
     _animations[int(ESTADOS_PERSONAJE::JUMP)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Jump.png", 2);
     _animations[int(ESTADOS_PERSONAJE::CROUCH)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Crouch.png", 3, 0);
 
+
+
 }
 
 
@@ -28,47 +30,46 @@ void Personaje::cmd()
     sf::Vector2f dir = {0.0f, 0.0f};
 
 
-        if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
+    if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
+    {
+        if( _estado != ESTADOS_PERSONAJE::JUMP )
         {
-            if( _estado != ESTADOS_PERSONAJE::JUMP )
-            {
-                _estado = ESTADOS_PERSONAJE::RUN;
-                dir.x -= 1.0f;
-            } else if(_estado == ESTADOS_PERSONAJE::JUMP )
-            {
-                dir.x -= 1.5f;
-            }
-        }
-
-        if( sf::Keyboard::isKeyPressed(sf::Keyboard::D) )
+            _estado = ESTADOS_PERSONAJE::RUN;
+            dir.x -= 1.0f;
+        } else if(_estado == ESTADOS_PERSONAJE::JUMP )
         {
-            if(_estado != ESTADOS_PERSONAJE::JUMP )
-            {
-                _estado = ESTADOS_PERSONAJE::RUN;
-                dir.x += 1.0f;
-            } else dir.x += 1.5f;
+            dir.x -= 1.5f;
         }
+    }
 
-
-        if( sf::Keyboard::isKeyPressed(sf::Keyboard::W) )
+    if( sf::Keyboard::isKeyPressed(sf::Keyboard::D) )
+    {
+        if(_estado != ESTADOS_PERSONAJE::JUMP )
         {
-            if(_estado != ESTADOS_PERSONAJE::JUMP)
-            {
-                _estado = ESTADOS_PERSONAJE::JUMP;
-                _fJump=12.f;
-            }
-        }
+            _estado = ESTADOS_PERSONAJE::RUN;
+            dir.x += 1.0f;
+        } else dir.x += 1.5f;
+    }
 
 
-
-        if( sf::Keyboard::isKeyPressed(sf::Keyboard::S) )
+    if( sf::Keyboard::isKeyPressed(sf::Keyboard::W) )
+    {
+        if(_estado != ESTADOS_PERSONAJE::JUMP)
         {
-            if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
-            {
-                _estado = ESTADOS_PERSONAJE::CROUCH;
-                //dir.y += 0.0f;
-            }
+            _estado = ESTADOS_PERSONAJE::JUMP;
+            _fJump=12.f;
         }
+    }
+
+
+
+    if( sf::Keyboard::isKeyPressed(sf::Keyboard::S) )
+    {
+        if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
+        {
+            _estado = ESTADOS_PERSONAJE::CROUCH;
+        }
+    }
 
     _currentAnimation = _estado;
     setDirection(dir);
@@ -76,6 +77,7 @@ void Personaje::cmd()
 
 void Personaje::update( float dt)
 {
+
 
     dt+= 1.f;
 
@@ -106,6 +108,7 @@ void Personaje::update( float dt)
     }
 
     _sprite.move(_vel);
+
     if(_vel.x < 0) _sprite.setScale(-1,1);
     if(_vel.x > 0) _sprite.setScale(1,1);
 

@@ -12,8 +12,6 @@ class Animation
 
         virtual ~Animation();
 
-    protected:
-
     private:
         void advance();
         int _nFrames;
@@ -21,7 +19,7 @@ class Animation
         sf::IntRect _frames[8];
         int _iFrame = 0;
         float _time = 0.0f;
-        float _holdTime = 5.f;
+        float _holdTime = 10.f;
         bool _repeat=1;
 };
 

@@ -13,8 +13,6 @@ class GamePlay
         void update();
         void draw( sf::RenderWindow& window);
 
-    protected:
-
     private:
         Personaje _player;
         float _dt;

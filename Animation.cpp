@@ -21,6 +21,7 @@ Animation::~Animation()
 
 void Animation::advance()
 {
+
     if(_repeat)
     {
         if(++_iFrame >= _nFrames) _iFrame = 0;
