@@ -6,8 +6,6 @@ Animation::Animation(int width, int height, const char* a, int nFrame, bool repe
 {
     _nFrames = nFrame;
     _texture.loadFromFile(a);
-    _frames = new sf::IntRect[nFrame];
-    if(_frames == nullptr) exit(-1);
     for(int i=0; i<nFrame ; i++)
     {
         _frames[i] = { i*width , 0, width, height };
@@ -18,7 +16,7 @@ Animation::Animation(int width, int height, const char* a, int nFrame, bool repe
 
 Animation::~Animation()
 {
-    //dtor
+
 }
 
 void Animation::advance()

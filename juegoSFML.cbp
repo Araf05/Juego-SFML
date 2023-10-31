@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="Animation.cpp" />
 		<Unit filename="Animation.h" />
+		<Unit filename="Enemy.cpp" />
+		<Unit filename="Enemy.h" />
 		<Unit filename="GamePlay.cpp" />
 		<Unit filename="GamePlay.h" />
 		<Unit filename="Map.cpp" />

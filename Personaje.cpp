@@ -14,8 +14,6 @@ Personaje::Personaje( const sf::Vector2f& pos )
     _animations[int(ESTADOS_PERSONAJE::JUMP)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Jump.png", 2);
     _animations[int(ESTADOS_PERSONAJE::CROUCH)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Crouch.png", 3, 0);
 
-
-
 }
 
 
@@ -145,4 +143,9 @@ void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
 sf::Vector2f Personaje::getPosition()
 {
     return _pos;
+}
+
+void Personaje::setPosition(sf::Vector2f vec)
+{
+    _sprite.setPosition(vec);
 }

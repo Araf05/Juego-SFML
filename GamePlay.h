@@ -2,6 +2,7 @@
 #define GAMEPLAY_H
 #include <SFML/Graphics.hpp>
 #include "Personaje.h"
+#include "Enemy.h"
 
 class GamePlay
 {
@@ -15,6 +16,7 @@ class GamePlay
 
     private:
         Personaje _player;
+        Enemy _enemy;
         float _dt;
 };
 

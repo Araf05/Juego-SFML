@@ -1,44 +1,42 @@
-#ifndef PERSONAJE_H
-#define PERSONAJE_H
+#ifndef ENEMY_H
+#define ENEMY_H
 #include <SFML/Graphics.hpp>
 
 #include "Animation.h"
 
-
-class Personaje: public sf::Drawable
+class Enemy: public sf::Drawable
 {
     public:
-        Personaje(const sf::Vector2f& pos);
+        Enemy(const sf::Vector2f& pos);
+        virtual ~Enemy();
+
 
         void setDirection( const sf::Vector2f& dir );
         sf::Vector2f getPosition();
-        void setPosition(sf::Vector2f vec);
 
         void cmd();
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
     private:
-        enum class ESTADOS_PERSONAJE
+        enum class ESTADOS_ENEMY
         {
             IDLE,
-            RUN,
-            JUMP,
-            CROUCH,
+            MOVE,
+            ATACK,
             DEATH
         };
 
     private:
         sf::Vector2f _pos;
-        float _speed = 2.f;
-        float _fJump = 3.f;
+        float _speed = 1.f;
         sf::Vector2f _vel = { 0.0f, 0.0f };
         sf::Texture _texture;
         sf::Sprite _sprite;
-        ESTADOS_PERSONAJE _estado = ESTADOS_PERSONAJE::IDLE;
+        ESTADOS_ENEMY _estado = ESTADOS_ENEMY::IDLE;
 
-        Animation _animations[5];
-        ESTADOS_PERSONAJE _currentAnimation = ESTADOS_PERSONAJE::IDLE;
+        Animation _animations[4];
+        ESTADOS_ENEMY _currentAnimation = ESTADOS_ENEMY::IDLE;
 };
 
-#endif // PERSONAJE_H
+#endif // ENEMY_H
