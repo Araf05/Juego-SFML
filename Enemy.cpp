@@ -114,7 +114,12 @@ void Enemy::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-sf::Vector2f Enemy::getPosition()
+const sf::Vector2f Enemy::getPosition() const
 {
     return _pos;
+}
+
+const sf::FloatRect Enemy::getGlobalBounds() const
+{
+    return _sprite.getGlobalBounds();
 }

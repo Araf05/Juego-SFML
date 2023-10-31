@@ -15,7 +15,6 @@ GamePlay::~GamePlay()
 
 void GamePlay::cmd()
 {
-    _map.cmd();
     _player->cmd();
     _enemy->cmd();
 

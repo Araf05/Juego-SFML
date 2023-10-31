@@ -146,7 +146,7 @@ void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_sprite, states);
 }
 
-sf::Vector2f Personaje::getPosition()
+const sf::Vector2f Personaje::getPosition() const
 {
     return _pos;
 }
@@ -154,4 +154,9 @@ sf::Vector2f Personaje::getPosition()
 void Personaje::setPosition(sf::Vector2f vec)
 {
     _sprite.setPosition(vec);
+}
+
+const sf::FloatRect Personaje::getGlobalBounds() const
+{
+    return _sprite.getGlobalBounds();
 }

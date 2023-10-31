@@ -12,7 +12,8 @@ class Enemy: public sf::Drawable
 
 
         void setDirection( const sf::Vector2f& dir );
-        sf::Vector2f getPosition();
+        const sf::Vector2f getPosition() const;
+        const sf::FloatRect getGlobalBounds() const;
 
         void cmd();
         void update(float dt);

@@ -13,10 +13,16 @@ Map::~Map()
     //dtor
 }
 
-void Map::cmd()
+
+void Map::addTile(unsigned x, unsigned y)
 {
 
 }
+void Map::removeTile(unsigned x, unsigned y)
+{
+
+}
+
 void Map::update(float dt)
 {
 

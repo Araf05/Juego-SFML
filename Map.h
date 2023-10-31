@@ -2,13 +2,17 @@
 #define MAP_H
 #include <SFML/Graphics.hpp>
 
+#include "Tile.h"
+
 class Map: public sf::Drawable
 {
     public:
         Map();
         virtual ~Map();
 
-        void cmd();
+        void addTile(unsigned x, unsigned y);
+        void removeTile(unsigned x, unsigned y);
+
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
@@ -16,7 +20,7 @@ class Map: public sf::Drawable
     private:
         sf::Texture _texture;
         sf::Sprite _bak;
-        int _mDimension;
+        Tile *_mTiles;
 };
 
 #endif // MAP_H

@@ -11,8 +11,9 @@ class Personaje: public sf::Drawable
         Personaje(const sf::Vector2f& pos);
 
         void setDirection( const sf::Vector2f& dir );
-        sf::Vector2f getPosition();
+        const sf::Vector2f getPosition() const;
         void setPosition(sf::Vector2f vec);
+        const sf::FloatRect getGlobalBounds() const;
 
         void cmd();
         void update(float dt);
