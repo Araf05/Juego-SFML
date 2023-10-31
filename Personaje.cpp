@@ -28,7 +28,7 @@ void Personaje::setDirection( const sf::Vector2f& dir )
 void Personaje::cmd()
 {
     sf::Vector2f dir = {0.0f, 0.0f};
-
+    _speed=2.f;
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
     {
@@ -38,7 +38,8 @@ void Personaje::cmd()
             dir.x -= 1.0f;
         } else if(_estado == ESTADOS_PERSONAJE::JUMP )
         {
-            dir.x -= 1.5f;
+            dir.x -= 1.f;
+            _speed=5.f;
         }
     }
 
@@ -48,7 +49,11 @@ void Personaje::cmd()
         {
             _estado = ESTADOS_PERSONAJE::RUN;
             dir.x += 1.0f;
-        } else dir.x += 1.5f;
+        } else
+        {
+            dir.x += 1.f;
+            _speed=5.f;
+        }
     }
 
 
@@ -78,7 +83,6 @@ void Personaje::cmd()
 void Personaje::update( float dt)
 {
 
-
     dt+= 1.f;
 
     switch(_estado)
@@ -102,6 +106,7 @@ void Personaje::update( float dt)
             _animations[int(_currentAnimation)].applyToSprite(_sprite);
             _fJump-= 1.0f;
             _vel.y = -_fJump;
+
         break;
         case ESTADOS_PERSONAJE::DEATH:
         break;
