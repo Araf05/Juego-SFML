@@ -17,6 +17,7 @@ class Personaje: public sf::Drawable
         void cmd();
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+        virtual ~Personaje();
 
     private:
         enum class ESTADOS_PERSONAJE
@@ -37,7 +38,7 @@ class Personaje: public sf::Drawable
         sf::Sprite _sprite;
         ESTADOS_PERSONAJE _estado = ESTADOS_PERSONAJE::IDLE;
 
-        Animation _animations[5];
+        Animation *_animations;
         ESTADOS_PERSONAJE _currentAnimation = ESTADOS_PERSONAJE::IDLE;
 };
 

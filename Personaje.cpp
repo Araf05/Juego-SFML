@@ -7,7 +7,8 @@ Personaje::Personaje( const sf::Vector2f& pos )
     _sprite.setPosition(pos);
     _sprite.setTextureRect( {0,0,48,48} );
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2 , _sprite.getGlobalBounds().height);
-
+    _animations = new Animation[5];
+    if(_animations == nullptr) exit(-1);
     _animations[int(ESTADOS_PERSONAJE::IDLE)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Idle.png", 5);
     _animations[int(ESTADOS_PERSONAJE::RUN)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Run.png", 6);
     _animations[int(ESTADOS_PERSONAJE::DEATH)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Death.png", 8, 0);
@@ -16,6 +17,11 @@ Personaje::Personaje( const sf::Vector2f& pos )
 
 }
 
+Personaje::~Personaje()
+{
+    _animations->delAnimation();
+    delete [] _animations;
+}
 
 void Personaje::setDirection( const sf::Vector2f& dir )
 {
@@ -125,9 +131,9 @@ void Personaje::update( float dt)
 
     if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1200 ) _pos.x = 1200 - _sprite.getOrigin().x;
 
-    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 800 )
+    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 550 )
     {
-        _pos.y = 800;
+        _pos.y = 550;
         _estado = ESTADOS_PERSONAJE::IDLE;
     }
 

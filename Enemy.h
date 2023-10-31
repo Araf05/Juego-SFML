@@ -35,7 +35,7 @@ class Enemy: public sf::Drawable
         sf::Sprite _sprite;
         ESTADOS_ENEMY _estado = ESTADOS_ENEMY::IDLE;
 
-        Animation _animations[4];
+        Animation *_animations;
         ESTADOS_ENEMY _currentAnimation = ESTADOS_ENEMY::IDLE;
 };
 

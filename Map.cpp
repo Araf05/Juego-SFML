@@ -5,8 +5,7 @@ Map::Map()
      _bak.setPosition({0,0});
      _texture.loadFromFile("Background/night-town.png");
      _bak.setTexture(_texture);
-    // _bak.setColor(sf::Color::Blue);
-     _bak.scale(3.5f, 3.5f);
+     _bak.scale(2.5f, 2.5f);
 }
 
 Map::~Map()

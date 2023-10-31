@@ -11,12 +11,13 @@ class Animation
         void update( float dt);
 
         virtual ~Animation();
+        void delAnimation();
 
     private:
         void advance();
         int _nFrames;
         sf::Texture _texture;
-        sf::IntRect _frames[8];
+        sf::IntRect *_frames;
         int _iFrame = 0;
         float _time = 0.0f;
         float _holdTime = 10.f;

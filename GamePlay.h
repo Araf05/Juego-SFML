@@ -16,8 +16,8 @@ class GamePlay
         void draw( sf::RenderWindow& window);
 
     private:
-        Personaje _player;
-        Enemy _enemy;
+        Personaje *_player;
+        Enemy *_enemy;
         Map _map;
         float _dt;
 };

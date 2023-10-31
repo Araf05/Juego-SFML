@@ -6,7 +6,8 @@ Enemy::Enemy(const sf::Vector2f& pos)
     _sprite.setPosition(pos);
     _sprite.setTextureRect( {0,0,64,80} );
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2 , _sprite.getGlobalBounds().height);
-
+    _animations = new Animation[4];
+    if(_animations == nullptr) exit(-1);
     _animations[int(ESTADOS_ENEMY::IDLE)] = Animation(64,80,"Ghost/ghost-idle.png", 7);
     _animations[int(ESTADOS_ENEMY::MOVE)] = Animation(64,80,"Ghost/ghost-idle.png", 4);
     _animations[int(ESTADOS_ENEMY::DEATH)] = Animation(64,80,"Ghost/ghost-atack.png", 7, 0);
@@ -16,7 +17,8 @@ Enemy::Enemy(const sf::Vector2f& pos)
 
 Enemy::~Enemy()
 {
-    //dtor
+    _animations->delAnimation();
+    delete [] _animations;
 }
 
 
