@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Personaje.h"
 #include "Enemy.h"
+#include "Map.h"
 
 class GamePlay
 {
@@ -17,6 +18,7 @@ class GamePlay
     private:
         Personaje _player;
         Enemy _enemy;
+        Map _map;
         float _dt;
 };
 

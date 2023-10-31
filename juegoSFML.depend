@@ -439,13 +439,14 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1698717459 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1698720865 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 
-1698717442 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1698720726 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	"Personaje.h"
 	"Enemy.h"
+	"Map.h"
 
 1698709168 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
@@ -1327,7 +1328,7 @@
 1698347706 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
-1698347715 c:\users\noe_3\documents\github\juego-sfml\map.h
+1698720824 c:\users\noe_3\documents\github\juego-sfml\map.h
 	<SFML/Graphics.hpp>
 
 1698720072 source:c:\users\noe_3\documents\github\juego-sfml\enemy.cpp
