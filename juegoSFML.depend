@@ -1325,10 +1325,10 @@
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1698777528 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
+1698869362 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
-1698796066 c:\users\noe_3\documents\github\juego-sfml\map.h
+1698869123 c:\users\noe_3\documents\github\juego-sfml\map.h
 	<SFML/Graphics.hpp>
 	"Tile.h"
 
@@ -1339,9 +1339,9 @@
 	<SFML/Graphics.hpp>
 	"Animation.h"
 
-1698795383 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
+1698802942 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
 	"Tile.h"
 
-1698795429 c:\users\noe_3\documents\github\juego-sfml\tile.h
+1698802942 c:\users\noe_3\documents\github\juego-sfml\tile.h
 	<SFML/Graphics.hpp>
 

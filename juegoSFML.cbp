@@ -51,6 +51,8 @@
 		<Unit filename="Map.h" />
 		<Unit filename="Personaje.cpp" />
 		<Unit filename="Personaje.h" />
+		<Unit filename="Tile.cpp" />
+		<Unit filename="Tile.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

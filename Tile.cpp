@@ -1,9 +1,13 @@
 #include "Tile.h"
 
-Tile::Tile(sf::Texture& texture, sf::IntRect texRect, bool damaging)
+Tile::Tile()
+    : _damaging(false)
+{}
+
+Tile::Tile(sf::Texture* texture, sf::IntRect texRect, bool damaging)
     : _damaging(damaging)
 {
-    _sprite.setTexture(texture);
+    _sprite.setTexture(*texture);
     _sprite.setTextureRect(texRect);
 }
 

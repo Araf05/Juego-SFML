@@ -5,7 +5,8 @@
 class Tile: public sf::Drawable
 {
     public:
-        Tile(sf::Texture& texture, sf::IntRect texRect, bool damaging = false);
+        Tile();
+        Tile(sf::Texture* texture, sf::IntRect texRect, bool damaging = false);
         virtual ~Tile();
 
         const sf::FloatRect getGlobalBounds() const;
