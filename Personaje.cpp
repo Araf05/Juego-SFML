@@ -129,7 +129,7 @@ void Personaje::update( float dt)
     if(_sprite.getGlobalBounds().left < 0 ) _pos.x = _sprite.getOrigin().x;
     if(_sprite.getGlobalBounds().top < 0 ) _pos.y = _sprite.getOrigin().y;
 
-    if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1200 ) _pos.x = 1200 - _sprite.getOrigin().x;
+    if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1280 ) _pos.x = 1280 - _sprite.getOrigin().x;
 
     if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 550 )
     {

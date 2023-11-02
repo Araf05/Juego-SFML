@@ -5,7 +5,7 @@
 class Tile: public sf::Drawable
 {
     public:
-        Tile();
+//        Tile();
         Tile(sf::Texture* texture, sf::IntRect texRect, bool damaging = false);
         virtual ~Tile();
 

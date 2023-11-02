@@ -3,7 +3,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "Juego 1");
+    sf::RenderWindow window(sf::VideoMode(1280, 800), "Juego 1");
     window.setFramerateLimit(60);
 
     GamePlay gamePlay;

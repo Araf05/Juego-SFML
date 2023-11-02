@@ -1,8 +1,8 @@
 #include "Tile.h"
 
-Tile::Tile()
-    : _damaging(false)
-{}
+//Tile::Tile()
+//    : _damaging(false)
+//{}
 
 Tile::Tile(sf::Texture* texture, sf::IntRect texRect, bool damaging)
     : _damaging(damaging)
@@ -14,6 +14,11 @@ Tile::Tile(sf::Texture* texture, sf::IntRect texRect, bool damaging)
 Tile::~Tile()
 {
     //dtor
+}
+
+void Tile::update(float dt)
+{
+
 }
 
 void Tile::draw( sf::RenderTarget& target, sf::RenderStates states) const
