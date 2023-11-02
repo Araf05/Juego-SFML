@@ -97,11 +97,11 @@ void Enemy::update( float dt)
     if(_sprite.getGlobalBounds().left < 0 ) _pos.x = _sprite.getOrigin().x;
     if(_sprite.getGlobalBounds().top < 0 ) _pos.y = _sprite.getOrigin().y;
 
-    if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1200 ) _pos.x = 1200 - _sprite.getOrigin().x;
+    if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1280 ) _pos.x = 1280 - _sprite.getOrigin().x;
 
-    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 800 )
+    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 563 )
     {
-        _pos.y = 800;
+        _pos.y = 563;
         _estado = ESTADOS_ENEMY::IDLE;
     }
 

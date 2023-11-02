@@ -131,9 +131,9 @@ void Personaje::update( float dt)
 
     if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 1280 ) _pos.x = 1280 - _sprite.getOrigin().x;
 
-    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 550 )
+    if(_sprite.getGlobalBounds().top + _sprite.getGlobalBounds().height > 563 )
     {
-        _pos.y = 550;
+        _pos.y = 563;
         _estado = ESTADOS_PERSONAJE::IDLE;
     }
 

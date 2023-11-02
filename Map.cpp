@@ -46,7 +46,7 @@ void Map::addTile(unsigned x, unsigned y)
         {
             if(_mTiles[x][y] == nullptr)
             {
-                _mTiles[x][y] = new Tile(_texTile, sf::IntRect(0,0,_tileSize, _tileSize));
+                _mTiles[x][y] = new Tile({(float)x*_tileSize,(float)y*_tileSize},_texTile, sf::IntRect(0,0,_tileSize, _tileSize));
             }
         }
     }

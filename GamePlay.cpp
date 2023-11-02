@@ -4,7 +4,7 @@ GamePlay::GamePlay()
     : _map()
 {
     initPlayer();
-    _enemy = new Enemy({300, 550});
+    _enemy = new Enemy({300, 563});
     initTile();
     initMap();
     _dt = 0.f;
@@ -19,7 +19,7 @@ GamePlay::~GamePlay()
 
 void GamePlay::initPlayer()
 {
-    _player = new Personaje({100,550});
+    _player = new Personaje({100,563});
     if(_player == nullptr )
     {
         std::cout<<"Error de asignacion de memoria a _player en Gameplay"<<std::endl;
@@ -49,7 +49,12 @@ void GamePlay::initMap()
         std::cout<<"Error de asignacion de memoria a _map en Gameplay"<<std::endl;
         exit(-1);
     }
-    _map->addTile(0,4);
+    for(int i=0; i<40; i++)
+    {
+       _map->addTile(i,17);
+    }
+
+
 }
 
 
