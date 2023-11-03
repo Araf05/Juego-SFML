@@ -4,10 +4,10 @@ GamePlay::GamePlay()
     : _map()
 {
     initPlayer();
-    _enemy = new Enemy({300, 563});
+    _enemy = new Enemy({300, 568});
     initTile();
     initMap();
-    _dt = 0.f;
+    _dt = 1.f;
 }
 
 GamePlay::~GamePlay()
@@ -19,7 +19,7 @@ GamePlay::~GamePlay()
 
 void GamePlay::initPlayer()
 {
-    _player = new Personaje({100,563});
+    _player = new Personaje({100,568});
     if(_player == nullptr )
     {
         std::cout<<"Error de asignacion de memoria a _player en Gameplay"<<std::endl;
@@ -35,7 +35,7 @@ void GamePlay::initTile()
         exit(-1);
     }
 
-    if(!_tileText[0].loadFromFile("EXTRAS/Platform.png") )
+    if(!_tileText[0].loadFromFile("EXTRAS/platforms2.png") )
     {
         std::cout<<"Error al cargar textura de tile en Gameplay"<<std::endl;
         exit(-1);
@@ -43,20 +43,23 @@ void GamePlay::initTile()
 }
 void GamePlay::initMap()
 {
-    _map = new Map(40, 25, _tileText, 32);
+    _map = new Map(80, 50, _tileText, {16,16} );
     if(_map == nullptr)
     {
         std::cout<<"Error de asignacion de memoria a _map en Gameplay"<<std::endl;
         exit(-1);
     }
-    for(int i=0; i<40; i++)
+    for(int i=0; i<80; i++)
     {
-       _map->addTile(i,17);
+       _map->addTile(i,35);
     }
-
-
+    _map->removeTile(1,35);
 }
 
+void GamePlay::checkCollision()
+{
+
+}
 
 void GamePlay::cmd()
 {
@@ -67,8 +70,8 @@ void GamePlay::cmd()
 
 void GamePlay::update()
 {
-    _dt=0;
-    _dt++;
+//    _dt=0;
+//    _dt++;
     _map->update(_dt);
     _player->update(_dt);
     _enemy->update(_dt);

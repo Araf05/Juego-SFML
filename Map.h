@@ -8,7 +8,7 @@ class Map: public sf::Drawable
 {
     public:
 //        Map();
-        Map(unsigned width, unsigned height, sf::Texture* tile, unsigned tileSize);
+        Map(unsigned width, unsigned height, sf::Texture* tile, sf::Vector2i tSize);
         virtual ~Map();
 
         void addTile(unsigned x, unsigned y);
@@ -22,7 +22,8 @@ class Map: public sf::Drawable
         sf::Texture _texBak, *_texTile;
         sf::Sprite _bak;
         std::vector< std::vector<Tile*> > _mTiles;
-        unsigned _tileSize;
+        //unsigned _tileSize;
+        sf::Vector2i _tileSize;
 };
 
 #endif // MAP_H

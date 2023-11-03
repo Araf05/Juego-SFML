@@ -12,7 +12,7 @@ class GamePlay
         GamePlay();
         virtual ~GamePlay();
 
-
+        void checkCollision();
         void cmd();
         void update();
         void draw( sf::RenderWindow& window);

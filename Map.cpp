@@ -6,7 +6,7 @@
 //    _tileSize = 0;
 //}
 
-Map::Map(unsigned width, unsigned height, sf::Texture* tile, unsigned tileSize)
+Map::Map(unsigned width, unsigned height, sf::Texture* tile, sf::Vector2i tSize)
 {
      _bak.setPosition({0,0});
      _texBak.loadFromFile("Background/night-town.png");
@@ -14,7 +14,7 @@ Map::Map(unsigned width, unsigned height, sf::Texture* tile, unsigned tileSize)
      _bak.scale(2.5f, 2.5f);
 
      _texTile = tile;
-     _tileSize = tileSize;
+     _tileSize = tSize;
 
     _mTiles.resize(width);
     for(unsigned i=0; i<_mTiles.size(); i++)
@@ -40,30 +40,26 @@ Map::~Map()
 
 void Map::addTile(unsigned x, unsigned y)
 {
-    if(x<_mTiles.size())
+    if( (x<_mTiles.size()) && (y<_mTiles[x].size()) )
     {
-        if(y<_mTiles[x].size())
+        if(_mTiles[x][y] == nullptr)
         {
-            if(_mTiles[x][y] == nullptr)
-            {
-                _mTiles[x][y] = new Tile({(float)x*_tileSize,(float)y*_tileSize},_texTile, sf::IntRect(0,0,_tileSize, _tileSize));
-            }
+            _mTiles[x][y] = new Tile({(float)x*_tileSize.x,(float)y*_tileSize.y},_texTile, sf::IntRect(0,0,_tileSize.x , _tileSize.y));
         }
+
     }
 
 }
 void Map::removeTile(unsigned x, unsigned y)
 {
-    if(x<_mTiles.size())
+    if( (x<_mTiles.size()) && (y<_mTiles[x].size()) )
     {
-        if(y<_mTiles[x].size())
+        if(_mTiles[x][y] != nullptr)
         {
-            if(_mTiles[x][y] != nullptr)
-            {
-                delete _mTiles[x][y];
-                _mTiles[x][y] = nullptr;
-            }
+            delete _mTiles[x][y];
+            _mTiles[x][y] = nullptr;
         }
+
     }
 }
 
@@ -78,6 +74,7 @@ void Map::update(float dt)
         }
     }
 }
+
 
 
 void Map::draw( sf::RenderTarget& target, sf::RenderStates states ) const
