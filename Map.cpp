@@ -1,12 +1,12 @@
 #include "Map.h"
 
-//Map::Map()
-//{
-//    _texTile = nullptr;
-//    _tileSize = 0;
-//}
+Map::Map()
+{
+    _texTile = nullptr;
+    _tileSize = {};
+}
 
-Map::Map(unsigned width, unsigned height, sf::Texture* tile, sf::Vector2i tSize)
+Map::Map(int height, int width, sf::Texture* tile, sf::Vector2i tSize)
 {
      _bak.setPosition({0,0});
      _texBak.loadFromFile("Background/night-town.png");
@@ -15,44 +15,58 @@ Map::Map(unsigned width, unsigned height, sf::Texture* tile, sf::Vector2i tSize)
 
      _texTile = tile;
      _tileSize = tSize;
+     _filas = height;
+     _cols = width;
 
-    _mTiles.resize(width);
-    for(unsigned i=0; i<_mTiles.size(); i++)
+    _mTiles = new Tile**[_filas];
+    if(_mTiles == nullptr)
     {
-        _mTiles[i].resize(height, nullptr);
+        std::cout<<"Error de aisgnacion de memoria, matriz de Tiles (cols)"<<std::endl;
+        exit(-1);
+    }
+    for(int i=0; i<_filas; i++)
+    {
+        _mTiles[i] = new Tile*[_cols]{};
+        if(_mTiles[i] == nullptr)
+        {
+            std::cout<<"Error de aisgnacion de memoria, matriz de Tiles (filas)"<<std::endl;
+            exit(-1);
+        }
     }
 
-
 }
+
+
 
 Map::~Map()
 {
-    for(unsigned i=0; i<_mTiles.size(); i++)
+    for(int i=0; i<_filas; i++)
     {
-        for(unsigned j=0; j<_mTiles[i].size(); j++)
+        for(int j=0; j<_cols; j++)
         {
-           delete  _mTiles[i][j];
-           _mTiles[i][j] = nullptr;
+            delete _mTiles[i][j];
+            _mTiles[i][j] = nullptr;
         }
     }
 }
 
 
-void Map::addTile(unsigned x, unsigned y)
+void Map::addTile(int x, int y, sf::Texture* vTex, int indexText)
 {
-    if( (x<_mTiles.size()) && (y<_mTiles[x].size()) )
+    _texTile = vTex;
+    if( (x<_filas) && (y<_cols) )
     {
         if(_mTiles[x][y] == nullptr)
         {
-            _mTiles[x][y] = new Tile({(float)x*_tileSize.x,(float)y*_tileSize.y},_texTile, sf::IntRect(0,0,_tileSize.x , _tileSize.y));
+            _mTiles[x][y] = new Tile({(float)y*_tileSize.y,(float)(x+17)*_tileSize.x}, _texTile+indexText, sf::IntRect(0,0,_tileSize.x , _tileSize.y));
         }
 
     }
 
 }
-void Map::removeTile(unsigned x, unsigned y)
+void Map::removeTile(int x, int y)
 {
-    if( (x<_mTiles.size()) && (y<_mTiles[x].size()) )
+    if( (x<_cols) && (y<_filas) )
     {
         if(_mTiles[x][y] != nullptr)
         {
@@ -63,11 +77,17 @@ void Map::removeTile(unsigned x, unsigned y)
     }
 }
 
+Tile Map::getTile(int posX, int posY)
+{
+    return **&_mTiles[posX][posY];
+}
+
+
 void Map::update(float dt)
 {
-    for(unsigned i=0; i<_mTiles.size(); i++)
+    for(int i=0; i<_filas; i++)
     {
-        for(unsigned j=0; j<_mTiles[i].size(); j++)
+        for(int j=0; j<_cols; j++)
         {
             if(_mTiles[i][j]!= nullptr)
                _mTiles[i][j]->update(dt);
@@ -80,9 +100,9 @@ void Map::update(float dt)
 void Map::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
     target.draw(_bak, states);
-    for(unsigned i=0; i<_mTiles.size(); i++)
+    for(int i=0; i<_filas; i++)
     {
-        for(unsigned j=0; j<_mTiles[i].size(); j++)
+        for(int j=0; j<_cols; j++)
         {
             if(_mTiles[i][j]!= nullptr)
             {
@@ -91,6 +111,3 @@ void Map::draw( sf::RenderTarget& target, sf::RenderStates states ) const
         }
     }
 }
-
-
-

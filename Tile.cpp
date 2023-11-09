@@ -1,8 +1,8 @@
 #include "Tile.h"
 
-//Tile::Tile()
-//    : _damaging(false)
-//{}
+Tile::Tile()
+    : _damaging(false)
+{}
 
 Tile::Tile(sf::Vector2f pos, sf::Texture* texture, sf::IntRect texRect, bool damaging)
     : _damaging(damaging)
