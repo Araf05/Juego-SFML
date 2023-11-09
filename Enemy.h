@@ -4,6 +4,7 @@
 
 #include "Animation.h"
 
+
 class Enemy: public sf::Drawable
 {
     public:
@@ -19,13 +20,17 @@ class Enemy: public sf::Drawable
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
+        void chase(const sf::Vector2f& playerPos, float dt);
+        void setPlayerPosition(const sf::Vector2f& playerPos);
+
+
     private:
         enum class ESTADOS_ENEMY
         {
             IDLE,
             MOVE,
             ATACK,
-            DEATH
+            DEATH,
         };
 
     private:
@@ -34,10 +39,12 @@ class Enemy: public sf::Drawable
         sf::Vector2f _vel = { 0.0f, 0.0f };
         sf::Texture _texture;
         sf::Sprite _sprite;
+        sf::Vector2f _playerPosition;
         ESTADOS_ENEMY _estado = ESTADOS_ENEMY::IDLE;
 
         Animation *_animations;
         ESTADOS_ENEMY _currentAnimation = ESTADOS_ENEMY::IDLE;
+
 };
 
 #endif // ENEMY_H

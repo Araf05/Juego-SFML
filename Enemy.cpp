@@ -1,4 +1,6 @@
 #include "Enemy.h"
+#include <cmath>
+#include "GamePlay.h"
 
 Enemy::Enemy(const sf::Vector2f& pos)
     : _pos(pos)
@@ -63,6 +65,10 @@ void Enemy::update( float dt)
 
     dt+= 0.2f;
 
+    std::cout << "Enemy Player Position: x = " << _playerPosition.x << ", y = " << _playerPosition.y << std::endl;
+    std::cout << "Enemy Position: x = " << _pos.x << ", y = " << _pos.y << std::endl;
+    chase(_playerPosition, dt);
+
     switch(_estado)
     {
         case ESTADOS_ENEMY::IDLE:
@@ -79,7 +85,6 @@ void Enemy::update( float dt)
             _animations[int(_currentAnimation)].applyToSprite(_sprite);
             _estado = ESTADOS_ENEMY::IDLE;
         break;
-
         case ESTADOS_ENEMY::DEATH:
         break;
     }
@@ -107,7 +112,42 @@ void Enemy::update( float dt)
 
     _sprite.setPosition(_pos);
 
+
 }
+
+void Enemy::setPlayerPosition(const sf::Vector2f& playerPos)
+{
+    _playerPosition = playerPos;
+}
+
+
+
+void Enemy::chase(const sf::Vector2f& playerPos, float dt)
+{
+
+    sf::Vector2f direction = playerPos - _pos;
+    float distanceToPlayer = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+    if (distanceToPlayer > 0)
+    {
+        direction /= distanceToPlayer;
+
+        float chaseSpeed = 0.5f;
+        _vel = direction * chaseSpeed;
+
+        if (distanceToPlayer <= chaseSpeed * dt)
+        {
+            _pos = playerPos;
+            _estado = ESTADOS_ENEMY::IDLE;
+        }
+        else
+        {
+            _pos += _vel;
+        }
+    }
+}
+
+
 
 void Enemy::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {

@@ -20,6 +20,8 @@ class Personaje: public sf::Drawable
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
         virtual ~Personaje();
 
+        void setEnemyPosition(const sf::Vector2f& playerPos);
+
     private:
         enum class ESTADOS_PERSONAJE
         {
@@ -37,6 +39,7 @@ class Personaje: public sf::Drawable
         sf::Vector2f _vel = { 0.0f, 0.0f };
         sf::Texture _texture;
         sf::Sprite _sprite;
+        sf::Vector2f _enemyPosition;
         ESTADOS_PERSONAJE _estado = ESTADOS_PERSONAJE::IDLE;
 
         Animation *_animations;

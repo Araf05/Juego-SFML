@@ -17,6 +17,11 @@ class GamePlay
         void update();
         void draw( sf::RenderWindow& window);
 
+        sf::Vector2f getPlayerPosition() const;
+        sf::Vector2f getEnemyPosition() const;
+
+        bool checkPlayerEnemyCollision();
+
     private:
         Personaje *_player;
         Enemy *_enemy;

@@ -141,6 +141,12 @@ void Personaje::update( float dt)
 
 }
 
+void Personaje::setEnemyPosition(const sf::Vector2f& enemyPos)
+{
+    _enemyPosition = enemyPos;
+}
+
+
 void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);

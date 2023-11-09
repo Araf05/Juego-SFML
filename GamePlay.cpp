@@ -53,6 +53,7 @@ void GamePlay::initMap()
 }
 
 
+
 void GamePlay::cmd()
 {
     _player->cmd();
@@ -60,13 +61,54 @@ void GamePlay::cmd()
 
 }
 
+
+sf::Vector2f GamePlay::getPlayerPosition() const
+{
+    return _player->getPosition();
+}
+
+sf::Vector2f GamePlay::getEnemyPosition() const
+{
+    return _enemy->getPosition();
+}
+
+bool GamePlay::checkPlayerEnemyCollision()
+{
+    sf::FloatRect playerBounds = _player->getGlobalBounds();
+    sf::FloatRect enemyBounds = _enemy->getGlobalBounds();
+
+    return playerBounds.intersects(enemyBounds);
+}
+
+
+const sf::Vector2f PLAYER_START_POSITION(100.0f, 550.0f);
+
 void GamePlay::update()
 {
     _dt=0;
     _dt++;
     _map->update(_dt);
+
+
+
+
+
+    sf::Vector2f playerPos = getPlayerPosition();
+    sf::Vector2f enemyPos = getEnemyPosition();
+
+    _player->setEnemyPosition(enemyPos);
+    _enemy->setPlayerPosition(playerPos);
+
     _player->update(_dt);
     _enemy->update(_dt);
+
+   if(checkPlayerEnemyCollision())
+    {
+        _player->setPosition(PLAYER_START_POSITION);
+    }
+
+
+
 
 }
 
