@@ -122,9 +122,9 @@ sf::Vector2f GamePlay::getEnemyPosition() const
 
 
 
-bool GamePlay::checkPlayerEnemyCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& enemyBounds)
+bool GamePlay::checkPlayerCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& obj)
 {
-    return playerBounds.intersects(enemyBounds);
+    return playerBounds.intersects(obj);
 }
 
 
@@ -135,90 +135,99 @@ void GamePlay::update()
 {
 
     sf::FloatRect playerBounds = _player->getHitBox();
-    sf::FloatRect playerNext = _player->getNextPos()
-    ;
+    sf::FloatRect playerNext = _player->getNextPos();
     sf::FloatRect enemyBounds = _enemy->getHitBox();
+    sf::FloatRect tileBounds;
     sf::Vector2f playerVel = _player->getVelocity();
 
-    if(checkPlayerEnemyCollision( playerNext, enemyBounds))
+    if(playerVel.y >= 0 )
     {
-        if(playerVel.y > 0) {
+        if(checkPlayerCollision( playerNext, enemyBounds))
+        {
             if( (playerBounds.top < enemyBounds.top) /// collision bottom player
                 && (playerBounds.top + playerBounds.height < enemyBounds.top + enemyBounds.height))
             {
-                playerVel.y = 0.f;
-                _player->setQuiet();
-                _player->setPosition( {(playerBounds.left), ( enemyBounds.top - playerBounds.height)} );
+                // playerVel.y = 0.f;
+                 _player->setQuiet();
+                _player->setPosition( {((playerBounds.left) +12), ( enemyBounds.top) + 6} );
             }
         }
-        if(playerVel.y < 0 )
+        else if(_map->checkIntersect(playerBounds) )
+        {
+            tileBounds = _map->checkTop(playerBounds);
+            if( tileBounds != sf::FloatRect {0,0,0,0} )
+            {
+               // playerVel.y = 0.f;
+                _player->setQuiet();
+                _player->setPosition( {((playerBounds.left) +12), (tileBounds.top) +8} );
+            }
+        }
+    }
+    else if(playerVel.y < 0)
+    {
+        if(checkPlayerCollision( playerNext, enemyBounds))
         {
             if( (playerBounds.top > enemyBounds.top) /// collision top player
                 && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
             {
-                playerVel.y = 0.f;
-                _player->setPosition({ (playerBounds.left), ( enemyBounds.top + playerBounds.height)});
+                //playerVel.y = 0.f;
+                _player->setPosition({ (playerBounds.left) + 12, ( enemyBounds.top + playerBounds.height) - 6});
             }
         }
-
-        if(playerVel.x > 0){
-         if( (playerBounds.left < enemyBounds.left) /// collision player right
-            && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
+        else if(_map->checkIntersect(playerBounds) )
         {
-            playerVel.x = 0.f;
-            _player->setPosition({ (enemyBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            //std::cout<<"derecha"<<std::endl;
+            tileBounds = _map->checkBottom(playerBounds);
+            if( tileBounds != sf::FloatRect {0,0,0,0} )
+            {
+               // _player->setPosition( {((playerBounds.left) +12), (tileBounds.top + playerBounds.height) -8} );
+            }
         }
-        }
-        if(playerVel.x<0){
-
-        if( (playerBounds.left > enemyBounds.left) /// collision player left
-            && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width))
-        {
-            playerVel.x = 0.f;
-            _player->setPosition({ (enemyBounds.left + enemyBounds.width),(_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            //std::cout<<"izquierda"<<std::endl;
-        }
-        }
-        _player->setVelocity(playerVel);
     }
 
-    if(_map->checkIntersect(playerBounds) )
+    if(playerVel.x > 0)
     {
-        sf::FloatRect tileBounds = _map->checkBottom(playerBounds);
-        if( tileBounds != sf::FloatRect {0,0,0,0} )
+        if(checkPlayerCollision( playerNext, enemyBounds))
         {
-            std::cout<<"piso"<<std::endl;
-           // playerVel.y = 0.f;
-            _player->setQuiet();
-            _player->setPosition( {(playerBounds.left), ( tileBounds.top)} );
-            std::cout<<"piso"<<std::endl;
-
+            if( (playerBounds.left < enemyBounds.left) /// collision player right
+                && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
+            {
+                //playerVel.x = 0.f;
+                _player->setPosition({ (enemyBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            }
         }
-
-
-//        if(playerVel.y < 0 )
-//        {
-//            if( (playerBounds.top > tileBounds.top) /// collision player bottom
-//                && (playerBounds.top + playerBounds.height > tileBounds.top + tileBounds.height))
-//            {
-//               // playerVel.y = 0.f;
-//                //_player->setPosition({ (playerBounds.left), ( tileBounds.top + playerBounds.height)});
-//                std::cout<<""<<std::endl;
-//            }
-//        }
-
-        if( (playerBounds.left < tileBounds.left) /// collision player right
-            && (playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width) )
+        else if(_map->checkIntersect(playerBounds) )
         {
-//            playerVel.x = 0.f;
-//            _player->setPosition({ (tileBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            //std::cout<<"derecha"<<std::endl;
+            tileBounds = _map->checkRight(playerBounds);
+            if( tileBounds != sf::FloatRect {0,0,0,0} )
+            {
+                 //playerVel.x = 0.f;
+
+                _player->setPosition({ (tileBounds.left), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            }
         }
-
-
     }
+    else if(playerVel.x < 0)
+    {
+        if(checkPlayerCollision( playerNext, enemyBounds))
+        {
+            if( (playerBounds.left > enemyBounds.left) /// collision player left
+                && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width) )
+            {
+                //playerVel.x = 0.f;
+                _player->setPosition({ (enemyBounds.left + playerBounds.width + 12), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            }
+        }
+        else if(_map->checkIntersect(playerBounds) )
+        {
+            tileBounds = _map->checkLeft(playerBounds);
+            if( tileBounds != sf::FloatRect {0,0,0,0} )
+            {
+                 //playerVel.x = 0.f;
 
+                _player->setPosition({ ( playerBounds.left+playerBounds.width)  , (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            }
+        }
+    }
 
     _map->update(_dt);
     _player->update(_dt);

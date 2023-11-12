@@ -1,6 +1,7 @@
 #ifndef TILE_H
 #define TILE_H
 #include <SFML/Graphics.hpp>
+#include "Hitbox.h"
 
 class Tile: public sf::Drawable
 {
@@ -13,6 +14,7 @@ class Tile: public sf::Drawable
         void setPosition(sf::Vector2f pos);
         const sf::Vector2f getPosition();
         const bool isSolid();
+        const sf::FloatRect getHitBox() const;
 
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
@@ -21,11 +23,12 @@ class Tile: public sf::Drawable
         sf::Sprite _sprite;
         sf::Vector2f _pos;
         sf::IntRect _tileSize;
+        Hitbox *_hitbox;
 
         const bool _damaging;
         bool _solid;
+        void setHitbox();
 
-        sf::FloatRect _collisionBox;
 
 };
 

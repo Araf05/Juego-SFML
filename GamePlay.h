@@ -22,7 +22,7 @@ class GamePlay
         sf::Vector2f getPlayerPosition() const;
         sf::Vector2f getEnemyPosition() const;
 
-        bool checkPlayerEnemyCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& enemyBounds);
+        bool checkPlayerCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& obj);
       //  bool checkPlayerTileCollision(const sf::FloatRect& playerBounds);
 
     private:
