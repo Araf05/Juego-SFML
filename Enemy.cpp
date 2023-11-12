@@ -65,8 +65,6 @@ void Enemy::update( float dt)
 
     dt+= 0.2f;
 
-    std::cout << "Enemy Player Position: x = " << _playerPosition.x << ", y = " << _playerPosition.y << std::endl;
-    std::cout << "Enemy Position: x = " << _pos.x << ", y = " << _pos.y << std::endl;
     chase(_playerPosition, dt);
 
     switch(_estado)

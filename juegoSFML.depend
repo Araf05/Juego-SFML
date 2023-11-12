@@ -1770,7 +1770,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1698935914 source:d:\tplabii\juego-sfml\enemy.cpp
+1699725047 source:d:\tplabii\juego-sfml\enemy.cpp
 	"Enemy.h"
 	<cmath>
 	"GamePlay.h"
@@ -1779,19 +1779,24 @@
 	<SFML/Graphics.hpp>
 	"Animation.h"
 
-1699008172 source:d:\tplabii\juego-sfml\gameplay.cpp
+1699726898 source:d:\tplabii\juego-sfml\gameplay.cpp
 	"GamePlay.h"
-
-1698934901 d:\tplabii\juego-sfml\gameplay.h
+	<iomanip>
 	<SFML/Graphics.hpp>
+
+1699722909 d:\tplabii\juego-sfml\gameplay.h
+	<SFML/Graphics.hpp>
+	<SFML/Graphics/Text.hpp>
 	<iostream>
 	"Personaje.h"
 	"Enemy.h"
 	"Map.h"
 
-1698934845 d:\tplabii\juego-sfml\personaje.h
+1699727015 d:\tplabii\juego-sfml\personaje.h
 	<SFML/Graphics.hpp>
+	<vector>
 	"Animation.h"
+	"Bala.h"
 
 1698929374 d:\tplabii\juego-sfml\map.h
 	<SFML/Graphics.hpp>
@@ -1807,9 +1812,17 @@
 1698929374 source:d:\tplabii\juego-sfml\map.cpp
 	"Map.h"
 
-1698935046 source:d:\tplabii\juego-sfml\personaje.cpp
+1699727317 source:d:\tplabii\juego-sfml\personaje.cpp
 	"Personaje.h"
+	<iostream>
 
 1698929375 source:d:\tplabii\juego-sfml\tile.cpp
 	"Tile.h"
+
+1699727461 source:d:\tplabii\juego-sfml\bala.cpp
+	"Bala.h"
+	<iostream>
+
+1699727377 d:\tplabii\juego-sfml\bala.h
+	<SFML/Graphics.hpp>
 

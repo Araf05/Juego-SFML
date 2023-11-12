@@ -1,6 +1,7 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <iostream>
 #include "Personaje.h"
 #include "Enemy.h"
@@ -20,6 +21,11 @@ class GamePlay
         sf::Vector2f getPlayerPosition() const;
         sf::Vector2f getEnemyPosition() const;
 
+        sf::Clock _timer;
+
+        sf::Text _timerText;
+        sf::Font _font;
+
         bool checkPlayerEnemyCollision();
 
     private:
@@ -29,6 +35,7 @@ class GamePlay
         Map *_map;
         float _dt;
         int _level;
+        float _renderDt;
 
         void initPlayer();
         void initMap();

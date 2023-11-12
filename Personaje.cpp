@@ -1,4 +1,5 @@
 #include "Personaje.h"
+#include <iostream>
 
 
 Personaje::Personaje( const sf::Vector2f& pos )
@@ -139,6 +140,30 @@ void Personaje::update( float dt)
 
     _sprite.setPosition(_pos);
 
+    for(auto& bala : _balas){
+        bala.update(dt);
+         std::cout << "Posicion de la bala durante la actualizacion: " << bala.getPosition().x << ", " << bala.getPosition().y << std::endl;
+    }
+
+    _balas.erase(
+                 std::remove_if(
+    _balas.begin(),
+    _balas.end(),
+    [this](const Bala& bala)
+    {
+            if (bala.getPosition().y > 800) {
+            return true; // Eliminar la bala
+            }
+            return false; // No eliminar la bala
+        }
+    ),
+    _balas.end());
+
+    if (_balas.empty()) {
+        _canShoot = true;
+        std::cout << "Todas las balas han desaparecido. _canShoot: " << _canShoot << std::endl;
+    }
+
 }
 
 void Personaje::setEnemyPosition(const sf::Vector2f& enemyPos)
@@ -150,6 +175,11 @@ void Personaje::setEnemyPosition(const sf::Vector2f& enemyPos)
 void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+
+    for(const auto& bala : _balas){
+    std::cout << "Posicion de la bala durante el dibujo: " << bala.getPosition().x << ", " << bala.getPosition().y << std::endl;
+        target.draw(bala, states);
+    }
 }
 
 const sf::Vector2f Personaje::getPosition() const
@@ -165,4 +195,25 @@ void Personaje::setPosition(sf::Vector2f vec)
 const sf::FloatRect Personaje::getGlobalBounds() const
 {
     return _sprite.getGlobalBounds();
+}
+
+///DISPARAR Y BALAS///
+
+void Personaje::disparar()
+{
+    if (_canShoot && _balas.size() < MAX_BALAS)
+    {
+        std::cout << "Origen del sprite del personaje: " << _sprite.getOrigin().x << ", " << _sprite.getOrigin().y << std::endl;
+        std::cout << "Dimensiones del sprite del personaje: " << _sprite.getGlobalBounds().width << ", " << _sprite.getGlobalBounds().height << std::endl;
+
+        Bala bala(_pos -sf::Vector2f(10.0f, 30.0f), 50.0f, 0.0f);
+        _balas.push_back(bala);
+        _canShoot = false;
+        std::cout << "Disparo realizado. _canShoot: " << _canShoot << std::endl;
+    }
+}
+
+const std::vector<Bala>& Personaje::getBalas() const
+{
+    return _balas;
 }
