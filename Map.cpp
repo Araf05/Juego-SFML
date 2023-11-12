@@ -85,17 +85,6 @@ void Map::removeTile(int x, int y)
     }
 }
 
-//Tile* Map::getTile(int posX, int posY)
-//{
-//    return _mTiles[posX][posY];
-//}
-//
-//sf::FloatRect Map::getTileGB(int posX, int posY)
-//{
-//    Tile tile = (**&_mTiles[posX][posY]);
-//    return tile.getGlobalBounds();
-//}
-
 
 bool Map::checkIntersect(const sf::FloatRect &player )
 {
@@ -125,7 +114,7 @@ const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 
     for(int i=posx; i<posx+1 ; i++)
     {
-        for(int j=6; j<17; j++)
+        for(int j=0; j<17; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -148,7 +137,7 @@ const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
 
     for(int i=posx; i<posx+1 ; i++)
     {
-        for(int j=6; j<17; j++)
+        for(int j=0; j<17; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -169,7 +158,7 @@ const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
 
     for(int i=0; i<80; i++)
     {
-        for(int j=6; j<17; j++)
+        for(int j=0; j<17; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -190,7 +179,7 @@ const sf::FloatRect Map::checkLeft(const sf::FloatRect &player) const
 
     for(int i=0; i<80; i++)
     {
-        for(int j=6; j<17; j++)
+        for(int j=0; j<17; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {

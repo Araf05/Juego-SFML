@@ -65,7 +65,7 @@ void GamePlay::initTile()
 }
 void GamePlay::initMap()
 {
-    const int FILAS=17, COLS=241;
+    const int FILAS=17, COLS=80;
     int m[FILAS][COLS];
 
     _map = new Map(FILAS, COLS, _tileText, {16,16} );
@@ -85,7 +85,7 @@ void GamePlay::initMap()
     {   std::cout<<"Error no se pudo leer el archivo"<<std::endl;
         exit(-1);
     }
-    else std::cout<< "Se pudo leer el registro de mapa"<<std::endl;
+   // else std::cout<< "Se pudo leer el registro de mapa"<<std::endl;
     fclose(p);
 
 

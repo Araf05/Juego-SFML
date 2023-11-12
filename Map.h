@@ -16,6 +16,7 @@ class Map: public sf::Drawable
         void addTile(int x, int y, sf::Texture* vTex, int indexText);
         void removeTile(int x, int y);
         bool checkIntersect(const sf::FloatRect &player );
+
         const sf::FloatRect checkTop(const sf::FloatRect &player) const;
         const sf::FloatRect checkBottom(const sf::FloatRect &player) const;
         const sf::FloatRect checkRight(const sf::FloatRect &player) const;
