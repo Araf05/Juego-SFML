@@ -1,7 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include <SFML/Graphics.hpp>
-
+#include "Hitbox.h"
 #include "Animation.h"
 
 class Enemy: public sf::Drawable
@@ -14,10 +14,14 @@ class Enemy: public sf::Drawable
         void setDirection( const sf::Vector2f& dir );
         const sf::Vector2f getPosition() const;
         const sf::FloatRect getGlobalBounds() const;
+        const sf::FloatRect getHitBox() const;
+        bool checkIntersection(const sf::FloatRect &obj);
 
         void cmd();
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+
+        void chase(const sf::Vector2f& playerPos, float dt);
 
     private:
         enum class ESTADOS_ENEMY
@@ -32,12 +36,16 @@ class Enemy: public sf::Drawable
         sf::Vector2f _pos;
         float _speed = 1.f;
         sf::Vector2f _vel = { 0.0f, 0.0f };
+
         sf::Texture _texture;
         sf::Sprite _sprite;
+        int _width, _height;
+        Hitbox *_hitbox;
         ESTADOS_ENEMY _estado = ESTADOS_ENEMY::IDLE;
 
         Animation *_animations;
         ESTADOS_ENEMY _currentAnimation = ESTADOS_ENEMY::IDLE;
+        void setHitbox();
 };
 
 #endif // ENEMY_H

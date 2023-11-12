@@ -51,16 +51,24 @@ Map::~Map()
 }
 
 
-void Map::addTile(int x, int y, sf::Texture* vTex, int indexText)
+void Map::addTile(int y, int x, sf::Texture* vTex, int indexText)
 {
-    _texTile = vTex;
-    if( (x<_filas) && (y<_cols) )
+    _texTile = vTex + indexText;
+    sf::Vector2f pos;
+    int solid = 1;
+    if(indexText == 1 || indexText == 3)
     {
-        if(_mTiles[x][y] == nullptr)
-        {
-            _mTiles[x][y] = new Tile({(float)y*_tileSize.y,(float)(x+17)*_tileSize.x}, _texTile+indexText, sf::IntRect(0,0,_tileSize.x , _tileSize.y));
-        }
+        solid = 0;
+    }
 
+    if( (y<_filas) && (x<_cols) )
+    {
+        if(_mTiles[y][x] == nullptr)
+        {
+            pos.x = x*_tileSize.x;
+            pos.y = (y+17)*_tileSize.y;
+            _mTiles[y][x] = new Tile( pos, _texTile, (sf::IntRect(0,0,_tileSize.x , _tileSize.y)), solid );
+        }
     }
 
 }
@@ -77,10 +85,62 @@ void Map::removeTile(int x, int y)
     }
 }
 
-Tile Map::getTile(int posX, int posY)
+//Tile* Map::getTile(int posX, int posY)
+//{
+//    return _mTiles[posX][posY];
+//}
+//
+//sf::FloatRect Map::getTileGB(int posX, int posY)
+//{
+//    Tile tile = (**&_mTiles[posX][posY]);
+//    return tile.getGlobalBounds();
+//}
+
+
+bool Map::checkIntersect(const sf::FloatRect &player )
 {
-    return **&_mTiles[posX][posY];
+    bool collision = false;
+    for(int i=0; i<80 ; i++)
+    {
+        for(int j=0; j<17; j++)
+        {
+            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+            {
+                if(_mTiles[j][i]->getGlobalBounds().intersects(player))
+                {
+                    collision = true;
+                }
+            }
+
+        }
+    }
+    return collision;
 }
+
+const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
+{
+    int posx;
+    posx = floor(player.left /16);
+    sf::FloatRect tile = {};
+
+    for(int i=posx; i<posx+1 ; i++)
+    {
+        for(int j=9; j<17; j++)
+        {
+            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+            {
+                if(_mTiles[j][i]->getGlobalBounds().top > player.top
+                    && _mTiles[j][i]->getGlobalBounds().top + _tileSize.y > player.top + player.height )
+                {
+                    return tile = _mTiles[j][i]->getGlobalBounds();
+                }
+            }
+        }
+    }
+    return tile;
+}
+
+
 
 
 void Map::update(float dt)

@@ -4,7 +4,7 @@ GamePlay::GamePlay()
     : _map()
 {
     initPlayer();
-    _enemy = new Enemy({300, 568});
+    _enemy = new Enemy({300, 540});
     initTile();
     initMap();
     _dt = 1.f;
@@ -15,11 +15,12 @@ GamePlay::~GamePlay()
     delete _player;
     delete _map;
     delete _enemy;
+    delete _tileText;
 }
 
 void GamePlay::initPlayer()
 {
-    _player = new Personaje({100,568});
+    _player = new Personaje({100,540});
     if(_player == nullptr )
     {
         std::cout<<"Error de asignacion de memoria a _player en Gameplay"<<std::endl;
@@ -109,14 +110,119 @@ void GamePlay::cmd()
 
 }
 
+sf::Vector2f GamePlay::getPlayerPosition() const
+{
+    return _player->getHitBox().getPosition();
+}
+
+sf::Vector2f GamePlay::getEnemyPosition() const
+{
+    return _enemy->getHitBox().getPosition();
+}
+
+
+
+bool GamePlay::checkPlayerEnemyCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& enemyBounds)
+{
+    return playerBounds.intersects(enemyBounds);
+}
+
+
+
+const sf::Vector2f PLAYER_START_POSITION(100.0f, 540.0f);
+
 void GamePlay::update()
 {
-//    _dt=0;
-//    _dt++;
+
+    sf::FloatRect playerBounds = _player->getHitBox();
+    sf::FloatRect playerNext = _player->getNextPos()
+    ;
+    sf::FloatRect enemyBounds = _enemy->getHitBox();
+    sf::Vector2f playerVel = _player->getVelocity();
+
+    if(checkPlayerEnemyCollision( playerNext, enemyBounds))
+    {
+        if(playerVel.y > 0) {
+            if( (playerBounds.top < enemyBounds.top) /// collision bottom player
+                && (playerBounds.top + playerBounds.height < enemyBounds.top + enemyBounds.height))
+            {
+                playerVel.y = 0.f;
+                _player->setQuiet();
+                _player->setPosition( {(playerBounds.left), ( enemyBounds.top - playerBounds.height)} );
+            }
+        }
+        if(playerVel.y < 0 )
+        {
+            if( (playerBounds.top > enemyBounds.top) /// collision top player
+                && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
+            {
+                playerVel.y = 0.f;
+                _player->setPosition({ (playerBounds.left), ( enemyBounds.top + playerBounds.height)});
+            }
+        }
+
+        if(playerVel.x > 0){
+         if( (playerBounds.left < enemyBounds.left) /// collision player right
+            && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
+        {
+            playerVel.x = 0.f;
+            _player->setPosition({ (enemyBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            //std::cout<<"derecha"<<std::endl;
+        }
+        }
+        if(playerVel.x<0){
+
+        if( (playerBounds.left > enemyBounds.left) /// collision player left
+            && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width))
+        {
+            playerVel.x = 0.f;
+            _player->setPosition({ (enemyBounds.left + enemyBounds.width),(_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            //std::cout<<"izquierda"<<std::endl;
+        }
+        }
+        _player->setVelocity(playerVel);
+    }
+
+    if(_map->checkIntersect(playerBounds) )
+    {
+        sf::FloatRect tileBounds = _map->checkBottom(playerBounds);
+        if( tileBounds != sf::FloatRect {0,0,0,0} )
+        {
+            std::cout<<"piso"<<std::endl;
+           // playerVel.y = 0.f;
+            _player->setQuiet();
+            _player->setPosition( {(playerBounds.left), ( tileBounds.top)} );
+            std::cout<<"piso"<<std::endl;
+
+        }
+
+
+//        if(playerVel.y < 0 )
+//        {
+//            if( (playerBounds.top > tileBounds.top) /// collision player bottom
+//                && (playerBounds.top + playerBounds.height > tileBounds.top + tileBounds.height))
+//            {
+//               // playerVel.y = 0.f;
+//                //_player->setPosition({ (playerBounds.left), ( tileBounds.top + playerBounds.height)});
+//                std::cout<<""<<std::endl;
+//            }
+//        }
+
+        if( (playerBounds.left < tileBounds.left) /// collision player right
+            && (playerBounds.left + playerBounds.width < tileBounds.left + tileBounds.width) )
+        {
+//            playerVel.x = 0.f;
+//            _player->setPosition({ (tileBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+            //std::cout<<"derecha"<<std::endl;
+        }
+
+
+    }
+
+
     _map->update(_dt);
     _player->update(_dt);
     _enemy->update(_dt);
-
 }
 
 void GamePlay::draw( sf::RenderWindow& window)

@@ -439,15 +439,16 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1698949802 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1699763821 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 
-1698888496 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1699757812 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Personaje.h"
 	"Enemy.h"
 	"Map.h"
+	"Tile.h"
 
 1698889440 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
@@ -871,14 +872,16 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1698795275 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+1699762845 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+	<iostream>
 	<SFML/Graphics.hpp>
+	"Hitbox.h"
 	"Animation.h"
 
-1698776796 c:\users\noe_3\documents\github\juego-sfml\animation.h
+1698952180 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1698949888 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1699762845 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1698777180 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
@@ -1326,23 +1329,33 @@
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1698949385 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
+1699763902 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
-1698888911 c:\users\noe_3\documents\github\juego-sfml\map.h
+1699763038 c:\users\noe_3\documents\github\juego-sfml\map.h
+	<iostream>
+	<math.h>
 	<SFML/Graphics.hpp>
 	"Tile.h"
 
-1698795469 source:c:\users\noe_3\documents\github\juego-sfml\enemy.cpp
+1699745549 source:c:\users\noe_3\documents\github\juego-sfml\enemy.cpp
 	"Enemy.h"
+	<cmath>
 
-1698795446 c:\users\noe_3\documents\github\juego-sfml\enemy.h
+1699733214 c:\users\noe_3\documents\github\juego-sfml\enemy.h
 	<SFML/Graphics.hpp>
+	"Hitbox.h"
 	"Animation.h"
 
-1698949333 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
+1699653351 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
 	"Tile.h"
 
-1698949332 c:\users\noe_3\documents\github\juego-sfml\tile.h
+1699653380 c:\users\noe_3\documents\github\juego-sfml\tile.h
 	<SFML/Graphics.hpp>
+
+1699731675 c:\users\noe_3\documents\github\juego-sfml\hitbox.h
+	<SFML/Graphics.hpp>
+
+1699731696 source:c:\users\noe_3\documents\github\juego-sfml\hitbox.cpp
+	"Hitbox.h"
 

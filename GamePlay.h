@@ -5,6 +5,7 @@
 #include "Personaje.h"
 #include "Enemy.h"
 #include "Map.h"
+#include "Tile.h"
 
 class GamePlay
 {
@@ -16,6 +17,13 @@ class GamePlay
         void cmd();
         void update();
         void draw( sf::RenderWindow& window);
+
+
+        sf::Vector2f getPlayerPosition() const;
+        sf::Vector2f getEnemyPosition() const;
+
+        bool checkPlayerEnemyCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& enemyBounds);
+      //  bool checkPlayerTileCollision(const sf::FloatRect& playerBounds);
 
     private:
         Personaje *_player;

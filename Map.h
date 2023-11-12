@@ -1,6 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include <iostream>
+#include <math.h>
 #include <SFML/Graphics.hpp>
 
 #include "Tile.h"
@@ -14,7 +15,8 @@ class Map: public sf::Drawable
 
         void addTile(int x, int y, sf::Texture* vTex, int indexText);
         void removeTile(int x, int y);
-        Tile getTile(int posX, int posY);
+        bool checkIntersect(const sf::FloatRect &player );
+        const sf::FloatRect checkBottom(const sf::FloatRect &player) const;
 
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;

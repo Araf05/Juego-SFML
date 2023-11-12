@@ -1,11 +1,15 @@
 #include "Enemy.h"
+#include <cmath>
 
 Enemy::Enemy(const sf::Vector2f& pos)
     : _pos(pos)
 {
     _sprite.setPosition(pos);
-    _sprite.setTextureRect( {0,0,64,80} );
+    _width = 64;
+    _height = 80;
+    _sprite.setTextureRect( {0,0,_width,_height} );
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2 , _sprite.getGlobalBounds().height);
+    setHitbox();
     _animations = new Animation[4];
     if(_animations == nullptr) exit(-1);
     _animations[int(ESTADOS_ENEMY::IDLE)] = Animation(64,80,"Ghost/ghost-idle.png", 7);
@@ -19,8 +23,23 @@ Enemy::~Enemy()
 {
     _animations->delAnimation();
     delete [] _animations;
+    delete _hitbox;
 }
 
+void Enemy::setHitbox()
+{
+    _hitbox = new Hitbox(_sprite,(_width/4)+3,(_height/4)+4,(_width/2)-8, (_height/2)-6);
+}
+
+const sf::FloatRect Enemy::getHitBox() const
+{
+    return _hitbox->getGlobalBounds();
+}
+
+bool Enemy::checkIntersection(const sf::FloatRect &obj)
+{
+    return _hitbox->checkIntersect(obj);
+}
 
 void Enemy::setDirection( const sf::Vector2f& dir )
 {
@@ -106,17 +125,47 @@ void Enemy::update( float dt)
     }
 
     _sprite.setPosition(_pos);
+    _hitbox->update();
 
 }
+
+
+void Enemy::chase(const sf::Vector2f& playerPos, float dt)
+{
+
+    sf::Vector2f direction = playerPos - _pos;
+    float distanceToPlayer = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+    if (distanceToPlayer > 0)
+    {
+        direction /= distanceToPlayer;
+
+        float chaseSpeed = 0.5f;
+        _vel = direction * chaseSpeed;
+
+        if (distanceToPlayer <= chaseSpeed * dt)
+        {
+            _pos = playerPos;
+            _estado = ESTADOS_ENEMY::IDLE;
+        }
+        else
+        {
+            _pos += _vel;
+        }
+    }
+}
+
+
 
 void Enemy::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+    //target.draw(*_hitbox, states);
 }
 
 const sf::Vector2f Enemy::getPosition() const
 {
-    return _pos;
+    return {(_pos.x - _width/2), (_pos.y - _height) };;
 }
 
 const sf::FloatRect Enemy::getGlobalBounds() const

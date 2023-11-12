@@ -5,8 +5,11 @@ Personaje::Personaje( const sf::Vector2f& pos )
     : _pos(pos)
 {
     _sprite.setPosition(pos);
-    _sprite.setTextureRect( {0,0,48,48} );
+    _width = 48;
+    _height = 48;
+    _sprite.setTextureRect( {0,0,_width,_height} );
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2 , _sprite.getGlobalBounds().height);
+    setHitbox();
     _animations = new Animation[5];
     if(_animations == nullptr) exit(-1);
     _animations[int(ESTADOS_PERSONAJE::IDLE)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Idle.png", 5);
@@ -21,11 +24,20 @@ Personaje::~Personaje()
 {
     _animations->delAnimation();
     delete [] _animations;
+    delete [] _hitbox;
 }
 
-void Personaje::setDirection( const sf::Vector2f& dir )
+sf::Vector2f Personaje::getVelocity()
+{
+    return _vel;
+}
+
+void Personaje::setVelocity( const sf::Vector2f& dir )
 {
     _vel = dir * _speed;
+    _nextPos = _hitbox->getGlobalBounds();
+    _nextPos.left += _vel.x;
+    _nextPos.top += _vel.y;
 }
 
 
@@ -81,11 +93,35 @@ void Personaje::cmd()
     }
 
     _currentAnimation = _estado;
-    setDirection(dir);
+    setVelocity(dir);
+}
+
+
+void Personaje::setHitbox()
+{
+    _hitbox = new Hitbox(_sprite,_width/4,_height/4,_width/2, _height/2);
+}
+
+const sf::FloatRect Personaje::getHitBox() const
+{
+    return _hitbox->getGlobalBounds();
+}
+
+bool Personaje::checkIntersection(const sf::FloatRect &obj)
+{
+    return _hitbox->checkIntersect(obj);
+}
+
+
+
+const sf::FloatRect Personaje::getNextPos() const
+{
+    return _nextPos;
 }
 
 void Personaje::update( float dt)
 {
+
 
     dt+= 1.f;
 
@@ -118,8 +154,11 @@ void Personaje::update( float dt)
 
     _sprite.move(_vel);
 
+    /// flip
     if(_vel.x < 0) _sprite.setScale(-1,1);
+
     if(_vel.x > 0) _sprite.setScale(1,1);
+
 
     _pos = {_sprite.getPosition().x,_sprite.getPosition().y};
 
@@ -138,23 +177,30 @@ void Personaje::update( float dt)
     }
 
     _sprite.setPosition(_pos);
+    _hitbox->update();
 
 }
 
 void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+    //target.draw(*_hitbox, states);
 }
 
 const sf::Vector2f Personaje::getPosition() const
 {
-    return _pos;
+    return {(_pos.x - _width/2), (_pos.y - _height) };
 }
 
+void Personaje::setQuiet()
+{
+    _estado = ESTADOS_PERSONAJE::IDLE;
+}
 void Personaje::setPosition(sf::Vector2f vec)
 {
     _sprite.setPosition(vec);
 }
+
 
 const sf::FloatRect Personaje::getGlobalBounds() const
 {

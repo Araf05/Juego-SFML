@@ -47,6 +47,8 @@
 		<Unit filename="Enemy.h" />
 		<Unit filename="GamePlay.cpp" />
 		<Unit filename="GamePlay.h" />
+		<Unit filename="Hitbox.cpp" />
+		<Unit filename="Hitbox.h" />
 		<Unit filename="Map.cpp" />
 		<Unit filename="Map.h" />
 		<Unit filename="Personaje.cpp" />
