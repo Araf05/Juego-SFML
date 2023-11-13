@@ -149,7 +149,7 @@ void GamePlay::update()
             {
                 // playerVel.y = 0.f;
                  _player->setQuiet();
-                _player->setPosition( {((playerBounds.left) +12), ( enemyBounds.top) + 6} );
+                _player->setPosition( {((playerBounds.left) +13), ( enemyBounds.top) + 6} );
             }
         }
         else if(_map->checkIntersect(playerBounds) )
@@ -159,8 +159,12 @@ void GamePlay::update()
             {
                // playerVel.y = 0.f;
                 _player->setQuiet();
-                _player->setPosition( {((playerBounds.left) +12), (tileBounds.top) +8} );
+                _player->setPosition( {((playerBounds.left) +13), (tileBounds.top) +8} );
             }
+        }
+        else if(_map->checkBottomBool(playerBounds))
+        {
+            _player->setFall();
         }
     }
     else if(playerVel.y < 0)
@@ -171,7 +175,7 @@ void GamePlay::update()
                 && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
             {
                 //playerVel.y = 0.f;
-                _player->setPosition({ (playerBounds.left) + 12, ( enemyBounds.top + playerBounds.height) - 6});
+                _player->setPosition({ (playerBounds.left) + 13, ( enemyBounds.top + playerBounds.height) - 6});
             }
         }
         else if(_map->checkIntersect(playerBounds) )
@@ -214,7 +218,7 @@ void GamePlay::update()
                 && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width) )
             {
                 //playerVel.x = 0.f;
-                _player->setPosition({ (enemyBounds.left + playerBounds.width + 12), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+                _player->setPosition({ (enemyBounds.left + playerBounds.width ), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
             }
         }
         else if(_map->checkIntersect(playerBounds) )

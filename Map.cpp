@@ -152,6 +152,26 @@ const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
     return tile;
 }
 
+
+
+const bool Map::checkBottomBool(const sf::FloatRect &player)
+{
+    int posx;
+    posx = floor(player.left /16);
+
+    for(int i=posx; i<posx+1 ; i++)
+    {
+        for(int j=0; j<17; j++)
+        {
+            if(_mTiles[j][i] == nullptr )
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
 {
    sf::FloatRect tile = {};

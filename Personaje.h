@@ -19,6 +19,7 @@ class Personaje: public sf::Drawable
 
         void setPosition(sf::Vector2f vec);
         void setQuiet();
+        void setFall();
 
         const sf::FloatRect getGlobalBounds() const;
         const sf::FloatRect getHitBox() const;
@@ -36,7 +37,8 @@ class Personaje: public sf::Drawable
             RUN,
             JUMP,
             CROUCH,
-            DEATH
+            DEATH,
+            FALL
         };
 
     private:

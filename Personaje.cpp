@@ -10,13 +10,14 @@ Personaje::Personaje( const sf::Vector2f& pos )
     _sprite.setTextureRect( {0,0,_width,_height} );
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2 , _sprite.getGlobalBounds().height);
     setHitbox();
-    _animations = new Animation[5];
+    _animations = new Animation[6];
     if(_animations == nullptr) exit(-1);
     _animations[int(ESTADOS_PERSONAJE::IDLE)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Idle.png", 5);
     _animations[int(ESTADOS_PERSONAJE::RUN)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Run.png", 6);
     _animations[int(ESTADOS_PERSONAJE::DEATH)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Death.png", 8, 0);
     _animations[int(ESTADOS_PERSONAJE::JUMP)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Jump.png", 2);
     _animations[int(ESTADOS_PERSONAJE::CROUCH)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Crouch.png", 3, 0);
+    _animations[int(ESTADOS_PERSONAJE::FALL)] = Animation(48,48,"CHARACTER_SPRITES/Blue/Blue_Idle.png", 5);
 
 }
 
@@ -48,7 +49,7 @@ void Personaje::cmd()
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
     {
-        if( _estado != ESTADOS_PERSONAJE::JUMP )
+        if( _estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL  )
         {
             _estado = ESTADOS_PERSONAJE::RUN;
             dir.x -= 1.0f;
@@ -61,7 +62,7 @@ void Personaje::cmd()
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::D) )
     {
-        if(_estado != ESTADOS_PERSONAJE::JUMP )
+        if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL )
         {
             _estado = ESTADOS_PERSONAJE::RUN;
             dir.x += 1.0f;
@@ -92,9 +93,12 @@ void Personaje::cmd()
         }
     }
 
+
+
     _currentAnimation = _estado;
     setVelocity(dir);
 }
+
 
 
 void Personaje::setHitbox()
@@ -119,6 +123,15 @@ const sf::FloatRect Personaje::getNextPos() const
     return _nextPos;
 }
 
+void Personaje::setFall()
+{
+    if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::RUN )
+    {
+        _estado = ESTADOS_PERSONAJE::FALL;
+    }
+
+}
+
 void Personaje::update( float dt)
 {
 
@@ -130,6 +143,7 @@ void Personaje::update( float dt)
         case ESTADOS_PERSONAJE::IDLE:
             _animations[int(_currentAnimation)].update(dt);
             _animations[int(_currentAnimation)].applyToSprite(_sprite);
+
         break;
         case ESTADOS_PERSONAJE::RUN:
             _animations[int(_currentAnimation)].update(dt);
@@ -149,6 +163,11 @@ void Personaje::update( float dt)
 
         break;
         case ESTADOS_PERSONAJE::DEATH:
+        break;
+        case ESTADOS_PERSONAJE::FALL:
+            _vel.y += 1.f;
+            _animations[int(_currentAnimation)].update(dt);
+            _animations[int(_currentAnimation)].applyToSprite(_sprite);
         break;
     }
 

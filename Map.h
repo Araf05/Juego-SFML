@@ -19,6 +19,9 @@ class Map: public sf::Drawable
 
         const sf::FloatRect checkTop(const sf::FloatRect &player) const;
         const sf::FloatRect checkBottom(const sf::FloatRect &player) const;
+
+        const bool checkBottomBool(const sf::FloatRect &player);
+
         const sf::FloatRect checkRight(const sf::FloatRect &player) const;
         const sf::FloatRect checkLeft(const sf::FloatRect &player) const;
 
