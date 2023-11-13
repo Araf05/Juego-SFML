@@ -66,7 +66,7 @@ void Map::addTile(int y, int x, sf::Texture* vTex, int indexText)
         if(_mTiles[y][x] == nullptr)
         {
             pos.x = x*_tileSize.x;
-            pos.y = (y+17)*_tileSize.y;
+            pos.y = y*_tileSize.y;
             _mTiles[y][x] = new Tile( pos, _texTile, (sf::IntRect(0,0,_tileSize.x , _tileSize.y)), solid );
         }
     }
@@ -89,9 +89,9 @@ void Map::removeTile(int x, int y)
 bool Map::checkIntersect(const sf::FloatRect &player )
 {
     bool collision = false;
-    for(int i=0; i<80 ; i++)
+    for(int i=0; i<_cols ; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -109,12 +109,12 @@ bool Map::checkIntersect(const sf::FloatRect &player )
 const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 {
     int posx;
-    posx = floor(player.left /16);
+    posx = floor(player.left /32);
     sf::FloatRect tile = {};
 
     for(int i=posx; i<posx+1 ; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -132,12 +132,12 @@ const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
 {
     int posx;
-    posx = floor(player.left /16);
+    posx = floor(player.left /32);
     sf::FloatRect tile = {};
 
     for(int i=posx; i<posx+1 ; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -157,11 +157,11 @@ const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
 const bool Map::checkBottomBool(const sf::FloatRect &player)
 {
     int posx;
-    posx = floor(player.left /16);
+    posx = floor(player.left /32);
 
     for(int i=posx; i<posx+1 ; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(_mTiles[j][i] == nullptr )
             {
@@ -176,9 +176,9 @@ const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
 {
    sf::FloatRect tile = {};
 
-    for(int i=0; i<80; i++)
+    for(int i=0; i<_cols; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
@@ -197,9 +197,9 @@ const sf::FloatRect Map::checkLeft(const sf::FloatRect &player) const
 {
     sf::FloatRect tile = {};
 
-    for(int i=0; i<80; i++)
+    for(int i=0; i<_cols; i++)
     {
-        for(int j=0; j<17; j++)
+        for(int j=0; j<_filas; j++)
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {

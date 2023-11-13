@@ -38,7 +38,7 @@ const sf::FloatRect Tile::getGlobalBounds() const
 
 void Tile::setHitbox()
 {
-    _hitbox = new Hitbox(_sprite,0+8,0+16,_tileSize.width, _tileSize.height);
+    _hitbox = new Hitbox(_sprite,0+16,0+32,_tileSize.width, _tileSize.height);
 }
 
 const sf::FloatRect Tile::getHitBox() const
@@ -61,6 +61,6 @@ void Tile::update(float dt)
 void Tile::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
-    //target.draw(*_hitbox, states);
+    target.draw(*_hitbox, states);
 }
 
