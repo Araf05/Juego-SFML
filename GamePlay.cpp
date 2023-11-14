@@ -171,9 +171,13 @@ void GamePlay::update()
     sf::FloatRect tileBounds;
     sf::Vector2f playerVel = _player->getVelocity();
 
+    bool isEnemyCollision = checkPlayerCollision( playerNext, enemyBounds);
+
+    if(isEnemyCollision) _health->setHurt();
+
     if(playerVel.y >= 0 )
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.top < enemyBounds.top) /// collision bottom player
                 && (playerBounds.top + playerBounds.height < enemyBounds.top + enemyBounds.height))
@@ -200,7 +204,7 @@ void GamePlay::update()
     }
     else if(playerVel.y < 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.top > enemyBounds.top) /// collision top player
                 && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
@@ -221,7 +225,7 @@ void GamePlay::update()
 
     if(playerVel.x > 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.left < enemyBounds.left) /// collision player right
                 && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
@@ -243,7 +247,7 @@ void GamePlay::update()
     }
     else if(playerVel.x < 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.left > enemyBounds.left) /// collision player left
                 && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width) )

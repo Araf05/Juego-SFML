@@ -11,11 +11,11 @@ class Health: public sf::Drawable
 
         void initTex();
         void initSprite();
+        void initBack();
+
         const setHurt();
         void recover();
 
-
-        void cmd();
         void update();
         void draw( sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -24,6 +24,8 @@ class Health: public sf::Drawable
         int _redHearts = 3;
         sf::Sprite* _spriteHP;
         sf::Texture _texHP;
+        sf::Texture _bak;
+        sf::RectangleShape _background;
 };
 
 #endif // HEALTH_H

@@ -4,6 +4,7 @@ Health::Health()
 {
     initTex();
     initSprite();
+    initBack();
 }
 
 Health::~Health()
@@ -29,6 +30,18 @@ void Health::initSprite()
         _spriteHP[i].setPosition({(float)40+(i*40), 580.f});
     }
 }
+
+void Health::initBack()
+{
+
+    _background.setSize({1280, 260});
+    _background.setFillColor(sf::Color(209,186,146,240));
+
+
+    _background.setPosition(0.f, 546.f);
+
+}
+
 
 const int Health::setHurt()
 {
@@ -58,6 +71,7 @@ void Health::update()
 
 void Health::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
+    target.draw(_background, states);
     for(int i=0; i<_healthPoint; i++)
     {
         target.draw(_spriteHP[i], states);
