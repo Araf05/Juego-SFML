@@ -172,3 +172,7 @@ const sf::FloatRect Enemy::getGlobalBounds() const
 {
     return _sprite.getGlobalBounds();
 }
+
+bool Enemy::isDead() const {
+    return _health <= 0;
+}

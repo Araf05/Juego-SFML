@@ -1,13 +1,15 @@
 #include "GamePlay.h"
+#include <cstdlib>
+#include <ctime>
 
 GamePlay::GamePlay()
     : _map()
 {
     initPlayer();
-    _enemy = new Enemy({300, 540});
-    _health = new Health;
+   _health = new Health;
     initTile();
     initMap();
+    createEnemies(4);
     _dt = 1.f;
 }
 
@@ -15,8 +17,8 @@ GamePlay::~GamePlay()
 {
     delete _player;
     delete _map;
-    delete _enemy;
     delete _tileText;
+    cleanUpEnemies();
 }
 
 void GamePlay::initPlayer()
@@ -28,6 +30,77 @@ void GamePlay::initPlayer()
         exit(-1);
     }
 }
+
+///Enemies
+sf::Vector2f GamePlay::getRandomPos()
+{
+    float x = static_cast<float>(std::rand() % 1280);
+    float y = static_cast<float>(std::rand() % 800);
+    return sf::Vector2f(x, y);
+}
+
+void GamePlay::createEnemies(int c)
+{
+    for (int i = 0; i < c; ++i)
+    {
+        sf::Vector2f randomPos = getRandomPos();
+        Enemy* newEnemy = new Enemy({randomPos});
+        _enemies.push_back(newEnemy);
+        ++_activeEnemiesCount;
+    }
+}
+
+bool GamePlay::allEnemiesDead() const {
+    for(const auto& enemy : _enemies) if(!enemy->isDead()) return false;
+    return true;
+}
+
+void GamePlay::checkEnemyStatus()
+{
+    if(_activeEnemiesCount == 0) spawnNewEnemies();
+}
+
+void GamePlay::spawnNewEnemies()
+{
+    createEnemies(5);
+}
+
+void GamePlay::cleanUpEnemies()
+{
+    for(auto& enemy : _enemies)
+    {
+        delete enemy;
+    }
+    _enemies.clear();
+}
+
+sf::FloatRect GamePlay::getGlobalBoundsOfEnemies() const
+{
+    if(_enemies.empty()) return sf::FloatRect();
+    sf::FloatRect enemyBounds = _enemies[0]->getGlobalBounds();
+    for(size_t i = 1; i < _enemies.size(); ++i){
+    sf::FloatRect currentEnemyBounds = _enemies[i]->getGlobalBounds();
+    enemyBounds.left = std::min(enemyBounds.left, currentEnemyBounds.left);
+    enemyBounds.top = std::min(enemyBounds.top, currentEnemyBounds.top);
+    float right = std::max(enemyBounds.left + enemyBounds.width, currentEnemyBounds.left + currentEnemyBounds.width);
+    float bottom = std::max(enemyBounds.top + enemyBounds.height, currentEnemyBounds.top + currentEnemyBounds.height);
+    enemyBounds.width = right - enemyBounds.left;
+    enemyBounds.height = bottom - enemyBounds.top;
+    }
+    return enemyBounds;
+}
+
+void GamePlay::updateEnemies(float dt)
+{
+    for(auto& enemy : _enemies) enemy->update(dt);
+}
+
+void GamePlay::chasePlayer(const sf::Vector2f& playerPos, float speed)
+{
+    for(auto& enemy : _enemies) enemy->chase(playerPos, speed);
+}
+///
+
 void GamePlay::initTile()
 {
     _tileText = new sf::Texture[5];
@@ -137,7 +210,6 @@ void GamePlay::initMap()
 void GamePlay::cmd()
 {
     _player->cmd();
-    _enemy->cmd();
 
 }
 
@@ -146,10 +218,10 @@ sf::Vector2f GamePlay::getPlayerPosition() const
     return _player->getHitBox().getPosition();
 }
 
-sf::Vector2f GamePlay::getEnemyPosition() const
-{
-    return _enemy->getHitBox().getPosition();
-}
+//sf::Vector2f GamePlay::getEnemyPosition() const
+//{
+//    return _enemies->getHitbox().getPosition();
+//}
 
 
 
@@ -167,9 +239,11 @@ void GamePlay::update()
 
     sf::FloatRect playerBounds = _player->getHitBox();
     sf::FloatRect playerNext = _player->getNextPos();
-    sf::FloatRect enemyBounds = _enemy->getHitBox();
+    sf::FloatRect enemyBounds = getGlobalBoundsOfEnemies();
     sf::FloatRect tileBounds;
     sf::Vector2f playerVel = _player->getVelocity();
+    sf::Vector2f playerPos = _player->getPosition();
+    chasePlayer(playerPos, 0.5f);
 
     bool isEnemyCollision = checkPlayerCollision( playerNext, enemyBounds);
 
@@ -270,8 +344,9 @@ void GamePlay::update()
 
     _map->update(_dt);
     _player->update(_dt);
-    _enemy->update(_dt);
+    updateEnemies(_dt);
     _health->update();
+
 }
 
 
@@ -279,6 +354,7 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(*_map, states);
     target.draw(*_player, states);
-    target.draw(*_enemy, states);
     target.draw(*_health, states);
+    for(const auto& enemy : _enemies) target.draw(*enemy, states);
+
 }
