@@ -1,24 +1,17 @@
 #include "Menu.h"
 
-Menu::Menu(float width, float height, bool hayArchivo)
+Menu::Menu(const float& width, const float& height, const int& hayArchivo)
 {
-    if(!_font.loadFromFile("Fonts/Roboto-Black.ttf"))
-    {
-        std::cout<<"Error al cargar fuente en Menu"<<std::endl;
-        exit(-1);
-    }
-    initOps(width, height);
-    if(!_background.loadFromFile("Background/bakMenu.jpeg"))
-    {
-        std::cout<<"Error al cargar png en Menu"<<std::endl;
-        exit(-1);
-    }
+    initFont();
+    initBackground();
+    initOps(width, height, hayArchivo);
+
     _bak.setTexture(_background);
     _bak.setScale(1.25,1.15);
     _bak.setPosition({0,-300});
 
-    _blackRec.setFillColor(sf::Color(56,58,126,200));
-    _blackRec.setSize({400,height});
+    _blackRec.setFillColor(sf::Color(0,0,25,180));
+    _blackRec.setSize({width,height});
     _blackRec.setPosition({0,0});
 
     _hayArchivo = hayArchivo;
@@ -31,8 +24,29 @@ Menu::~Menu()
     delete [] _options;
 }
 
-void Menu::initOps(const float& width, const float& height)
+void Menu::initFont()
 {
+    if(!_font.loadFromFile("Fonts/Roboto-Black.ttf"))
+    {
+        std::cout<<"Error al cargar fuente en Menu"<<std::endl;
+        exit(-1);
+    }
+}
+
+void Menu::initBackground()
+{
+    if(!_background.loadFromFile("Background/bakMenu.jpeg"))
+    {
+        std::cout<<"Error al cargar png en Menu"<<std::endl;
+        exit(-1);
+    }
+}
+
+void Menu::initOps(const float& width, const float& height, const int& hayArchivo)
+{
+    if(!hayArchivo) _cantOps = 3;
+    else _cantOps = 5;
+
     _options = new sf::Text[_cantOps];
     if(_options == nullptr)
     {
@@ -44,16 +58,22 @@ void Menu::initOps(const float& width, const float& height)
     {
         _options[i].setFont(_font);
         _options[i].setFillColor(sf::Color::White);
-        _options[i].setPosition({60, (height/(_cantOps + 1) *(i+1))});
+        _options[i].setPosition({60, ((height/2)/(_cantOps + 1) *(i+1)) + (height/4) });
     }
 
     _options[0].setString("New Game");
     _options[0].setFillColor(sf::Color(215, 0, 12, 255));
 
-    _options[1].setString("Continue");
-    _options[2].setString("Score");
-    _options[3].setString("Credits");
-    _options[4].setString("Quit");
+    _options[_cantOps - 2].setString("Credits");
+    _options[_cantOps -1].setString("Quit");
+
+    if(hayArchivo)
+    {
+        _options[1].setString("Continue");
+        _options[2].setString("Score");
+    }
+
+
 }
 
 
@@ -91,7 +111,6 @@ void Menu::cmd()
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) )
         {
             _estado = ESTADOS_MENU::ENTER;
-            std::cout<<"enter"<<std::endl;
         }
         else _estado = ESTADOS_MENU::IDLE;
 
@@ -102,7 +121,7 @@ void Menu::update(const int& dt, int& ops)
 {
     _time += dt;
 
-    if( _time > _holdTime)
+    if( (_time >= _holdTime) || (_estado == ESTADOS_MENU::ENTER) )
     {
         switch(_estado)
         {

@@ -6,8 +6,10 @@
 class Menu: public sf::Drawable
 {
     public:
-        Menu(float width, float height, bool hayArchivo);
-        void initOps(const float& width, const float& height);
+        Menu(const float& width, const float& height,const int& hayArchivo);
+        void initFont();
+        void initBackground();
+        void initOps(const float& width, const float& height, const int& hayArchivo);
         void moveUp();
         void moveDown();
 
@@ -33,7 +35,7 @@ class Menu: public sf::Drawable
         sf::RectangleShape _blackRec;
 
         bool _hayArchivo= false;
-        const int _cantOps= 5;
+        int _cantOps= 5;
         int _selectOps;
         sf::Text *_options;
         ESTADOS_MENU _estado = ESTADOS_MENU::IDLE;
