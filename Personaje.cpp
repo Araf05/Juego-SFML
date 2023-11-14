@@ -73,7 +73,6 @@ void Personaje::cmd()
         }
     }
 
-
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::W) )
     {
         if(_estado != ESTADOS_PERSONAJE::JUMP)
@@ -83,8 +82,6 @@ void Personaje::cmd()
         }
     }
 
-
-
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::S) )
     {
         if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
@@ -93,13 +90,9 @@ void Personaje::cmd()
         }
     }
 
-
-
     _currentAnimation = _estado;
     setVelocity(dir);
 }
-
-
 
 
 void Personaje::setHitbox()

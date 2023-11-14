@@ -35,6 +35,23 @@ void Game::initGamePlay( )
     }
 }
 
+void Game::setEstado(int& ops)
+{
+    switch(ops)
+    {
+        case 0: _estado = ESTADOS_GAME::GAMEPLAY;
+        break;
+        case 1: _estado = ESTADOS_GAME::GAMEPLAY;
+        break;
+        case 2: _estado = ESTADOS_GAME::SCORE;
+        break;
+        case 3: _estado = ESTADOS_GAME::CREDITS;
+        break;
+        case 4: _estado = ESTADOS_GAME::QUIT;
+        break;
+    }
+}
+
 
 void Game::cmd()
 {
@@ -58,31 +75,15 @@ void Game::cmd()
     }
 }
 
-void Game::setEstado(int& ops)
-{
-    switch(ops)
-    {
-        case 0: _estado = ESTADOS_GAME::GAMEPLAY;
-        break;
-        case 1: _estado = ESTADOS_GAME::GAMEPLAY;
-        break;
-        case 2: _estado = ESTADOS_GAME::SCORE;
-        break;
-        case 3: _estado = ESTADOS_GAME::CREDITS;
-        break;
-        case 4: _estado = ESTADOS_GAME::QUIT;
-        break;
-    }
-}
+
 
 void Game::update()
 {
     int ops = -1;
-    int dt = 1;
     switch(_estado)
     {
         case ESTADOS_GAME::MENU:
-            _menu->update(dt, ops);
+            _menu->update(ops);
             if(ops!= -1)
             {
                 setEstado(ops);

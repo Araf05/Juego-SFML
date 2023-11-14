@@ -6,6 +6,7 @@ GamePlay::GamePlay()
     : _map()
 {
     initPlayer();
+   _health = new Health;
     initTile();
     initMap();
     createEnemies(4);
@@ -244,9 +245,13 @@ void GamePlay::update()
     sf::Vector2f playerPos = _player->getPosition();
     chasePlayer(playerPos, 0.5f);
 
+    bool isEnemyCollision = checkPlayerCollision( playerNext, enemyBounds);
+
+    if(isEnemyCollision) _health->setHurt();
+
     if(playerVel.y >= 0 )
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.top < enemyBounds.top) /// collision bottom player
                 && (playerBounds.top + playerBounds.height < enemyBounds.top + enemyBounds.height))
@@ -273,7 +278,7 @@ void GamePlay::update()
     }
     else if(playerVel.y < 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.top > enemyBounds.top) /// collision top player
                 && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
@@ -294,7 +299,7 @@ void GamePlay::update()
 
     if(playerVel.x > 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.left < enemyBounds.left) /// collision player right
                 && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
@@ -316,7 +321,7 @@ void GamePlay::update()
     }
     else if(playerVel.x < 0)
     {
-        if(checkPlayerCollision( playerNext, enemyBounds))
+        if(isEnemyCollision)
         {
             if( (playerBounds.left > enemyBounds.left) /// collision player left
                 && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width) )
@@ -340,6 +345,8 @@ void GamePlay::update()
     _map->update(_dt);
     _player->update(_dt);
     updateEnemies(_dt);
+    _health->update();
+
 }
 
 
@@ -347,5 +354,7 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(*_map, states);
     target.draw(*_player, states);
+    target.draw(*_health, states);
     for(const auto& enemy : _enemies) target.draw(*enemy, states);
+
 }

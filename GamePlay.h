@@ -5,8 +5,9 @@
 #include <vector>
 #include "Personaje.h"
 #include "Enemy.h"
+#include "Health.h"
 #include "Map.h"
-#include "Tile.h"
+
 
 class GamePlay: public sf::Drawable
 {
@@ -40,6 +41,8 @@ class GamePlay: public sf::Drawable
         std::vector<Enemy*> _enemies;
         sf::Texture *_tileText;
         Map *_map;
+        Health *_health;
+
         float _dt;
         int _level;
         int _activeEnemiesCount;

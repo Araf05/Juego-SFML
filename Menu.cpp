@@ -117,9 +117,9 @@ void Menu::cmd()
 
 }
 
-void Menu::update(const int& dt, int& ops)
+void Menu::update(int& ops)
 {
-    _time += dt;
+    _time++;
 
     if( (_time >= _holdTime) || (_estado == ESTADOS_MENU::ENTER) )
     {

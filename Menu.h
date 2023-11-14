@@ -14,7 +14,7 @@ class Menu: public sf::Drawable
         void moveDown();
 
         void cmd();
-        void update(const int& dt, int& ops);
+        void update(int& ops);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
 
