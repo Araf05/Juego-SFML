@@ -5,6 +5,7 @@ GamePlay::GamePlay()
 {
     initPlayer();
     _enemy = new Enemy({300, 540});
+    _health = new Health;
     initTile();
     initMap();
     _dt = 1.f;
@@ -266,6 +267,7 @@ void GamePlay::update()
     _map->update(_dt);
     _player->update(_dt);
     _enemy->update(_dt);
+    _health->update();
 }
 
 
@@ -274,4 +276,5 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(*_map, states);
     target.draw(*_player, states);
     target.draw(*_enemy, states);
+    target.draw(*_health, states);
 }

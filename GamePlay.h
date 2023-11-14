@@ -4,8 +4,9 @@
 #include <iostream>
 #include "Personaje.h"
 #include "Enemy.h"
+#include "Health.h"
 #include "Map.h"
-#include "Tile.h"
+
 
 class GamePlay: public sf::Drawable
 {
@@ -30,6 +31,8 @@ class GamePlay: public sf::Drawable
         Enemy *_enemy;
         sf::Texture *_tileText;
         Map *_map;
+        Health *_health;
+
         float _dt;
         int _level;
 
