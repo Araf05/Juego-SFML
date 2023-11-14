@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(float width, float height)
+Menu::Menu(float width, float height, bool hayArchivo)
 {
     if(!_font.loadFromFile("Fonts/Roboto-Black.ttf"))
     {
@@ -21,10 +21,8 @@ Menu::Menu(float width, float height)
     _blackRec.setSize({400,height});
     _blackRec.setPosition({0,0});
 
+    _hayArchivo = hayArchivo;
     _selectOps = 0;
-
-
-
 
 }
 
@@ -81,42 +79,53 @@ void Menu::moveDown()
 
 void Menu::cmd()
 {
-    if(_estado == ESTADOS_MENU::IDLE)
-    {
+
         if( sf::Keyboard::isKeyPressed(sf::Keyboard::Down) )
         {
             _estado = ESTADOS_MENU::DOWN;
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) )
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) )
         {
             _estado = ESTADOS_MENU::UP;
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) )
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) )
         {
             _estado = ESTADOS_MENU::ENTER;
             std::cout<<"enter"<<std::endl;
         }
-    }
+        else _estado = ESTADOS_MENU::IDLE;
+
+
 }
 
-void Menu::update()
+void Menu::update(const int& dt, int& ops)
 {
-    switch(_estado)
-    {
-        case ESTADOS_MENU::IDLE:
+    _time += dt;
 
-        break;
-        case ESTADOS_MENU::DOWN:
-            moveDown();
-            _estado = ESTADOS_MENU::IDLE;
-        break;
-        case ESTADOS_MENU::UP:
-            moveUp();
-            _estado = ESTADOS_MENU::IDLE;
-        break;
-        case ESTADOS_MENU::ENTER:
-        break;
+    if( _time > _holdTime)
+    {
+        switch(_estado)
+        {
+            case ESTADOS_MENU::IDLE:
+
+            break;
+            case ESTADOS_MENU::DOWN:
+                moveDown();
+            break;
+            case ESTADOS_MENU::UP:
+                moveUp();
+            break;
+            case ESTADOS_MENU::ENTER:
+                ops = _selectOps;
+            break;
+            default:
+                _estado = ESTADOS_MENU::IDLE;
+            break;
+
+        }
+        _time = 0;
     }
+
 }
 
 void Menu::draw( sf::RenderTarget& target, sf::RenderStates states) const

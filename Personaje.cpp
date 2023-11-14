@@ -79,7 +79,7 @@ void Personaje::cmd()
         if(_estado != ESTADOS_PERSONAJE::JUMP)
         {
             _estado = ESTADOS_PERSONAJE::JUMP;
-            _fJump=12.f;
+            _fJump=16.f;
         }
     }
 
@@ -98,6 +98,7 @@ void Personaje::cmd()
     _currentAnimation = _estado;
     setVelocity(dir);
 }
+
 
 
 
@@ -123,14 +124,27 @@ const sf::FloatRect Personaje::getNextPos() const
     return _nextPos;
 }
 
-void Personaje::setFall()
+void Personaje::setFall(const float& dt)
 {
-    if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::RUN )
+    _time+=dt;
+    _isFall++;
+    if((_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::IDLE) && (_isFall >=20 || _time>3600) )
     {
         _estado = ESTADOS_PERSONAJE::FALL;
+        _isFall=0;
+        _time=0;
     }
 
+    if(_time > 3600) _time=0;
+
 }
+
+void Personaje::setQuiet()
+{
+    _estado = ESTADOS_PERSONAJE::IDLE;
+    _isFall= 0;
+}
+
 
 void Personaje::update( float dt)
 {
@@ -165,9 +179,9 @@ void Personaje::update( float dt)
         case ESTADOS_PERSONAJE::DEATH:
         break;
         case ESTADOS_PERSONAJE::FALL:
-            _vel.y += 1.f;
-            _animations[int(_currentAnimation)].update(dt);
-            _animations[int(_currentAnimation)].applyToSprite(_sprite);
+            _vel.y += 9.f;
+//            _animations[int(_currentAnimation)].update(dt);
+//            _animations[int(_currentAnimation)].applyToSprite(_sprite);
         break;
     }
 
@@ -212,15 +226,10 @@ const sf::Vector2f Personaje::getPosition() const
     return {(_pos.x - _width/2), (_pos.y - _height) };
 }
 
-void Personaje::setQuiet()
-{
-    _estado = ESTADOS_PERSONAJE::IDLE;
-}
 void Personaje::setPosition(sf::Vector2f vec)
 {
     _sprite.setPosition(vec);
 }
-
 
 const sf::FloatRect Personaje::getGlobalBounds() const
 {

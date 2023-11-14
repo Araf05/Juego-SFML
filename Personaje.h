@@ -19,7 +19,7 @@ class Personaje: public sf::Drawable
 
         void setPosition(sf::Vector2f vec);
         void setQuiet();
-        void setFall();
+        void setFall(const float& dt);
 
         const sf::FloatRect getGlobalBounds() const;
         const sf::FloatRect getHitBox() const;
@@ -48,12 +48,15 @@ class Personaje: public sf::Drawable
         float _speed = 2.f;
         float _fJump = 3.f;
         sf::Vector2f _vel = { 0.0f, 0.0f };
+        int _isFall = 0;
+        float _time=0;
 
         sf::Texture _texture;
         sf::Sprite _sprite;
         int _width, _height;
         Hitbox *_hitbox;
         ESTADOS_PERSONAJE _estado = ESTADOS_PERSONAJE::IDLE;
+        ESTADOS_PERSONAJE _estadoAnterior = ESTADOS_PERSONAJE::IDLE;
 
         Animation *_animations;
         ESTADOS_PERSONAJE _currentAnimation = ESTADOS_PERSONAJE::IDLE;

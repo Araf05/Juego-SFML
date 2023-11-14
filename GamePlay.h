@@ -7,7 +7,7 @@
 #include "Map.h"
 #include "Tile.h"
 
-class GamePlay
+class GamePlay: public sf::Drawable
 {
     public:
         GamePlay();
@@ -16,7 +16,7 @@ class GamePlay
         void checkCollision();
         void cmd();
         void update();
-        void draw( sf::RenderWindow& window);
+        void draw( sf::RenderTarget& target, sf::RenderStates states)const override;
 
 
         sf::Vector2f getPlayerPosition() const;

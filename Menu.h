@@ -6,13 +6,13 @@
 class Menu: public sf::Drawable
 {
     public:
-        Menu(float width, float height);
+        Menu(float width, float height, bool hayArchivo);
         void initOps(const float& width, const float& height);
         void moveUp();
         void moveDown();
 
         void cmd();
-        void update();
+        void update(const int& dt, int& ops);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
 
@@ -31,12 +31,15 @@ class Menu: public sf::Drawable
         sf::Texture _background;
         sf::Sprite _bak;
         sf::RectangleShape _blackRec;
-        const int _cantOps = 5;
+
+        bool _hayArchivo= false;
+        const int _cantOps= 5;
         int _selectOps;
         sf::Text *_options;
         ESTADOS_MENU _estado = ESTADOS_MENU::IDLE;
+        float _time=0;
+        float _holdTime = 6;
 
-        int tic = 0;
 };
 
 #endif // MENU_H

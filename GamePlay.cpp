@@ -194,7 +194,7 @@ void GamePlay::update()
         }
         else if(_map->checkBottomBool(playerBounds))
         {
-            _player->setFall();
+            _player->setFall(_dt);
         }
     }
     else if(playerVel.y < 0)
@@ -268,9 +268,10 @@ void GamePlay::update()
     _enemy->update(_dt);
 }
 
-void GamePlay::draw( sf::RenderWindow& window)
+
+void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
-    window.draw(*_map);
-    window.draw(*_player);
-    window.draw(*_enemy);
+    target.draw(*_map, states);
+    target.draw(*_player, states);
+    target.draw(*_enemy, states);
 }

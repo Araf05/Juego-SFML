@@ -1,14 +1,17 @@
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 #include "Menu.h"
 #include "GamePlay.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 800), "Juego 1");
+    const int WIDTH = 1280, HEIGHT = 800;
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Juego 1");
     window.setFramerateLimit(60);
 
-    Menu menu(window.getSize().x, window.getSize().y);
-    GamePlay gamePlay;
+    Game game(WIDTH, HEIGHT);
+
+   // GamePlay gamePlay;
 
     while (window.isOpen())
     {
@@ -21,16 +24,18 @@ int main()
                 window.close();
         }
 
-        gamePlay.cmd();
-        //menu.cmd();
+        //gamePlay.cmd();
+        game.cmd();
 
-        gamePlay.update();
-        //menu.update();
+        //gamePlay.update();
+        game.update();
+
 
         window.clear();
 
-        gamePlay.draw(window);
-        //window.draw(menu);
+        //gamePlay.draw(window);
+        game.draw(window);
+
 
         window.display();
     }
