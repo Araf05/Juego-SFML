@@ -22,6 +22,7 @@ class Enemy: public sf::Drawable
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
         void chase(const sf::Vector2f& playerPos, float dt);
+        bool isDead() const;
 
     private:
         enum class ESTADOS_ENEMY
@@ -46,6 +47,8 @@ class Enemy: public sf::Drawable
         Animation *_animations;
         ESTADOS_ENEMY _currentAnimation = ESTADOS_ENEMY::IDLE;
         void setHitbox();
+
+        int _health;
 };
 
 #endif // ENEMY_H
