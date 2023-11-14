@@ -9,7 +9,7 @@ GamePlay::GamePlay()
    _health = new Health;
     initTile();
     initMap();
-    createEnemies(4);
+    createEnemies(50);
     _dt = 1.f;
 }
 

@@ -1,5 +1,6 @@
-#ifndef HEALTH_H
-#define HEALTH_H
+#ifndef HEALTH_H_INCLUDED
+#define HEALTH_H_INCLUDED
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -28,4 +29,8 @@ class Health: public sf::Drawable
         sf::RectangleShape _background;
 };
 
-#endif // HEALTH_H
+
+
+
+
+#endif // HEALTH_H_INCLUDED
