@@ -30,7 +30,8 @@ class Personaje: public sf::Drawable
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
         virtual ~Personaje();
 
-    private:
+        float getJump() const;
+
         enum class ESTADOS_PERSONAJE
         {
             IDLE,

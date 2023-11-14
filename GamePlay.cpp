@@ -9,7 +9,7 @@ GamePlay::GamePlay()
    _health = new Health;
     initTile();
     initMap();
-    createEnemies(50);
+    createEnemies(0);
     _dt = 1.f;
 }
 
@@ -237,7 +237,10 @@ const sf::Vector2f PLAYER_START_POSITION(100.0f, 540.0f);
 void GamePlay::update()
 {
 
+
+    _player->update(_dt);
     sf::FloatRect playerBounds = _player->getHitBox();
+    if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
     sf::FloatRect playerNext = _player->getNextPos();
     sf::FloatRect enemyBounds = getGlobalBoundsOfEnemies();
     sf::FloatRect tileBounds;
@@ -247,10 +250,13 @@ void GamePlay::update()
 
     bool isEnemyCollision = checkPlayerCollision( playerNext, enemyBounds);
 
+
+
     if(isEnemyCollision) _health->setHurt();
 
     if(playerVel.y >= 0 )
     {
+
         if(isEnemyCollision)
         {
             if( (playerBounds.top < enemyBounds.top) /// collision bottom player
@@ -271,34 +277,23 @@ void GamePlay::update()
                 _player->setPosition( {((playerBounds.left) +13), (tileBounds.top) +8} );
             }
         }
-        else if(_map->checkBottomBool(playerBounds))
-        {
-            _player->setFall(_dt);
-        }
     }
     else if(playerVel.y < 0)
     {
+
         if(isEnemyCollision)
         {
             if( (playerBounds.top > enemyBounds.top) /// collision top player
                 && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
             {
-                //playerVel.y = 0.f;
                 _player->setPosition({ (playerBounds.left) + 13, ( enemyBounds.top + playerBounds.height) - 6});
-            }
-        }
-        else if(_map->checkIntersect(playerBounds) )
-        {
-            tileBounds = _map->checkBottom(playerBounds);
-            if( tileBounds != sf::FloatRect {0,0,0,0} )
-            {
-               // _player->setPosition( {((playerBounds.left) +12), (tileBounds.top + playerBounds.height) -8} );
             }
         }
     }
 
     if(playerVel.x > 0)
     {
+
         if(isEnemyCollision)
         {
             if( (playerBounds.left < enemyBounds.left) /// collision player right
@@ -321,6 +316,7 @@ void GamePlay::update()
     }
     else if(playerVel.x < 0)
     {
+
         if(isEnemyCollision)
         {
             if( (playerBounds.left > enemyBounds.left) /// collision player left
@@ -337,15 +333,16 @@ void GamePlay::update()
             {
                  //playerVel.x = 0.f;
 
-                _player->setPosition({ ( playerBounds.left+playerBounds.width)  , (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
+                _player->setPosition({ (playerBounds.left+playerBounds.width)  , (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
             }
         }
     }
 
     _map->update(_dt);
-    _player->update(_dt);
     updateEnemies(_dt);
     _health->update();
+
+
 
 }
 

@@ -160,7 +160,7 @@ void Enemy::chase(const sf::Vector2f& playerPos, float dt)
 void Enemy::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
-    //target.draw(*_hitbox, states);
+    target.draw(*_hitbox, states);
 }
 
 const sf::Vector2f Enemy::getPosition() const

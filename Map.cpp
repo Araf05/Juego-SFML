@@ -163,13 +163,13 @@ const bool Map::checkBottomBool(const sf::FloatRect &player)
     {
         for(int j=0; j<_filas; j++)
         {
-            if(_mTiles[j][i] == nullptr )
+            if((_mTiles[j][i] != nullptr) && (_mTiles[j][i]->isSolid()))
             {
-                return true;
+                return false;
             }
         }
     }
-    return false;
+    return true;
 }
 
 const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
