@@ -47,6 +47,7 @@ const int Health::setHurt()
 {
     if( _redHearts > 0)
     {
+        //std::cout << "Recibiste daño" << std::endl;
         _redHearts--;
         _spriteHP[_redHearts].setColor(sf::Color::Blue);
     }

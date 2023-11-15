@@ -86,7 +86,7 @@ void Map::removeTile(int x, int y)
 }
 
 
-bool Map::checkIntersect(const sf::FloatRect &player )
+bool Map::checkIntersect(const sf::FloatRect &player)
 {
     bool collision = false;
     for(int i=0; i<_cols ; i++)
@@ -182,8 +182,8 @@ const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
         {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
-                if(_mTiles[j][i]->getHitBox().left > player.left
-                    && (_mTiles[j][i]->getHitBox().left + _tileSize.x) < player.left + player.width)
+                if(_mTiles[j][i]->getHitBox().left < player.left + player.width
+                    && (_mTiles[j][i]->getHitBox().left + _mTiles[j][i]->getHitBox().width) > player.left + player.width)
                 {
                     return tile = _mTiles[j][i]->getHitBox();
                 }

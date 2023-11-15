@@ -32,6 +32,7 @@ class Personaje: public sf::Drawable
 
         float getJump() const;
 
+
         enum class ESTADOS_PERSONAJE
         {
             IDLE,
@@ -45,6 +46,7 @@ class Personaje: public sf::Drawable
     private:
         sf::Vector2f _pos;
         sf::FloatRect _nextPos;
+        sf::Vector2f _previousPosition;
 
         float _speed = 2.f;
         float _fJump = 3.f;

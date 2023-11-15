@@ -9,7 +9,7 @@ GamePlay::GamePlay()
    _health = new Health;
     initTile();
     initMap();
-    createEnemies(0);
+    createEnemies(2);
     _dt = 1.f;
 }
 
@@ -74,20 +74,18 @@ void GamePlay::cleanUpEnemies()
     _enemies.clear();
 }
 
-sf::FloatRect GamePlay::getGlobalBoundsOfEnemies() const
+std::vector<sf::FloatRect> GamePlay::getGlobalBoundsOfEnemies() const
 {
-    if(_enemies.empty()) return sf::FloatRect();
-    sf::FloatRect enemyBounds = _enemies[0]->getGlobalBounds();
-    for(size_t i = 1; i < _enemies.size(); ++i){
-    sf::FloatRect currentEnemyBounds = _enemies[i]->getGlobalBounds();
-    enemyBounds.left = std::min(enemyBounds.left, currentEnemyBounds.left);
-    enemyBounds.top = std::min(enemyBounds.top, currentEnemyBounds.top);
-    float right = std::max(enemyBounds.left + enemyBounds.width, currentEnemyBounds.left + currentEnemyBounds.width);
-    float bottom = std::max(enemyBounds.top + enemyBounds.height, currentEnemyBounds.top + currentEnemyBounds.height);
-    enemyBounds.width = right - enemyBounds.left;
-    enemyBounds.height = bottom - enemyBounds.top;
+    std::vector<sf::FloatRect> allEnemyBounds;
+    if(_enemies.empty()) return std::vector<sf::FloatRect> {};
+
+    for(int i = 0; i < _enemies.size(); i++)
+    {
+        sf::FloatRect enemyBounds = _enemies[i]->getHitBox();
+        allEnemyBounds.push_back(enemyBounds);
     }
-    return enemyBounds;
+
+    return allEnemyBounds;
 }
 
 void GamePlay::updateEnemies(float dt)
@@ -156,7 +154,7 @@ void GamePlay::initMap()
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,0,0,0,0,
         0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,
         1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
     };
@@ -218,12 +216,6 @@ sf::Vector2f GamePlay::getPlayerPosition() const
     return _player->getHitBox().getPosition();
 }
 
-//sf::Vector2f GamePlay::getEnemyPosition() const
-//{
-//    return _enemies->getHitbox().getPosition();
-//}
-
-
 
 bool GamePlay::checkPlayerCollision(const sf::FloatRect& playerBounds, const sf::FloatRect& obj)
 {
@@ -231,117 +223,68 @@ bool GamePlay::checkPlayerCollision(const sf::FloatRect& playerBounds, const sf:
 }
 
 
+void GamePlay::mapCollisionHandler(sf::Vector2f p, sf::FloatRect t, sf::FloatRect pb)
+{
+    ///PB -> PLAYERBOUNDS
+    ///T -> TILEBOUNDS
+    ///P -> PLAYER VECTOR2F
 
-const sf::Vector2f PLAYER_START_POSITION(100.0f, 540.0f);
+    if(p.y >= 0){
+        if(_map->checkIntersect(pb)){
+            t = _map->checkTop(pb);
+            if(t != sf::FloatRect{0,0,0,0}){
+                _player->setQuiet();
+                _player->setPosition({pb.left + 13, t.top + 6});
+            }
+        }
+    }
+}
+
+sf::FloatRect GamePlay::enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb)
+{
+    ///PN -> PLAYERNEXT
+    ///EB -> ENEMYBOUNDS
+
+ std::vector<sf::FloatRect> allEnemyBounds = getGlobalBoundsOfEnemies();
+
+    if(allEnemyBounds.empty()) return eb;
+
+ bool isEnemyCollision = false;
+ int i = 0;
+ while(!isEnemyCollision && i < allEnemyBounds.size())
+ {
+     isEnemyCollision = checkPlayerCollision (pn , allEnemyBounds[i]);
+     eb = allEnemyBounds[i];
+     i++;
+ }
+
+
+    return eb;
+}
+
+
 
 void GamePlay::update()
 {
-
 
     _player->update(_dt);
     sf::FloatRect playerBounds = _player->getHitBox();
     if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
     sf::FloatRect playerNext = _player->getNextPos();
-    sf::FloatRect enemyBounds = getGlobalBoundsOfEnemies();
     sf::FloatRect tileBounds;
     sf::Vector2f playerVel = _player->getVelocity();
     sf::Vector2f playerPos = _player->getPosition();
+
     chasePlayer(playerPos, 0.5f);
+    sf::FloatRect enemyBounds = enemyCollisionHandler(playerNext, enemyBounds);
+    mapCollisionHandler(playerVel, tileBounds, playerBounds);
 
-    bool isEnemyCollision = checkPlayerCollision( playerNext, enemyBounds);
 
-
-
-    if(isEnemyCollision) _health->setHurt();
-
-    if(playerVel.y >= 0 )
-    {
-
-        if(isEnemyCollision)
-        {
-            if( (playerBounds.top < enemyBounds.top) /// collision bottom player
-                && (playerBounds.top + playerBounds.height < enemyBounds.top + enemyBounds.height))
-            {
-                // playerVel.y = 0.f;
-                 _player->setQuiet();
-                _player->setPosition( {((playerBounds.left) +13), ( enemyBounds.top) + 6} );
-            }
-        }
-        else if(_map->checkIntersect(playerBounds) )
-        {
-            tileBounds = _map->checkTop(playerBounds);
-            if( tileBounds != sf::FloatRect {0,0,0,0} )
-            {
-               // playerVel.y = 0.f;
-                _player->setQuiet();
-                _player->setPosition( {((playerBounds.left) +13), (tileBounds.top) +8} );
-            }
-        }
-    }
-    else if(playerVel.y < 0)
-    {
-
-        if(isEnemyCollision)
-        {
-            if( (playerBounds.top > enemyBounds.top) /// collision top player
-                && (playerBounds.top + playerBounds.height > enemyBounds.top + enemyBounds.height))
-            {
-                _player->setPosition({ (playerBounds.left) + 13, ( enemyBounds.top + playerBounds.height) - 6});
-            }
-        }
-    }
-
-    if(playerVel.x > 0)
-    {
-
-        if(isEnemyCollision)
-        {
-            if( (playerBounds.left < enemyBounds.left) /// collision player right
-                && (playerBounds.left + playerBounds.width < enemyBounds.left + enemyBounds.width) )
-            {
-                //playerVel.x = 0.f;
-                _player->setPosition({ (enemyBounds.left - playerBounds.width), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            }
-        }
-        else if(_map->checkIntersect(playerBounds) )
-        {
-            tileBounds = _map->checkRight(playerBounds);
-            if( tileBounds != sf::FloatRect {0,0,0,0} )
-            {
-                 //playerVel.x = 0.f;
-
-                _player->setPosition({ (tileBounds.left), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            }
-        }
-    }
-    else if(playerVel.x < 0)
-    {
-
-        if(isEnemyCollision)
-        {
-            if( (playerBounds.left > enemyBounds.left) /// collision player left
-                && (playerBounds.left + playerBounds.width > enemyBounds.left + enemyBounds.width) )
-            {
-                //playerVel.x = 0.f;
-                _player->setPosition({ (enemyBounds.left + playerBounds.width ), (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            }
-        }
-        else if(_map->checkIntersect(playerBounds) )
-        {
-            tileBounds = _map->checkLeft(playerBounds);
-            if( tileBounds != sf::FloatRect {0,0,0,0} )
-            {
-                 //playerVel.x = 0.f;
-
-                _player->setPosition({ (playerBounds.left+playerBounds.width)  , (_player->getGlobalBounds().top + _player->getGlobalBounds().height)});
-            }
-        }
-    }
+    if(checkPlayerCollision(playerBounds, enemyBounds)) std::cout << "choco" << std::endl;
 
     _map->update(_dt);
     updateEnemies(_dt);
     _health->update();
-
 
 
 }

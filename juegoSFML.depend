@@ -1827,7 +1827,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1699991473 c:\thefinalgame\juego-sfml\gameplay.h
+1700044966 c:\thefinalgame\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1836,7 +1836,7 @@
 	"Health.h"
 	"Map.h"
 
-1699997237 c:\thefinalgame\juego-sfml\personaje.h
+1700008507 c:\thefinalgame\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
@@ -1861,13 +1861,13 @@
 	"Menu.h"
 	"GamePlay.h"
 
-1699999270 source:c:\thefinalgame\juego-sfml\map.cpp
+1700017756 source:c:\thefinalgame\juego-sfml\map.cpp
 	"Map.h"
 
 1699991473 source:c:\thefinalgame\juego-sfml\menu.cpp
 	"Menu.h"
 
-1699999802 source:c:\thefinalgame\juego-sfml\personaje.cpp
+1700008511 source:c:\thefinalgame\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1699993661 source:c:\thefinalgame\juego-sfml\tile.cpp
@@ -1877,11 +1877,11 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1699999672 source:c:\thefinalgame\juego-sfml\gameplay.cpp
+1700050441 source:c:\thefinalgame\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1699991559 source:c:\thefinalgame\juego-sfml\health.cpp
+1700006612 source:c:\thefinalgame\juego-sfml\health.cpp
 	"Health.h"
 
