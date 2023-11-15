@@ -3,6 +3,12 @@
 Game::Game(const int& width, const int& height)
 {
     initMenu(width, height);
+    _newGame = new MenuNewGame;
+    if(_newGame == nullptr)
+    {
+        std::cout<<"Error de asignacion de Memoria: NewGame"<<std::endl;
+        exit(-1);
+    }
     initGamePlay();
 }
 
@@ -10,6 +16,7 @@ Game::~Game()
 {
     delete [] _menu;
     delete [] _runGame;
+    delete [] _newGame;
 }
 
 
@@ -39,7 +46,7 @@ void Game::setEstado(int& ops)
 {
     switch(ops)
     {
-        case 0: _estado = ESTADOS_GAME::GAMEPLAY;
+        case 0: _estado = ESTADOS_GAME::NEWGAME;
         break;
         case 1: _estado = ESTADOS_GAME::GAMEPLAY;
         break;
@@ -59,6 +66,10 @@ void Game::cmd()
     {
         case ESTADOS_GAME::MENU:
             _menu->cmd();
+        break;
+        case ESTADOS_GAME::NEWGAME:
+            _newGame->cmd();
+
         break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->cmd();
@@ -80,6 +91,8 @@ void Game::cmd()
 void Game::update()
 {
     int ops = -1;
+    char name[30]{"nadie"};
+
     switch(_estado)
     {
         case ESTADOS_GAME::MENU:
@@ -88,6 +101,10 @@ void Game::update()
             {
                 setEstado(ops);
             }
+        break;
+        case ESTADOS_GAME::NEWGAME:
+            _newGame->update();
+
         break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->update();
@@ -111,6 +128,8 @@ void Game::draw( sf::RenderWindow& window)
         case ESTADOS_GAME::MENU:
             window.draw(*_menu);
         break;
+        case ESTADOS_GAME::NEWGAME:
+            window.draw(*_newGame);
         case ESTADOS_GAME::GAMEPLAY:
             window.draw(*_runGame);
         break;

@@ -3,7 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Menu.h"
+#include "MenuNewGame.h"
 #include "GamePlay.h"
+
 
 class Game
 {
@@ -24,6 +26,7 @@ class Game
         enum class ESTADOS_GAME
         {
             MENU,
+            NEWGAME,
             GAMEPLAY,
             SCORE,
             CREDITS,
@@ -34,6 +37,7 @@ class Game
         ESTADOS_GAME _estado = ESTADOS_GAME::MENU;
         Menu *_menu;
         GamePlay *_runGame;
+        MenuNewGame *_newGame;
         bool _hayPartidasGuardadas=false;
 };
 

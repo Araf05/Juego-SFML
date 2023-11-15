@@ -6,10 +6,6 @@ Menu::Menu(const float& width, const float& height, const int& hayArchivo)
     initBackground();
     initOps(width, height, hayArchivo);
 
-    _bak.setTexture(_background);
-    _bak.setScale(1.25,1.15);
-    _bak.setPosition({0,-300});
-
     _blackRec.setFillColor(sf::Color(0,0,25,180));
     _blackRec.setSize({width,height});
     _blackRec.setPosition({0,0});
@@ -40,6 +36,9 @@ void Menu::initBackground()
         std::cout<<"Error al cargar png en Menu"<<std::endl;
         exit(-1);
     }
+    _bak.setTexture(_background);
+    _bak.setScale(1.25,1.15);
+    _bak.setPosition({0,-300});
 }
 
 void Menu::initOps(const float& width, const float& height, const int& hayArchivo)
