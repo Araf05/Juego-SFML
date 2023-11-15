@@ -51,7 +51,7 @@ class Personaje: public sf::Drawable
     private:
         sf::Vector2f _pos;
         sf::FloatRect _nextPos;
-        sf::Vector2f _previousPosition;
+
 
         float _speed = 2.f;
         float _fJump = 3.f;
@@ -63,6 +63,7 @@ class Personaje: public sf::Drawable
         bool estaDisparando = false;
         float _tiempoUltimoDisparo = 0.0f;
         const float _tiempoRecarga = 40.0f;
+        sf::Vector2f _previousPosition;
 
         sf::Texture _texture;
         sf::Sprite _sprite;

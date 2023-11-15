@@ -108,19 +108,23 @@ bool Map::checkIntersect(const sf::FloatRect &player)
 
 const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 {
-    int posx;
+    int posx, posy;
     posx = floor(player.left /32);
+    posy = floor(player.top /32);
     sf::FloatRect tile = {};
 
     for(int i=posx; i<posx+1 ; i++)
     {
         for(int j=0; j<_filas; j++)
-        {
             if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+        {
             {
-                if(_mTiles[j][i]->getHitBox().top > player.top
-                    && _mTiles[j][i]->getGlobalBounds().top + _tileSize.y > player.top + player.height )
+                if((_mTiles[j][i]->getHitBox().top > player.top &&
+                   _mTiles[j][i]->getGlobalBounds().top + _tileSize.y > player.top + player.height) ||
+                   (_mTiles[j][i]->getHitBox().left > player.left &&
+                   _mTiles[j][i]->getGlobalBounds().left + _tileSize.x > player.left + player.width) )
                 {
+
                     return tile = _mTiles[j][i]->getHitBox();
                 }
             }
@@ -129,28 +133,28 @@ const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
     return tile;
 }
 
-const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
-{
-    int posx;
-    posx = floor(player.left /32);
-    sf::FloatRect tile = {};
-
-    for(int i=posx; i<posx+1 ; i++)
-    {
-        for(int j=0; j<_filas; j++)
-        {
-            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
-            {
-                if(_mTiles[j][i]->getHitBox().top < player.top
-                    && _mTiles[j][i]->getGlobalBounds().top + _tileSize.y < player.top + player.height )
-                {
-                    return tile = _mTiles[j][i]->getHitBox();
-                }
-            }
-        }
-    }
-    return tile;
-}
+//const sf::FloatRect Map::checkBottom(const sf::FloatRect &player) const
+//{
+//    int posx;
+//    posx = floor(player.left /32);
+//    sf::FloatRect tile = {};
+//
+//    for(int i=posx; i<posx+1 ; i++)
+//    {
+//        for(int j=0; j<_filas; j++)
+//        {
+//            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+//            {
+//                if(_mTiles[j][i]->getHitBox().top < player.top
+//                    && _mTiles[j][i]->getGlobalBounds().top + _tileSize.y < player.top + player.height )
+//                {
+//                    return tile = _mTiles[j][i]->getHitBox();
+//                }
+//            }
+//        }
+//    }
+//    return tile;
+//}
 
 
 
@@ -172,47 +176,47 @@ const bool Map::checkBottomBool(const sf::FloatRect &player)
     return true;
 }
 
-const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
-{
-   sf::FloatRect tile = {};
-
-    for(int i=0; i<_cols; i++)
-    {
-        for(int j=0; j<_filas; j++)
-        {
-            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
-            {
-                if(_mTiles[j][i]->getHitBox().left < player.left + player.width
-                    && (_mTiles[j][i]->getHitBox().left + _mTiles[j][i]->getHitBox().width) > player.left + player.width)
-                {
-                    return tile = _mTiles[j][i]->getHitBox();
-                }
-            }
-        }
-    }
-    return tile;
-}
-
-const sf::FloatRect Map::checkLeft(const sf::FloatRect &player) const
-{
-    sf::FloatRect tile = {};
-
-    for(int i=0; i<_cols; i++)
-    {
-        for(int j=0; j<_filas; j++)
-        {
-            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
-            {
-                if(_mTiles[j][i]->getHitBox().left < player.left
-                    && (_mTiles[j][i]->getHitBox().left + _mTiles[j][i]->getHitBox().width) < player.left + player.width)
-                {
-                    return tile = _mTiles[j][i]->getHitBox();
-                }
-            }
-        }
-    }
-    return tile;
-}
+//const sf::FloatRect Map::checkRight(const sf::FloatRect &player) const
+//{
+//   sf::FloatRect tile = {};
+//
+//    for(int i=0; i<_cols; i++)
+//    {
+//        for(int j=0; j<_filas; j++)
+//        {
+//            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+//            {
+//                if(_mTiles[j][i]->getHitBox().left < player.left + player.width
+//                    && (_mTiles[j][i]->getHitBox().left + _mTiles[j][i]->getHitBox().width) > player.left + player.width)
+//                {
+//                    return tile = _mTiles[j][i]->getHitBox();
+//                }
+//            }
+//        }
+//    }
+//    return tile;
+//}
+//
+//const sf::FloatRect Map::checkLeft(const sf::FloatRect &player) const
+//{
+//    sf::FloatRect tile = {};
+//
+//    for(int i=0; i<_cols; i++)
+//    {
+//        for(int j=0; j<_filas; j++)
+//        {
+//            if(( _mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+//            {
+//                if(_mTiles[j][i]->getHitBox().left < player.left
+//                    && (_mTiles[j][i]->getHitBox().left + _mTiles[j][i]->getHitBox().width) < player.left + player.width)
+//                {
+//                    return tile = _mTiles[j][i]->getHitBox();
+//                }
+//            }
+//        }
+//    }
+//    return tile;
+//}
 
 void Map::update(float dt)
 {

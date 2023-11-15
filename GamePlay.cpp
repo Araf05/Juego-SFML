@@ -339,7 +339,7 @@ void GamePlay::update()
 
     tiempoDeRecuperacion += _dt;
 
-    std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
+//    std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
     if(tiempoDeRecuperacion >= invulnerabilidad){
         puedeRecibirDmg = false;
         tiempoDeRecuperacion = 0;
