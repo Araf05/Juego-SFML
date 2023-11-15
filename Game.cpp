@@ -60,7 +60,7 @@ void Game::setEstado(int& ops)
 }
 
 
-void Game::cmd()
+void Game::cmd(const sf::Event& event)
 {
     switch(_estado)
     {
@@ -68,7 +68,7 @@ void Game::cmd()
             _menu->cmd();
         break;
         case ESTADOS_GAME::NEWGAME:
-            _newGame->cmd();
+            _newGame->cmd(event);
 
         break;
         case ESTADOS_GAME::GAMEPLAY:

@@ -439,22 +439,23 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1699928119 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1700081924 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
+	<cstdlib>
+	<ctime>
 
-1699913667 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1700073444 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	<vector>
 	"Personaje.h"
 	"Enemy.h"
+	"Health.h"
 	"Map.h"
-	"Tile.h"
 
-1699913812 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
+1700086280 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
-	"Game.h"
-	"Menu.h"
-	"GamePlay.h"
+	"MenuNewGame.h"
 
 1697222294 c:\users\noe_3\documents\github\juego-sfml\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -874,19 +875,20 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1699928288 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+1700073444 c:\users\noe_3\documents\github\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
+	"Bala.h"
 
 1698952180 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1699930393 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1700081924 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1698777180 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
+1699991958 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
 	"Animation.h"
 
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\animation.cpp
@@ -1331,7 +1333,7 @@
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1699907056 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
+1700064760 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
 1699895484 c:\users\noe_3\documents\github\juego-sfml\map.h
@@ -1340,16 +1342,16 @@
 	<SFML/Graphics.hpp>
 	"Tile.h"
 
-1699819792 source:c:\users\noe_3\documents\github\juego-sfml\enemy.cpp
+1700073444 source:c:\users\noe_3\documents\github\juego-sfml\enemy.cpp
 	"Enemy.h"
 	<cmath>
 
-1699733214 c:\users\noe_3\documents\github\juego-sfml\enemy.h
+1700073444 c:\users\noe_3\documents\github\juego-sfml\enemy.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
 
-1699931122 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
+1700064755 source:c:\users\noe_3\documents\github\juego-sfml\tile.cpp
 	"Tile.h"
 
 1699811245 c:\users\noe_3\documents\github\juego-sfml\tile.h
@@ -1362,20 +1364,21 @@
 1699731696 source:c:\users\noe_3\documents\github\juego-sfml\hitbox.cpp
 	"Hitbox.h"
 
-1699933907 source:c:\users\noe_3\documents\github\juego-sfml\menu.cpp
+1700080808 source:c:\users\noe_3\documents\github\juego-sfml\menu.cpp
 	"Menu.h"
 
-1699932608 c:\users\noe_3\documents\github\juego-sfml\menu.h
+1699934324 c:\users\noe_3\documents\github\juego-sfml\menu.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1699915928 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1700086189 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1699915495 c:\users\noe_3\documents\github\juego-sfml\game.h
+1700086211 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"Menu.h"
+	"MenuNewGame.h"
 	"GamePlay.h"
 
 1699991473 source:c:\thefinalgame\juego-sfml\animation.cpp
@@ -1893,4 +1896,26 @@
 1700067155 c:\thefinalgame\juego-sfml\bala.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
+
+1700073444 source:c:\users\noe_3\documents\github\juego-sfml\bala.cpp
+	<iostream>
+	"Bala.h"
+
+1700073444 c:\users\noe_3\documents\github\juego-sfml\bala.h
+	<SFML/Graphics.hpp>
+	"Hitbox.h"
+
+1700085985 c:\users\noe_3\documents\github\juego-sfml\menunewgame.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1700073444 c:\users\noe_3\documents\github\juego-sfml\health.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1700073444 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
+	"Health.h"
+
+1700085985 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
+	"MenuNewGame.h"
 

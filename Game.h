@@ -17,7 +17,7 @@ class Game
         void initGamePlay();
         void setEstado(int& ops);
 
-        void cmd();
+        void cmd(const sf::Event& event);
         void update();
         void draw( sf::RenderWindow& window);
 

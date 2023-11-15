@@ -11,8 +11,9 @@ class MenuNewGame: public sf::Drawable
         void initFont();
         void initBackground();
         void initText();
+        void initName();
 
-        void cmd();
+        void cmd(const sf::Event& event);
         void update();
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
@@ -31,6 +32,7 @@ class MenuNewGame: public sf::Drawable
         sf::Font *_font;
         sf::Text _ingresar;
         sf::Text *_name;
+        std::string nombre;
 
 
         sf::RectangleShape _textBox;

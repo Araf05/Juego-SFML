@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Game.h"
+//#include "Game.h"
 #include "MenuNewGame.h"
 
 int main()
@@ -22,8 +22,8 @@ int main()
                 window.close();
         }
 
-        //game.cmd();
-        _newGame.cmd();
+        //game.cmd(event);
+        _newGame.cmd(event);
 
         //game.update();
         _newGame.update();

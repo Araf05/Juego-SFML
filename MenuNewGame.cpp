@@ -5,6 +5,7 @@ MenuNewGame::MenuNewGame()
     initBackground();
     initFont();
     initText();
+    initName();
 
 }
 
@@ -13,6 +14,19 @@ MenuNewGame::~MenuNewGame()
     delete [] _font;
 }
 
+void MenuNewGame::initName()
+{
+    _name = new sf::Text;
+    if(_name==nullptr)
+    {
+        std::cout<<"Error al asignar memoria al name en Menu New Game"<<std::endl;
+        exit(-1);
+    }
+
+    _name->setPosition({460, 340});
+    _name->setFont(*_font);
+
+}
 void MenuNewGame::initText()
 {
     _ingresar.setFont(*_font);
@@ -52,20 +66,28 @@ void MenuNewGame::initFont()
 
 
 
-void MenuNewGame::cmd()
+void MenuNewGame::cmd(const sf::Event& event)
 {
-    sf::Text *auxName = new sf::Text;
-    if(auxName == nullptr)
+    if(event.type == sf::Event::TextEntered)
     {
-        std::cout<<"Error en asignacion de memoria de aux name en Menu New Game"<<std::endl;
-        exit(-1);
+        switch (event.text.unicode)
+        {
+            case 13:
+                _estado = ESTADOS_NEWGAME::PRESIONA_ENTER;
+            break;
+            default: // Ha pulsado algo que no es enter
+                nombre.push_back(event.text.unicode);
+                break;
+        }
     }
 
-
+     std::cout<< nombre<<std::endl;
+    _name->setString(nombre);
 
 }
 void MenuNewGame::update()
 {
+
 
 }
 void MenuNewGame::draw( sf::RenderTarget& target, sf::RenderStates states ) const
@@ -73,4 +95,5 @@ void MenuNewGame::draw( sf::RenderTarget& target, sf::RenderStates states ) cons
     target.draw(_bak, states);
     target.draw(_blackRec, states);
     target.draw(_ingresar, states);
+    target.draw(*_name, states);
 }
