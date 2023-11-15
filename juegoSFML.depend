@@ -1802,11 +1802,11 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1699993744 source:c:\thefinalgame\juego-sfml\enemy.cpp
+1700071418 source:c:\thefinalgame\juego-sfml\enemy.cpp
 	"Enemy.h"
 	<cmath>
 
-1699991473 c:\thefinalgame\juego-sfml\enemy.h
+1700070533 c:\thefinalgame\juego-sfml\enemy.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
@@ -1827,7 +1827,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700044966 c:\thefinalgame\juego-sfml\gameplay.h
+1700070148 c:\thefinalgame\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1836,11 +1836,12 @@
 	"Health.h"
 	"Map.h"
 
-1700008507 c:\thefinalgame\juego-sfml\personaje.h
+1700068189 c:\thefinalgame\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
+	"Bala.h"
 
 1699991473 c:\thefinalgame\juego-sfml\map.h
 	<iostream>
@@ -1867,7 +1868,7 @@
 1699991473 source:c:\thefinalgame\juego-sfml\menu.cpp
 	"Menu.h"
 
-1700008511 source:c:\thefinalgame\juego-sfml\personaje.cpp
+1700068698 source:c:\thefinalgame\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1699993661 source:c:\thefinalgame\juego-sfml\tile.cpp
@@ -1877,11 +1878,19 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700050441 source:c:\thefinalgame\juego-sfml\gameplay.cpp
+1700071726 source:c:\thefinalgame\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
 1700006612 source:c:\thefinalgame\juego-sfml\health.cpp
 	"Health.h"
+
+1700068189 source:c:\thefinalgame\juego-sfml\bala.cpp
+	<iostream>
+	"Bala.h"
+
+1700067155 c:\thefinalgame\juego-sfml\bala.h
+	<SFML/Graphics.hpp>
+	"Hitbox.h"
 

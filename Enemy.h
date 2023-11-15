@@ -17,6 +17,8 @@ class Enemy: public sf::Drawable
         const sf::FloatRect getHitBox() const;
         bool checkIntersection(const sf::FloatRect &obj);
 
+        void death();
+
         void cmd();
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;

@@ -33,10 +33,12 @@ class GamePlay: public sf::Drawable
         void checkEnemyStatus();
         void cleanUpEnemies();
         std::vector<sf::FloatRect> getGlobalBoundsOfEnemies() const;
+
         void updateEnemies(float dt);
         void chasePlayer(const sf::Vector2f& playerPos, float speed);
 
         void mapCollisionHandler(sf::Vector2f p, sf::FloatRect t, sf::FloatRect pb);
+        int bulletCollisionHandler(std::vector<sf::FloatRect> eb);
         sf::FloatRect enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb);
 
     private:

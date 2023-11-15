@@ -96,6 +96,7 @@ void Personaje::cmd()
         }
     }
 
+
     _currentAnimation = _estado;
     setVelocity(dir);
 }
@@ -212,12 +213,24 @@ void Personaje::update( float dt)
 
     _sprite.setPosition(_pos);
 
+    for(auto& bala : _balas) bala.update(dt);
+
+    if(estaDisparando)
+    {
+        _tiempoUltimoDisparo += dt;
+        if(_tiempoUltimoDisparo >= _tiempoRecarga)
+            {
+                estaDisparando = false;
+            }
+    }
+
 
 }
 
 void Personaje::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
     target.draw(_sprite, states);
+    for(const auto& bala : _balas) target.draw(bala, states);
    // target.draw(*_hitbox, states);
 }
 
@@ -234,4 +247,43 @@ void Personaje::setPosition(sf::Vector2f vec)
 const sf::FloatRect Personaje::getGlobalBounds() const
 {
     return _sprite.getGlobalBounds();
+}
+
+
+void Personaje::disparar()
+{
+
+    if(!estaDisparando){
+        if(_vel.x > 0) {
+     Bala balaR( _pos - sf::Vector2f(-10.0f, 30.0f), 30.0f, 0.0f);
+     _balas.push_back(balaR);
+    } else if(_vel.x < 0) {
+     Bala balaL( _pos + sf::Vector2f(-10.0f, -30.0f), -30.0f, 0.0f);
+     _balas.push_back(balaL);
+    }
+    estaDisparando = true;
+    _tiempoUltimoDisparo = 0.0f;
+
+    std::cout << "size " << _balas.size() << std::endl;
+
+    if(_balas.size() >= 10)
+    {
+        _balas.clear();
+    }
+}
+
+}
+
+std::vector<sf::FloatRect> Personaje::getGlobalBoundsBullets()
+{
+    std::vector<sf::FloatRect> allBulletsBounds;
+    if(_balas.empty()) return std::vector<sf::FloatRect> {};
+
+    for(int i = 0; i < _balas.size(); i++)
+    {
+        sf::FloatRect bulletBounds = _balas[i].getGlobalBounds();
+        allBulletsBounds.push_back(bulletBounds);
+    }
+
+    return allBulletsBounds;
 }

@@ -5,6 +5,7 @@
 
 #include "Hitbox.h"
 #include "Animation.h"
+#include "Bala.h"
 
 
 class Personaje: public sf::Drawable
@@ -33,6 +34,10 @@ class Personaje: public sf::Drawable
         float getJump() const;
 
 
+        void disparar();
+        std::vector<sf::FloatRect> getGlobalBoundsBullets();
+
+
         enum class ESTADOS_PERSONAJE
         {
             IDLE,
@@ -53,6 +58,11 @@ class Personaje: public sf::Drawable
         sf::Vector2f _vel = { 0.0f, 0.0f };
         int _isFall = 0;
         float _time=0;
+
+        std::vector<Bala> _balas;
+        bool estaDisparando = false;
+        float _tiempoUltimoDisparo = 0.0f;
+        const float _tiempoRecarga = 40.0f;
 
         sf::Texture _texture;
         sf::Sprite _sprite;

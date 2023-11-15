@@ -208,7 +208,9 @@ void GamePlay::initMap()
 void GamePlay::cmd()
 {
     _player->cmd();
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    _player->disparar();
+}
 }
 
 sf::Vector2f GamePlay::getPlayerPosition() const
@@ -221,6 +223,10 @@ bool GamePlay::checkPlayerCollision(const sf::FloatRect& playerBounds, const sf:
 {
     return playerBounds.intersects(obj);
 }
+
+
+
+
 
 
 void GamePlay::mapCollisionHandler(sf::Vector2f p, sf::FloatRect t, sf::FloatRect pb)
@@ -262,12 +268,41 @@ sf::FloatRect GamePlay::enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb
     return eb;
 }
 
+int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
+{
+    std::vector<sf::FloatRect> allBulletBounds = _player->getGlobalBoundsBullets();
+    int enemyDead = -1;
+
+    if(allBulletBounds.empty()) return enemyDead;
+    if(eb.empty()) return enemyDead;
+
+    bool isBulletCollision = false;
+    int i = 0;
+    while(!isBulletCollision && i < allBulletBounds.size()){
+        int j = 0;
+        while(j < eb.size()){
+            isBulletCollision = checkPlayerCollision(eb[j], allBulletBounds[i]);
+            if(isBulletCollision)
+            {   enemyDead = j;
+                break;
+            }
+            j++;
+        }
+        i++;
+    }
+    std::cout << "ALM: " << enemyDead << std::endl;
+    return enemyDead;
+}
+
+
 
 
 void GamePlay::update()
 {
 
     _player->update(_dt);
+
+
     sf::FloatRect playerBounds = _player->getHitBox();
     if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
     sf::FloatRect playerNext = _player->getNextPos();
@@ -276,12 +311,23 @@ void GamePlay::update()
     sf::Vector2f playerPos = _player->getPosition();
 
     chasePlayer(playerPos, 0.5f);
+
     sf::FloatRect enemyBounds = enemyCollisionHandler(playerNext, enemyBounds);
     mapCollisionHandler(playerVel, tileBounds, playerBounds);
 
 
-    if(checkPlayerCollision(playerBounds, enemyBounds)) std::cout << "choco" << std::endl;
+    if(checkPlayerCollision(playerBounds, enemyBounds)); //std::cout << "choco" << std::endl; //HAY QUE HACER UN CONTADOR DE 50 SEGUNDOS DE INVULNERABILIDAD CADA VEZ QUE RECIBIMOS DAÑO
 
+
+    ///BALAS
+    std::vector<sf::FloatRect> allEnemyBounds;
+    allEnemyBounds = getGlobalBoundsOfEnemies();
+    int almEnemyDead = bulletCollisionHandler(allEnemyBounds);
+    if(almEnemyDead != -1){
+       _enemies.erase(_enemies.begin() + almEnemyDead);
+       if(_enemies.empty()) spawnNewEnemies();
+    }
+    ///BALAS
     _map->update(_dt);
     updateEnemies(_dt);
     _health->update();

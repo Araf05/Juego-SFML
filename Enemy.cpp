@@ -176,3 +176,8 @@ const sf::FloatRect Enemy::getGlobalBounds() const
 bool Enemy::isDead() const {
     return _health <= 0;
 }
+
+void Enemy::death()
+{
+    _estado = ESTADOS_ENEMY::DEATH;
+}
