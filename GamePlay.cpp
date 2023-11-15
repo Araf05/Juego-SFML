@@ -290,7 +290,7 @@ int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
         }
         i++;
     }
-    std::cout << "ALM: " << enemyDead << std::endl;
+
     return enemyDead;
 }
 
@@ -301,6 +301,8 @@ void GamePlay::update()
 {
 
     _player->update(_dt);
+    _health->update(_dt);
+
 
 
     sf::FloatRect playerBounds = _player->getHitBox();
@@ -316,7 +318,10 @@ void GamePlay::update()
     mapCollisionHandler(playerVel, tileBounds, playerBounds);
 
 
-    if(checkPlayerCollision(playerBounds, enemyBounds)); //std::cout << "choco" << std::endl; //HAY QUE HACER UN CONTADOR DE 50 SEGUNDOS DE INVULNERABILIDAD CADA VEZ QUE RECIBIMOS DAÑO
+    if(checkPlayerCollision(playerBounds, enemyBounds) && !puedeRecibirDmg){
+        _health->setHurt();
+        puedeRecibirDmg = true;
+    }
 
 
     ///BALAS
@@ -330,8 +335,15 @@ void GamePlay::update()
     ///BALAS
     _map->update(_dt);
     updateEnemies(_dt);
-    _health->update();
 
+
+    tiempoDeRecuperacion += _dt;
+
+    std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
+    if(tiempoDeRecuperacion >= invulnerabilidad){
+        puedeRecibirDmg = false;
+        tiempoDeRecuperacion = 0;
+    }
 
 }
 

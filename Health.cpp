@@ -47,26 +47,26 @@ const int Health::setHurt()
 {
     if( _redHearts > 0)
     {
-        //std::cout << "Recibiste daño" << std::endl;
+        std::cout << "Recibiste daño" << std::endl;
         _redHearts--;
         _spriteHP[_redHearts].setColor(sf::Color::Blue);
+
     }
     return _redHearts;
 }
 
-void Health::recover()
-{
-    if( _redHearts < 3 )
-    {
-        _spriteHP[_redHearts].setColor(sf::Color::White);
-        _redHearts++;
-    }
-}
+//void Health::recover()
+//{
+//    if( _redHearts < 3 )
+//    {
+//        _spriteHP[_redHearts].setColor(sf::Color::White);
+//        _redHearts++;
+//    }
+//}
 
-void Health::update()
+void Health::update(float dt)
 {
-    setHurt();
-    recover();
+//    recover();
 }
 
 

@@ -52,6 +52,10 @@ class GamePlay: public sf::Drawable
         int _level;
         int _activeEnemiesCount;
 
+        bool puedeRecibirDmg = false;
+        float tiempoDeRecuperacion = 0.0f;
+        const float invulnerabilidad = 300.0f;
+
         void initPlayer();
         void initMap();
         void initTile();

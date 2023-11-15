@@ -17,12 +17,13 @@ class Health: public sf::Drawable
         const setHurt();
         void recover();
 
-        void update();
+        void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states) const override;
 
     private:
         const int _healthPoint = 3;
         int _redHearts = 3;
+        float dt;
         sf::Sprite* _spriteHP;
         sf::Texture _texHP;
         sf::Texture _bak;

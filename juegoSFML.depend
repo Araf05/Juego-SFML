@@ -1827,7 +1827,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700070148 c:\thefinalgame\juego-sfml\gameplay.h
+1700073324 c:\thefinalgame\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1874,16 +1874,16 @@
 1699993661 source:c:\thefinalgame\juego-sfml\tile.cpp
 	"Tile.h"
 
-1699991684 c:\thefinalgame\juego-sfml\health.h
+1700072909 c:\thefinalgame\juego-sfml\health.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700071726 source:c:\thefinalgame\juego-sfml\gameplay.cpp
+1700073210 source:c:\thefinalgame\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1700006612 source:c:\thefinalgame\juego-sfml\health.cpp
+1700072913 source:c:\thefinalgame\juego-sfml\health.cpp
 	"Health.h"
 
 1700068189 source:c:\thefinalgame\juego-sfml\bala.cpp
