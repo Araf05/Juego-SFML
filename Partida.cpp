@@ -1,6 +1,6 @@
 #include "Partida.h"
 
-Partida::Partida(const sf::Text& nombre, const int& puntos)
+Partida::Partida(std::string nombre, const int& puntos)
 {
     setName(nombre);
     setPoints(puntos);
@@ -12,7 +12,7 @@ Partida::~Partida()
     //dtor
 }
 
-void Partida::setName(const sf::Text& nombre)
+void Partida::setName(std::string nombre)
 {
     _name = nombre;
 }
@@ -26,7 +26,7 @@ void Partida::setEstado(bool estado)
     _estado = estado;
 }
 
-sf::Text Partida::getName()
+std::string Partida::getName() const
 {
     return _name;
 }

@@ -21,6 +21,8 @@ class MenuNewGame: public sf::Drawable
 
         bool ingreso = false;
 
+        std::string getNombre() const;
+
 //    private:
 //        enum class ESTADOS_NEWGAME
 //        {

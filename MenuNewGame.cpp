@@ -94,6 +94,11 @@ void MenuNewGame::cmd(const sf::Event& event)
 
 }
 
+std::string MenuNewGame::getNombre() const
+{
+    return nombre;
+}
+
 sf::Text MenuNewGame::getName()
 {
     return *_name;

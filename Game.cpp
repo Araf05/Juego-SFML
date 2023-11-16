@@ -10,6 +10,8 @@ Game::Game(const int& width, const int& height)
         exit(-1);
     }
     initGamePlay();
+//    leerPartidas();
+
 }
 
 Game::~Game()
@@ -23,7 +25,6 @@ Game::~Game()
 void Game::initMenu(const int& width, const int& height)
 {
     /// si hay archivo de partidas guardadas, mostrar opcion en el menu la opcion Continue y score
-
     _menu = new Menu(width, height, _hayPartidasGuardadas);
     if(_menu == nullptr)
     {
@@ -48,28 +49,52 @@ void Game::setEstado(int& ops)
     {
         case 0: _estado = ESTADOS_GAME::NEWGAME;
         break;
-        case 1: _estado = ESTADOS_GAME::GAMEPLAY;
+        case 1: _estado = ESTADOS_GAME::QUIT;
         break;
         case 2: _estado = ESTADOS_GAME::SCORE;
         break;
         case 3: _estado = ESTADOS_GAME::CREDITS;
         break;
-        case 4: _estado = ESTADOS_GAME::QUIT;
+        case 4: _estado = ESTADOS_GAME::GAMEPLAY;
         break;
     }
 }
+
+
 
 bool Game::savePartida(const int& puntos)
 {
     ArchivoPartidas file("player.dat");
     Partida reg;
-
-    reg.setName(_playerName);
+    std::string nombreJugador = _newGame->getNombre();
+    std::cout << nombreJugador << std::endl;
+    reg.setName(nombreJugador);
     reg.setPoints(puntos);
     reg.setEstado(true);
 
     return file.grabarRegistro(reg);
 }
+
+//void Game::leerPartidas()
+//{
+//    ArchivoPartidas file("player.dat");
+//    Partida reg;
+//    int cantidadDeRegistros = file.contarRegistros();
+//    std::cout << cantidadDeRegistros << std::endl;
+//    if(cantidadDeRegistros == -1)
+//    {
+//        std::cout << "No hay archivo de partidas" << std::endl;
+//        return;
+//    }
+//    _hayPartidasGuardadas = true;
+//    for(int i = 0; i < cantidadDeRegistros; i++)
+//    {
+//        reg = file.leerRegistro(i);
+//        _playerName = reg.getName();
+//        _points = reg.getPoints();
+//    }
+//}
+
 
 void Game::cmd(const sf::Event& event)
 {
@@ -129,7 +154,7 @@ void Game::update()
                 _time++;
                 if(_time >= _holdTime)
                 {
-                    _estado = ESTADOS_GAME::SCORE;
+                    _estado = ESTADOS_GAME::MENU;
                     savePartida(_runGame->getPoints());
                     _time=0;
                 }

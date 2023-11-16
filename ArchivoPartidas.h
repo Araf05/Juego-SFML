@@ -1,5 +1,6 @@
-#ifndef ARCHIVOPARTIDAS_H
-#define ARCHIVOPARTIDAS_H
+#ifndef ARCHIVOPARTIDAS_H_INCLUDED
+#define ARCHIVOPARTIDAS_H_INCLUDED
+
 #include <cstring>
 #include "Partida.h"
 
@@ -17,4 +18,5 @@ class ArchivoPartidas
         char _fileName[30];
 };
 
-#endif // ARCHIVOPARTIDAS_H
+
+#endif // ARCHIVOPARTIDAS_H_INCLUDED

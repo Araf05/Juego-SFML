@@ -4,7 +4,7 @@
 int main()
 {
     const int WIDTH = 1280, HEIGHT = 800;
-    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Juego 1");
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Gunman v0.1");
     window.setFramerateLimit(60);
 
     Game game(WIDTH, HEIGHT);

@@ -6,19 +6,19 @@ class Partida
 {
     public:
         Partida(){};
-        Partida(const sf::Text& nombre , const int& puntos);
+        Partida(std::string nombre , const int& puntos);
         virtual ~Partida();
 
-        void setName(const sf::Text& nombre);
+        void setName(std::string name);
         void setPoints(const int& puntos);
         void setEstado(bool estado);
 
-        sf::Text getName();
+        std::string getName() const;
         int getPoints();
         bool getEstado();
 
     private:
-        sf::Text _name;
+        std::string _name;
         int _points;
         bool _estado;
 };

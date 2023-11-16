@@ -43,36 +43,54 @@ void Menu::initBackground()
 
 void Menu::initOps(const float& width, const float& height, const int& hayArchivo)
 {
-    if(!hayArchivo) _cantOps = 3;
-    else _cantOps = 5;
+//    if(!hayArchivo) _cantOps = 3;
+//    else _cantOps = 5;
+//
+//    _options = new sf::Text[_cantOps];
+//    if(_options == nullptr)
+//    {
+//        std::cout<<"Error de asignacion de memoria, opciones del Menu"<<std::endl;
+//        exit(-1);
+//    }
+//
+//    for(int i=0; i<_cantOps; i++)
+//    {
+//        _options[i].setFont(_font);
+//        _options[i].setFillColor(sf::Color::White);
+//        _options[i].setPosition({60, ((height/2)/(_cantOps + 1) *(i+1)) + (height/4) });
+//    }
+//
+//    _options[0].setString("New Game");
+//    _options[0].setFillColor(sf::Color(215, 0, 12, 255));
+//
+//    _options[_cantOps - 2].setString("Credits");
+//    _options[_cantOps -1].setString("Quit");
+//
+//    if(hayArchivo)
+//    {
+//        _options[1].setString("Continue");
+//        _options[2].setString("Score");
+//    }
 
-    _options = new sf::Text[_cantOps];
-    if(_options == nullptr)
+    if(!hayArchivo)
     {
-        std::cout<<"Error de asignacion de memoria, opciones del Menu"<<std::endl;
-        exit(-1);
+        _cantOps = 2;
+        _options = new sf::Text[_cantOps];
+        if(_options == nullptr)
+        {
+            std::cout << "Error de asignacion de memoria, opciones del Menu" << std::endl;
+            exit(-1);
+        }
+        for(int i = 0; i < _cantOps; i++)
+        {
+            _options[i].setFont(_font);
+            _options[i].setFillColor(sf::Color::White);
+            _options[i].setPosition({60, ((height/2)/(_cantOps + 1) *(i+1)) + (height/4) });
+        }
+        _options[0].setString("New Game");
+        _options[0].setFillColor(sf::Color(215, 0, 12, 255));
+        _options[_cantOps -1].setString("Quit");
     }
-
-    for(int i=0; i<_cantOps; i++)
-    {
-        _options[i].setFont(_font);
-        _options[i].setFillColor(sf::Color::White);
-        _options[i].setPosition({60, ((height/2)/(_cantOps + 1) *(i+1)) + (height/4) });
-    }
-
-    _options[0].setString("New Game");
-    _options[0].setFillColor(sf::Color(215, 0, 12, 255));
-
-    _options[_cantOps - 2].setString("Credits");
-    _options[_cantOps -1].setString("Quit");
-
-    if(hayArchivo)
-    {
-        _options[1].setString("Continue");
-        _options[2].setString("Score");
-    }
-
-
 }
 
 

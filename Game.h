@@ -20,9 +20,11 @@ class Game
         void setEstado(int& ops);
         bool savePartida(const int& puntos);
 
+
         void cmd(const sf::Event& event);
         void update();
         void draw( sf::RenderWindow& window);
+        void leerPartidas();
 
 
     private:
@@ -41,10 +43,13 @@ class Game
         Menu *_menu;
         GamePlay *_runGame;
         MenuNewGame *_newGame;
-        sf::Text _playerName;
         bool _hayPartidasGuardadas=false;
         int  _time=0;
         int _holdTime = 480;
+
+
+        sf::Text _playerName;
+        int _points;
 };
 
 #endif // GAME_H
