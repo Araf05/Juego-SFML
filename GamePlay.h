@@ -20,6 +20,8 @@ class GamePlay: public sf::Drawable
         void update();
         void draw( sf::RenderTarget& target, sf::RenderStates states)const override;
 
+        void setName(sf::Text name);
+
 
         sf::Vector2f getPlayerPosition() const;
         sf::Vector2f getEnemyPosition() const;
@@ -47,6 +49,7 @@ class GamePlay: public sf::Drawable
         sf::Texture *_tileText;
         Map *_map;
         Health *_health;
+        sf::Text _playerName;
 
         float _dt;
         int _level;

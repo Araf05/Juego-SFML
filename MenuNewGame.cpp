@@ -68,23 +68,36 @@ void MenuNewGame::initFont()
 
 void MenuNewGame::cmd(const sf::Event& event)
 {
-    if(event.type == sf::Event::TextEntered)
+    static sf::Uint32 prevChar = 0;
+    if(event.type == sf::Event::TextEntered && event.text.unicode!= prevChar)
     {
+        prevChar = event.text.unicode;
         switch (event.text.unicode)
         {
             case 13:
-                _estado = ESTADOS_NEWGAME::PRESIONA_ENTER;
+               // _estado = ESTADOS_NEWGAME::PRESIONA_ENTER;
+                if(!nombre.empty())
+                {
+                    ingreso = true;
+                }
             break;
             default: // Ha pulsado algo que no es enter
-                nombre.push_back(event.text.unicode);
-                break;
+                if(event.text.unicode < 128)
+                {
+                    nombre += static_cast<char>(event.text.unicode);
+                    _name->setString(nombre);
+                }
+            break;
         }
     }
 
-     std::cout<< nombre<<std::endl;
-    _name->setString(nombre);
-
 }
+
+sf::Text MenuNewGame::getName()
+{
+    return *_name;
+}
+
 void MenuNewGame::update()
 {
 

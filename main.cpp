@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
-//#include "Game.h"
-#include "MenuNewGame.h"
+#include "Game.h"
 
 int main()
 {
@@ -8,8 +7,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Juego 1");
     window.setFramerateLimit(60);
 
-    //Game game(WIDTH, HEIGHT);
-    MenuNewGame _newGame;
+    Game game(WIDTH, HEIGHT);
 
     while (window.isOpen())
     {
@@ -22,17 +20,13 @@ int main()
                 window.close();
         }
 
-        //game.cmd(event);
-        _newGame.cmd(event);
+        game.cmd(event);
 
-        //game.update();
-        _newGame.update();
+        game.update();
 
         window.clear();
 
-        //game.draw(window);
-        window.draw(_newGame);
-
+        game.draw(window);
 
         window.display();
     }

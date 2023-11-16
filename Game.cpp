@@ -91,7 +91,6 @@ void Game::cmd(const sf::Event& event)
 void Game::update()
 {
     int ops = -1;
-    char name[30]{"nadie"};
 
     switch(_estado)
     {
@@ -104,6 +103,12 @@ void Game::update()
         break;
         case ESTADOS_GAME::NEWGAME:
             _newGame->update();
+            if(_newGame->ingreso)
+            {
+                _estado = ESTADOS_GAME::GAMEPLAY;
+                _playerName = _newGame->getName();
+                _runGame->setName(_playerName);
+            }
 
         break;
         case ESTADOS_GAME::GAMEPLAY:
@@ -130,6 +135,7 @@ void Game::draw( sf::RenderWindow& window)
         break;
         case ESTADOS_GAME::NEWGAME:
             window.draw(*_newGame);
+        break;
         case ESTADOS_GAME::GAMEPLAY:
             window.draw(*_runGame);
         break;

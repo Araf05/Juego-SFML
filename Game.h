@@ -38,6 +38,7 @@ class Game
         Menu *_menu;
         GamePlay *_runGame;
         MenuNewGame *_newGame;
+        sf::Text _playerName;
         bool _hayPartidasGuardadas=false;
 };
 

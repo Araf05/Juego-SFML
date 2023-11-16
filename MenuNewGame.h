@@ -13,17 +13,21 @@ class MenuNewGame: public sf::Drawable
         void initText();
         void initName();
 
+        sf::Text getName();
+
         void cmd(const sf::Event& event);
         void update();
         void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
-    private:
-        enum class ESTADOS_NEWGAME
-        {
-            ING_NOMBRE,
-            NOMBRE_GUARDADO,
-            PRESIONA_ENTER
-        };
+        bool ingreso = false;
+
+//    private:
+//        enum class ESTADOS_NEWGAME
+//        {
+//            ING_NOMBRE,
+//            NOMBRE_GUARDADO,
+//            PRESIONA_ENTER
+//        };
 
     private:
         sf::Texture _background;
@@ -37,8 +41,8 @@ class MenuNewGame: public sf::Drawable
 
         sf::RectangleShape _textBox;
 
-        bool _ingresoNombre = false;
-        bool _pressEnter = false;
-        ESTADOS_NEWGAME _estado= ESTADOS_NEWGAME::ING_NOMBRE;
+//        bool _ingresoNombre = false;
+//        bool _pressEnter = false;
+       // ESTADOS_NEWGAME _estado= ESTADOS_NEWGAME::ING_NOMBRE;
 };
 #endif // MENUNEWGAME_H

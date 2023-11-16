@@ -21,6 +21,13 @@ GamePlay::~GamePlay()
     cleanUpEnemies();
 }
 
+void GamePlay::setName(sf::Text name)
+{
+    _playerName = name;
+    _playerName.setPosition({40 , 620});
+    _playerName.setFillColor(sf::Color::Black);
+}
+
 void GamePlay::initPlayer()
 {
     _player = new Personaje({100,540});
@@ -79,7 +86,7 @@ std::vector<sf::FloatRect> GamePlay::getGlobalBoundsOfEnemies() const
     std::vector<sf::FloatRect> allEnemyBounds;
     if(_enemies.empty()) return std::vector<sf::FloatRect> {};
 
-    for(int i = 0; i < _enemies.size(); i++)
+    for(int i = 0; i < (int)_enemies.size(); i++)
     {
         sf::FloatRect enemyBounds = _enemies[i]->getHitBox();
         allEnemyBounds.push_back(enemyBounds);
@@ -257,7 +264,7 @@ sf::FloatRect GamePlay::enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb
 
  bool isEnemyCollision = false;
  int i = 0;
- while(!isEnemyCollision && i < allEnemyBounds.size())
+ while(!isEnemyCollision && i < (int)allEnemyBounds.size())
  {
      isEnemyCollision = checkPlayerCollision (pn , allEnemyBounds[i]);
      eb = allEnemyBounds[i];
@@ -278,9 +285,9 @@ int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
 
     bool isBulletCollision = false;
     int i = 0;
-    while(!isBulletCollision && i < allBulletBounds.size()){
+    while(!isBulletCollision && i < (int)allBulletBounds.size()){
         int j = 0;
-        while(j < eb.size()){
+        while(j < (int)eb.size()){
             isBulletCollision = checkPlayerCollision(eb[j], allBulletBounds[i]);
             if(isBulletCollision)
             {   enemyDead = j;
@@ -339,7 +346,7 @@ void GamePlay::update()
 
     tiempoDeRecuperacion += _dt;
 
-    std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
+    //std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
     if(tiempoDeRecuperacion >= invulnerabilidad){
         puedeRecibirDmg = false;
         tiempoDeRecuperacion = 0;
@@ -354,5 +361,6 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(*_player, states);
     target.draw(*_health, states);
     for(const auto& enemy : _enemies) target.draw(*enemy, states);
+    target.draw(_playerName, states);
 
 }
