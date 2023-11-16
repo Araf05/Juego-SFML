@@ -59,6 +59,17 @@ void Game::setEstado(int& ops)
     }
 }
 
+bool Game::savePartida(const int& puntos)
+{
+    ArchivoPartidas file("player.dat");
+    Partida reg;
+
+    reg.setName(_playerName);
+    reg.setPoints(puntos);
+    reg.setEstado(true);
+
+    return file.grabarRegistro(reg);
+}
 
 void Game::cmd(const sf::Event& event)
 {
@@ -113,6 +124,16 @@ void Game::update()
         break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->update();
+            if(_runGame->isGameOver())
+            {
+                _time++;
+                if(_time >= _holdTime)
+                {
+                    _estado = ESTADOS_GAME::SCORE;
+                    savePartida(_runGame->getPoints());
+                    _time=0;
+                }
+            }
         break;
         case ESTADOS_GAME::SCORE:
 

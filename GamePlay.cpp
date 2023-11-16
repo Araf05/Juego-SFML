@@ -13,6 +13,7 @@ GamePlay::GamePlay()
     initTextPoint();
     createEnemies(2);
     _dt = 1.f;
+    _gameOver = false;
 }
 
 GamePlay::~GamePlay()
@@ -38,6 +39,7 @@ void GamePlay::initTextPoint()
     _textPoint->setString("PUNTOS: ");
     _textPoint->setPosition({1000, 580});
     _textPoint->setFillColor(sf::Color::Black);
+    _textPoint->setCharacterSize(35);
 }
 
 void GamePlay::initPoints()
@@ -279,10 +281,6 @@ bool GamePlay::checkPlayerCollision(const sf::FloatRect& playerBounds, const sf:
 }
 
 
-
-
-
-
 void GamePlay::mapCollisionHandler(sf::Vector2f p, sf::FloatRect t, sf::FloatRect pb)
 {
     ///PB -> PLAYERBOUNDS
@@ -406,8 +404,8 @@ void GamePlay::update()
     if(_health->getRedHeart() < 1)
     {
         _player->isDead();
+        _gameOver = true;
     }
-
 
 }
 
@@ -422,4 +420,14 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(*_points, states);
     target.draw(*_textPoint, states);
 
+}
+
+bool GamePlay::isGameOver()
+{
+    return _gameOver;
+}
+
+int GamePlay::getPoints()
+{
+    return _acuPuntos;
 }

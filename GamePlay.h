@@ -43,6 +43,9 @@ class GamePlay: public sf::Drawable
         int bulletCollisionHandler(std::vector<sf::FloatRect> eb);
         sf::FloatRect enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb);
 
+        bool isGameOver();
+        int getPoints();
+
     private:
         Personaje *_player;
         std::vector<Enemy*> _enemies;
@@ -64,6 +67,8 @@ class GamePlay: public sf::Drawable
         bool puedeRecibirDmg = false;
         float tiempoDeRecuperacion = 0.0f;
         const float invulnerabilidad = 300.0f;
+
+         bool _gameOver;
 
         void initPlayer();
         void initMap();

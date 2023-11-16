@@ -439,12 +439,12 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1700092988 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1700102809 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1700092692 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1700102809 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -875,7 +875,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1700073444 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+1700098297 c:\users\noe_3\documents\github\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
@@ -885,7 +885,7 @@
 1698952180 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1700081924 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1700098917 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1699991958 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
@@ -1371,12 +1371,14 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700092692 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1700103017 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1700092111 c:\users\noe_3\documents\github\juego-sfml\game.h
+1700103017 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
+	"ArchivoPartidas.h"
+	"Partida.h"
 	"Menu.h"
 	"MenuNewGame.h"
 	"GamePlay.h"
@@ -1909,13 +1911,26 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700073444 c:\users\noe_3\documents\github\juego-sfml\health.h
+1700098297 c:\users\noe_3\documents\github\juego-sfml\health.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700073444 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
+1700098296 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
 	"Health.h"
 
-1700092336 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
+1700097393 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
 	"MenuNewGame.h"
+
+1700101752 source:c:\users\noe_3\documents\github\juego-sfml\partida.cpp
+	"Partida.h"
+
+1700101834 c:\users\noe_3\documents\github\juego-sfml\partida.h
+	<SFML/Graphics.hpp>
+
+1700101028 source:c:\users\noe_3\documents\github\juego-sfml\archivopartidas.cpp
+	"ArchivoPartidas.h"
+
+1700101010 c:\users\noe_3\documents\github\juego-sfml\archivopartidas.h
+	<cstring>
+	"Partida.h"
 
