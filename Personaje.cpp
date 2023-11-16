@@ -96,6 +96,10 @@ void Personaje::cmd()
         }
     }
 
+    if(dir.x != 0 || dir.y != 0){
+        _previousPosition = dir;
+    }
+
     _currentAnimation = _estado;
     setVelocity(dir);
 }
@@ -254,10 +258,10 @@ void Personaje::disparar()
 {
 
     if(!estaDisparando){
-        if(_vel.x > 0) {
+        if(_vel.x > 0 || (_vel.x == 0 && _previousPosition.x > 0)) {
      Bala balaR( _pos - sf::Vector2f(-10.0f, 30.0f), 30.0f, 0.0f);
      _balas.push_back(balaR);
-    } else if(_vel.x < 0) {
+    } else if(_vel.x < 0 || (_vel.x == 0 && _previousPosition.x < 0)) {
      Bala balaL( _pos + sf::Vector2f(-10.0f, -30.0f), -30.0f, 0.0f);
      _balas.push_back(balaL);
     }
