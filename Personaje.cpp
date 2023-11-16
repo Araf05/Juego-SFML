@@ -49,12 +49,12 @@ float Personaje::getJump() const
 
 void Personaje::cmd()
 {
+
     sf::Vector2f dir = {0.0f, 0.0f};
     _speed=2.f;
-
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::A) )
     {
-        if( _estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL  )
+        if( _estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL && _estado != ESTADOS_PERSONAJE::DEATH )
         {
             _estado = ESTADOS_PERSONAJE::RUN;
             dir.x -= 1.0f;
@@ -67,7 +67,7 @@ void Personaje::cmd()
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::D) )
     {
-        if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL )
+        if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::FALL&& _estado != ESTADOS_PERSONAJE::DEATH )
         {
             _estado = ESTADOS_PERSONAJE::RUN;
             dir.x += 1.0f;
@@ -80,7 +80,7 @@ void Personaje::cmd()
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::W) )
     {
-        if(_estado != ESTADOS_PERSONAJE::JUMP)
+        if(_estado != ESTADOS_PERSONAJE::JUMP && _estado != ESTADOS_PERSONAJE::DEATH)
         {
             _estado = ESTADOS_PERSONAJE::JUMP;
             dir.y += 1.0f;
@@ -90,12 +90,11 @@ void Personaje::cmd()
 
     if( sf::Keyboard::isKeyPressed(sf::Keyboard::S) )
     {
-        if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) )
+        if( (_estado != ESTADOS_PERSONAJE::JUMP) &&(_estado != ESTADOS_PERSONAJE::RUN) && _estado != ESTADOS_PERSONAJE::DEATH )
         {
             _estado = ESTADOS_PERSONAJE::CROUCH;
         }
     }
-
 
     _currentAnimation = _estado;
     setVelocity(dir);
@@ -151,7 +150,6 @@ void Personaje::update( float dt)
 
 
     dt+= 1.f;
-
     switch(_estado)
     {
         case ESTADOS_PERSONAJE::IDLE:
@@ -176,6 +174,8 @@ void Personaje::update( float dt)
             _vel.y = -_fJump;
         break;
         case ESTADOS_PERSONAJE::DEATH:
+            _animations[int(_currentAnimation)].update(dt);
+            _animations[int(_currentAnimation)].applyToSprite(_sprite);
         break;
         case ESTADOS_PERSONAJE::FALL:
             _vel.y += 9.f;
@@ -279,11 +279,16 @@ std::vector<sf::FloatRect> Personaje::getGlobalBoundsBullets()
     std::vector<sf::FloatRect> allBulletsBounds;
     if(_balas.empty()) return std::vector<sf::FloatRect> {};
 
-    for(int i = 0; i < _balas.size(); i++)
+    for(int i = 0; i < (int)_balas.size(); i++)
     {
         sf::FloatRect bulletBounds = _balas[i].getGlobalBounds();
         allBulletsBounds.push_back(bulletBounds);
     }
 
     return allBulletsBounds;
+}
+
+void Personaje::isDead()
+{
+    _estado = ESTADOS_PERSONAJE::DEATH;
 }

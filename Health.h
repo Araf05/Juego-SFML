@@ -14,8 +14,9 @@ class Health: public sf::Drawable
         void initSprite();
         void initBack();
 
+        int getRedHeart();
         const setHurt();
-        void recover();
+       // void recover();
 
         void update(float dt);
         void draw( sf::RenderTarget& target, sf::RenderStates states) const override;

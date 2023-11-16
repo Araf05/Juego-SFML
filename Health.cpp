@@ -42,6 +42,10 @@ void Health::initBack()
 
 }
 
+int Health::getRedHeart()
+{
+    return _redHearts;
+}
 
 const int Health::setHurt()
 {

@@ -9,6 +9,8 @@ GamePlay::GamePlay()
    _health = new Health;
     initTile();
     initMap();
+    initPoints();
+    initTextPoint();
     createEnemies(2);
     _dt = 1.f;
 }
@@ -19,6 +21,51 @@ GamePlay::~GamePlay()
     delete _map;
     delete _tileText;
     cleanUpEnemies();
+    delete _font;
+    delete _points;
+    delete _textPoint;
+}
+
+void GamePlay::initTextPoint()
+{
+    _textPoint = new sf::Text;
+    if(_textPoint == nullptr)
+    {
+        std::cout<<"Error de asignacion de memoria en _textPoints, GamePlay"<<std::endl;
+        exit(-1);
+    }
+    _textPoint->setFont(*_font);
+    _textPoint->setString("PUNTOS: ");
+    _textPoint->setPosition({1000, 580});
+    _textPoint->setFillColor(sf::Color::Black);
+}
+
+void GamePlay::initPoints()
+{
+    _acuPuntos = 0;
+    aux = std::to_string(_acuPuntos);
+    _points = new sf::Text;
+    if(_points == nullptr)
+    {
+        std::cout<<"Error de asignacion de memoria en _points, GamePlay"<<std::endl;
+        exit(-1);
+    }
+    _points->setString(aux);
+    _points->setPosition({1000, 620});
+    _font = new sf::Font;
+    if(_font == nullptr)
+    {
+        std::cout<<"Error de asignacion de memoria en Font, GamePlay"<<std::endl;
+        exit(-1);
+    }
+    if(!_font->loadFromFile("Fonts/Roboto-Black.ttf"))
+    {
+        std::cout<<"Error al cargar fuente en Menu"<<std::endl;
+        exit(-1);
+    }
+    _points->setFont(*_font);
+    _points->setFillColor(sf::Color::Black);
+
 }
 
 void GamePlay::setName(sf::Text name)
@@ -306,7 +353,6 @@ int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
 
 void GamePlay::update()
 {
-
     _player->update(_dt);
     _health->update(_dt);
 
@@ -338,7 +384,12 @@ void GamePlay::update()
     if(almEnemyDead != -1){
        _enemies.erase(_enemies.begin() + almEnemyDead);
        if(_enemies.empty()) spawnNewEnemies();
+       _acuPuntos += 50;
+       aux = std::to_string(_acuPuntos);
+       _points->setString(aux);
     }
+
+
     ///BALAS
     _map->update(_dt);
     updateEnemies(_dt);
@@ -352,6 +403,12 @@ void GamePlay::update()
         tiempoDeRecuperacion = 0;
     }
 
+    if(_health->getRedHeart() < 1)
+    {
+        _player->isDead();
+    }
+
+
 }
 
 
@@ -362,5 +419,7 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(*_health, states);
     for(const auto& enemy : _enemies) target.draw(*enemy, states);
     target.draw(_playerName, states);
+    target.draw(*_points, states);
+    target.draw(*_textPoint, states);
 
 }

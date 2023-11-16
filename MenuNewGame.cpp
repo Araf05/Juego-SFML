@@ -55,7 +55,8 @@ void MenuNewGame::initFont()
     _font = new sf::Font;
     if(_font == nullptr)
     {
-        std::cout<<"Error de asignacion de memoria en Fon, Menu New Game"<<std::endl;
+        std::cout<<"Error de asignacion de memoria en Font, Menu New Game"<<std::endl;
+        exit(-1);
     }
     if(!_font->loadFromFile("Fonts/Roboto-Black.ttf"))
     {

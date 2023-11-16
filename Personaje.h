@@ -21,6 +21,7 @@ class Personaje: public sf::Drawable
         void setPosition(sf::Vector2f vec);
         void setQuiet();
         void setFall(const float& dt);
+        void isDead();
 
         const sf::FloatRect getGlobalBounds() const;
         const sf::FloatRect getHitBox() const;

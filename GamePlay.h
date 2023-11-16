@@ -51,6 +51,12 @@ class GamePlay: public sf::Drawable
         Health *_health;
         sf::Text _playerName;
 
+        sf::Font *_font;
+        sf::Text *_points;
+        sf::Text *_textPoint;
+        int _acuPuntos;
+        std::string aux;
+
         float _dt;
         int _level;
         int _activeEnemiesCount;
@@ -62,6 +68,8 @@ class GamePlay: public sf::Drawable
         void initPlayer();
         void initMap();
         void initTile();
+        void initPoints();
+        void initTextPoint();
 };
 
 #endif // GAMEPLAY_H
