@@ -1,22 +1,37 @@
-#include <iostream>
 #include "Bala.h"
 
 Bala::Bala(const sf::Vector2f& pos, float speedX, float speedY) : _speedX(speedX), _speedY(speedY)
 {
-//    _bala.setSize(sf::Vector2f(10,5));
-//    _bala.setFillColor(sf::Color::Red);
-//    _bala.setPosition(pos);
-    if(!texturaBala.loadFromFile("Extras/bullet.png"))std::cout << "Error al cargar la imagen de bala" << std::endl;
+    initTexture();
     _sprite.setPosition(pos);
-    _sprite.setTexture(texturaBala);
-   // _sprite.scale(10, 10);
+    //_sprite.setTextureRect({0,0,15,6});
+    _sprite.setTexture(_texturaBala);
+    //_sprite.setColor(sf::Color::Red);
    // setHitbox();
+}
 
+Bala::~Bala()
+{
+//    delete [] _hitbox;
+//    delete [] _sprite;
+//    delete [] _textura;
+}
+void Bala::initTexture()
+{
+    if(!_texturaBala.loadFromFile("PowerUp/Rocket_1.png"))
+    {
+        std::cout << "Error al cargar la imagen de bala" << std::endl;
+        exit(-1);
+    }
 }
 
 void Bala::update(float dt)
 {
     _sprite.move(_speedX / dt, _speedY / dt);
+    _sprite.setTexture(_texturaBala);
+    if(_speedX < 0) _sprite.setScale(1,1);
+
+    if(_speedX > 0) _sprite.setScale(-1,1);
 }
 
 sf::FloatRect Bala::getGlobalBounds() const
