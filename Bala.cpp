@@ -4,9 +4,7 @@ Bala::Bala(const sf::Vector2f& pos, float speedX, float speedY) : _speedX(speedX
 {
     initTexture();
     _sprite.setPosition(pos);
-    //_sprite.setTextureRect({0,0,15,6});
     _sprite.setTexture(_texturaBala);
-    //_sprite.setColor(sf::Color::Red);
    // setHitbox();
 }
 
