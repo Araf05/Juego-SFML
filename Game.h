@@ -16,9 +16,11 @@ class Game
         virtual ~Game();
 
         void initMenu(const int& width, const int& height);
+        void initNewGame();
         void initGamePlay();
         void setEstado(int& ops);
         bool savePartida(const int& puntos);
+        void handlerState();
 
 
         void cmd(const sf::Event& event);

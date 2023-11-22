@@ -2,14 +2,17 @@
 #define MENU_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "ArchivoPartidas.h"
+#include "Partida.h"
 
 class Menu: public sf::Drawable
 {
     public:
-        Menu(const float& width, const float& height,const int& hayArchivo);
+        Menu(const float& width, const float& height);
+        bool buscarPartidas();
         void initFont();
         void initBackground();
-        void initOps(const float& width, const float& height, const int& hayArchivo);
+        void initOps(const float& width, const float& height);
         void moveUp();
         void moveDown();
 

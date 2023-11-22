@@ -3,13 +3,6 @@
 Game::Game(const int& width, const int& height)
 {
     initMenu(width, height);
-    _newGame = new MenuNewGame;
-    if(_newGame == nullptr)
-    {
-        std::cout<<"Error de asignacion de Memoria: NewGame"<<std::endl;
-        exit(-1);
-    }
-    initGamePlay();
 //    leerPartidas();
 
 }
@@ -21,11 +14,20 @@ Game::~Game()
     delete [] _newGame;
 }
 
+void Game::initNewGame()
+{
+    _newGame = new MenuNewGame;
+    if(_newGame == nullptr)
+    {
+        std::cout<<"Error de asignacion de Memoria: NewGame"<<std::endl;
+        exit(-1);
+    }
+}
 
 void Game::initMenu(const int& width, const int& height)
 {
     /// si hay archivo de partidas guardadas, mostrar opcion en el menu la opcion Continue y score
-    _menu = new Menu(width, height, _hayPartidasGuardadas);
+    _menu = new Menu(width, height);
     if(_menu == nullptr)
     {
         std::cout<<"Error de asignacion de Memoria: Menu"<<std::endl;
@@ -47,7 +49,12 @@ void Game::setEstado(int& ops)
 {
     switch(ops)
     {
-        case 0: _estado = ESTADOS_GAME::NEWGAME;
+        case 0:
+            {
+                _estado = ESTADOS_GAME::NEWGAME;
+                initNewGame();
+
+            }
         break;
         case 1: _estado = ESTADOS_GAME::QUIT;
         break;
@@ -122,6 +129,15 @@ void Game::cmd(const sf::Event& event)
     }
 }
 
+void Game::handlerState()
+{
+    if((_estado == ESTADOS_GAME::NEWGAME)&&(_newGame->ingreso) )
+    {
+        _estado = ESTADOS_GAME::GAMEPLAY;
+        initGamePlay();
+        _newGame->ingreso = false;
+    }
+}
 
 
 void Game::update()
@@ -141,7 +157,7 @@ void Game::update()
             _newGame->update();
             if(_newGame->ingreso)
             {
-                _estado = ESTADOS_GAME::GAMEPLAY;
+                handlerState();
                 _playerName = _newGame->getName();
                 _runGame->setName(_playerName);
             }

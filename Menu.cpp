@@ -1,16 +1,16 @@
 #include "Menu.h"
 
-Menu::Menu(const float& width, const float& height, const int& hayArchivo)
+Menu::Menu(const float& width, const float& height)
 {
     initFont();
     initBackground();
-    initOps(width, height, hayArchivo);
+    initOps(width, height);
 
     _blackRec.setFillColor(sf::Color(0,0,25,180));
     _blackRec.setSize({width,height});
     _blackRec.setPosition({0,0});
 
-    _hayArchivo = hayArchivo;
+    _hayArchivo = buscarPartidas();
     _selectOps = 0;
 
 }
@@ -18,6 +18,18 @@ Menu::Menu(const float& width, const float& height, const int& hayArchivo)
 Menu::~Menu()
 {
     delete [] _options;
+}
+
+bool Menu::buscarPartidas()
+{
+    ArchivoPartidas file("player.dat");
+    Partida reg;
+    int cantReg = file.contarRegistros();
+    if(cantReg == -1)
+    {
+        return true;
+    }
+    return false;
 }
 
 void Menu::initFont()
@@ -41,9 +53,9 @@ void Menu::initBackground()
     _bak.setPosition({0,-300});
 }
 
-void Menu::initOps(const float& width, const float& height, const int& hayArchivo)
+void Menu::initOps(const float& width, const float& height)
 {
-//    if(!hayArchivo) _cantOps = 3;
+//    if(!_hayArchivo) _cantOps = 3;
 //    else _cantOps = 5;
 //
 //    _options = new sf::Text[_cantOps];
@@ -66,13 +78,13 @@ void Menu::initOps(const float& width, const float& height, const int& hayArchiv
 //    _options[_cantOps - 2].setString("Credits");
 //    _options[_cantOps -1].setString("Quit");
 //
-//    if(hayArchivo)
+//    if(_hayArchivo)
 //    {
 //        _options[1].setString("Continue");
 //        _options[2].setString("Score");
 //    }
 
-    if(!hayArchivo)
+    if(!_hayArchivo)
     {
         _cantOps = 2;
         _options = new sf::Text[_cantOps];
