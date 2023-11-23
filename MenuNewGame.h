@@ -23,14 +23,6 @@ class MenuNewGame: public sf::Drawable
 
         std::string getNombre() const;
 
-//    private:
-//        enum class ESTADOS_NEWGAME
-//        {
-//            ING_NOMBRE,
-//            NOMBRE_GUARDADO,
-//            PRESIONA_ENTER
-//        };
-
     private:
         sf::Texture _background;
         sf::Sprite _bak;
@@ -39,12 +31,7 @@ class MenuNewGame: public sf::Drawable
         sf::Text _ingresar;
         sf::Text *_name;
         std::string nombre;
+        int _keyTime = 0;
 
-
-        sf::RectangleShape _textBox;
-
-//        bool _ingresoNombre = false;
-//        bool _pressEnter = false;
-       // ESTADOS_NEWGAME _estado= ESTADOS_NEWGAME::ING_NOMBRE;
 };
 #endif // MENUNEWGAME_H

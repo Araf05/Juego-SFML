@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "MenuNewGame.h"
 #include "GamePlay.h"
+#include "Credit.h"
 
 
 class Game
@@ -18,7 +19,9 @@ class Game
         void initMenu(const int& width, const int& height);
         void initNewGame();
         void initGamePlay();
-        void setEstado(int& ops);
+        void initCredit();
+
+        void setEstadoMenu(int& ops);
         bool savePartida(const int& puntos);
         void handlerState();
 
@@ -34,6 +37,7 @@ class Game
         {
             MENU,
             NEWGAME,
+            CONTINUE,
             GAMEPLAY,
             SCORE,
             CREDITS,
@@ -45,9 +49,11 @@ class Game
         Menu *_menu;
         GamePlay *_runGame;
         MenuNewGame *_newGame;
+        Credit *_credits;
         bool _hayPartidasGuardadas=false;
         int  _time=0;
         int _holdTime = 480;
+        int _width, _height;
 
 
         sf::Text _playerName;

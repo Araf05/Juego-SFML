@@ -65,14 +65,18 @@ void MenuNewGame::initFont()
     }
 }
 
-
+int keyTime = 0;
 
 void MenuNewGame::cmd(const sf::Event& event)
 {
-    static sf::Uint32 prevChar = 0;
-    if(event.type == sf::Event::TextEntered && event.text.unicode!= prevChar)
+    _keyTime++;
+    //static sf::Uint32 prevChar = 0;
+    if( _keyTime > 4 )
     {
-        prevChar = event.text.unicode;
+    if(event.type == sf::Event::TextEntered )//&& event.text.unicode!= prevChar)
+    {
+        //prevChar = event.text.unicode;
+
         switch (event.text.unicode)
         {
             case 13:
@@ -85,11 +89,21 @@ void MenuNewGame::cmd(const sf::Event& event)
             default: // Ha pulsado algo que no es enter
                 if(event.text.unicode < 128)
                 {
-                    nombre += static_cast<char>(event.text.unicode);
-                    _name->setString(nombre);
+                    if(event.text.unicode == 8 && !nombre.empty())
+                    {   nombre.pop_back();
+                        _name->setString(nombre);
+                    }
+                    else
+                    {
+                        nombre += static_cast<char>(event.text.unicode);
+                        _name->setString(nombre);
+                    }
                 }
+
             break;
         }
+    }
+        _keyTime = 0;
     }
 
 }

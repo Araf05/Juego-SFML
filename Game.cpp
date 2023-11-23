@@ -2,7 +2,9 @@
 
 Game::Game(const int& width, const int& height)
 {
-    initMenu(width, height);
+    _width = width;
+    _height = height;
+    initMenu(_width, _height);
 //    leerPartidas();
 
 }
@@ -45,24 +47,35 @@ void Game::initGamePlay( )
     }
 }
 
-void Game::setEstado(int& ops)
+void Game::initCredit()
+{
+    _credits = new Credit;
+    if(_credits == nullptr)
+    {
+        std::cout<<"Error de asignacion de Memoria: Credit"<<std::endl;
+        exit(-1);
+    }
+}
+
+void Game::setEstadoMenu(int& ops)
 {
     switch(ops)
     {
         case 0:
-            {
-                _estado = ESTADOS_GAME::NEWGAME;
-                initNewGame();
-
-            }
+            _estado = ESTADOS_GAME::NEWGAME;
+            initNewGame();
         break;
-        case 1: _estado = ESTADOS_GAME::QUIT;
+        case 1:
+             _estado = ESTADOS_GAME::CONTINUE;
+
         break;
         case 2: _estado = ESTADOS_GAME::SCORE;
         break;
-        case 3: _estado = ESTADOS_GAME::CREDITS;
+        case 3:
+            _estado = ESTADOS_GAME::CREDITS;
+            initCredit();
         break;
-        case 4: _estado = ESTADOS_GAME::GAMEPLAY;
+        case 4: _estado = ESTADOS_GAME::QUIT;
         break;
     }
 }
@@ -114,17 +127,20 @@ void Game::cmd(const sf::Event& event)
             _newGame->cmd(event);
 
         break;
+        case ESTADOS_GAME::CONTINUE:
+            std::cout<<"continue"<<std::endl;
+        break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->cmd();
         break;
         case ESTADOS_GAME::SCORE:
-
+            std::cout<<"score"<<std::endl;
         break;
         case ESTADOS_GAME::CREDITS:
-
+            _credits->cmd();
         break;
         case ESTADOS_GAME::QUIT:
-
+            std::cout<<"salir"<<std::endl;
         break;
     }
 }
@@ -136,6 +152,11 @@ void Game::handlerState()
         _estado = ESTADOS_GAME::GAMEPLAY;
         initGamePlay();
         _newGame->ingreso = false;
+    }
+    if((_estado == ESTADOS_GAME::CREDITS) && (_credits->volverMenu()) )
+    {
+        _estado = ESTADOS_GAME::MENU;
+        initMenu(_width, _height);
     }
 }
 
@@ -150,7 +171,7 @@ void Game::update()
             _menu->update(ops);
             if(ops!= -1)
             {
-                setEstado(ops);
+                setEstadoMenu(ops);
             }
         break;
         case ESTADOS_GAME::NEWGAME:
@@ -161,6 +182,9 @@ void Game::update()
                 _playerName = _newGame->getName();
                 _runGame->setName(_playerName);
             }
+
+        break;
+        case ESTADOS_GAME::CONTINUE:
 
         break;
         case ESTADOS_GAME::GAMEPLAY:
@@ -180,7 +204,16 @@ void Game::update()
 
         break;
         case ESTADOS_GAME::CREDITS:
-
+            _credits->update();
+            if(_credits->volverMenu())
+            {
+                _time++;
+                if(_time >= 60)
+                {
+                    handlerState();
+                    _time=0;
+                }
+            }
         break;
         case ESTADOS_GAME::QUIT:
             exit(0);
@@ -198,6 +231,9 @@ void Game::draw( sf::RenderWindow& window)
         case ESTADOS_GAME::NEWGAME:
             window.draw(*_newGame);
         break;
+        case ESTADOS_GAME::CONTINUE:
+
+        break;
         case ESTADOS_GAME::GAMEPLAY:
             window.draw(*_runGame);
         break;
@@ -205,7 +241,7 @@ void Game::draw( sf::RenderWindow& window)
 
         break;
         case ESTADOS_GAME::CREDITS:
-
+            window.draw(*_credits);
         break;
         case ESTADOS_GAME::QUIT:
 

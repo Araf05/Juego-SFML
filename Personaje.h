@@ -53,7 +53,7 @@ class Personaje: public sf::Drawable
         sf::Vector2f _pos;
         sf::FloatRect _nextPos;
         sf::Vector2f _previousPosition;
-        float _dirX = 0.f;
+        float _dirX = 1.f;
         float _speed = 2.f;
         float _fJump = 3.f;
         sf::Vector2f _vel = { 0.0f, 0.0f };

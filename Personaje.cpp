@@ -269,7 +269,7 @@ void Personaje::disparar()
     estaDisparando = true;
     _tiempoUltimoDisparo = 0.0f;
 
-    std::cout << "size " << _balas.size() << std::endl;
+   // std::cout << "size " << _balas.size() << std::endl;
 
     if(_balas.size() >= 10)
     {
