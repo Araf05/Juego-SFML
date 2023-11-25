@@ -29,8 +29,8 @@ class MenuNewGame: public sf::Drawable
         sf::RectangleShape _blackRec;
         sf::Font *_font;
         sf::Text _ingresar;
-        sf::Text *_name;
-        std::string nombre;
+        sf::Text *_sfTextName;
+        std::string _strName;
         int _keyTime = 0;
 
 };

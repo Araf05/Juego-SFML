@@ -1,12 +1,12 @@
 #ifndef PARTIDA_H
 #define PARTIDA_H
+#include <cstring>
 #include <SFML/Graphics.hpp>
 
 class Partida
 {
     public:
         Partida(){};
-        Partida(std::string nombre , const int& puntos);
         virtual ~Partida();
 
         void setName(std::string name);
@@ -18,9 +18,12 @@ class Partida
         bool getEstado();
 
     private:
-        std::string _name;
+        char _name[20];
         int _points;
-        bool _estado;
+//        int _level;
+//        int _gold;
+//        int _gun;
+        bool _estado = true;
 };
 
 #endif // PARTIDA_H

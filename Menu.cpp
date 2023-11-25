@@ -2,6 +2,7 @@
 
 Menu::Menu(const float& width, const float& height)
 {
+    _hayArchivo = buscarPartidas();
     initFont();
     initBackground();
     initOps(width, height);
@@ -9,8 +10,7 @@ Menu::Menu(const float& width, const float& height)
     _blackRec.setFillColor(sf::Color(0,0,25,180));
     _blackRec.setSize({width,height});
     _blackRec.setPosition({0,0});
-    _hayArchivo = false;
-    //_hayArchivo = buscarPartidas();
+//    _hayArchivo = false;
     _selectOps = 0;
 
 }

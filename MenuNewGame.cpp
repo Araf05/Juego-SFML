@@ -16,15 +16,15 @@ MenuNewGame::~MenuNewGame()
 
 void MenuNewGame::initName()
 {
-    _name = new sf::Text;
-    if(_name==nullptr)
+    _sfTextName = new sf::Text;
+    if(_sfTextName==nullptr)
     {
         std::cout<<"Error al asignar memoria al name en Menu New Game"<<std::endl;
         exit(-1);
     }
 
-    _name->setPosition({460, 340});
-    _name->setFont(*_font);
+    _sfTextName->setPosition({460, 340});
+    _sfTextName->setFont(*_font);
 
 }
 void MenuNewGame::initText()
@@ -81,7 +81,7 @@ void MenuNewGame::cmd(const sf::Event& event)
         {
             case 13:
                // _estado = ESTADOS_NEWGAME::PRESIONA_ENTER;
-                if(!nombre.empty())
+                if(!_strName.empty())
                 {
                     ingreso = true;
                 }
@@ -89,14 +89,14 @@ void MenuNewGame::cmd(const sf::Event& event)
             default: // Ha pulsado algo que no es enter
                 if(event.text.unicode < 128)
                 {
-                    if(event.text.unicode == 8 && !nombre.empty())
-                    {   nombre.pop_back();
-                        _name->setString(nombre);
+                    if(event.text.unicode == 8 && !_strName.empty())
+                    {   _strName.pop_back();
+                        _sfTextName->setString(_strName);
                     }
                     else
                     {
-                        nombre += static_cast<char>(event.text.unicode);
-                        _name->setString(nombre);
+                        _strName += static_cast<char>(event.text.unicode);
+                        _sfTextName->setString(_strName);
                     }
                 }
 
@@ -110,12 +110,12 @@ void MenuNewGame::cmd(const sf::Event& event)
 
 std::string MenuNewGame::getNombre() const
 {
-    return nombre;
+    return _strName;
 }
 
 sf::Text MenuNewGame::getName()
 {
-    return *_name;
+    return *_sfTextName;
 }
 
 void MenuNewGame::update()
@@ -128,5 +128,5 @@ void MenuNewGame::draw( sf::RenderTarget& target, sf::RenderStates states ) cons
     target.draw(_bak, states);
     target.draw(_blackRec, states);
     target.draw(_ingresar, states);
-    target.draw(*_name, states);
+    target.draw(*_sfTextName, states);
 }

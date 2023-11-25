@@ -12,7 +12,7 @@
 class GamePlay: public sf::Drawable
 {
     public:
-        GamePlay();
+        GamePlay( std::string nombre, int puntos=0  );
         virtual ~GamePlay();
 
         void checkCollision();
@@ -20,8 +20,7 @@ class GamePlay: public sf::Drawable
         void update();
         void draw( sf::RenderTarget& target, sf::RenderStates states)const override;
 
-        void setName(sf::Text name);
-
+        void setName(std::string nombre);
 
         sf::Vector2f getPlayerPosition() const;
         sf::Vector2f getEnemyPosition() const;
@@ -57,7 +56,7 @@ class GamePlay: public sf::Drawable
         sf::Font *_font;
         sf::Text *_points;
         sf::Text *_textPoint;
-        int _acuPuntos;
+        int _acuPuntos = 0;
         std::string aux;
 
         float _dt;

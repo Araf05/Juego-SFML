@@ -2,14 +2,16 @@
 #include <cstdlib>
 #include <ctime>
 
-GamePlay::GamePlay()
+GamePlay::GamePlay( std::string nombre , int puntos )
     : _map()
 {
+    _acuPuntos = puntos;
     initPlayer();
    _health = new Health;
     initTile();
     initMap();
     initPoints();
+    setName(nombre);
     initTextPoint();
     createEnemies(2);
     _dt = 1.f;
@@ -44,7 +46,6 @@ void GamePlay::initTextPoint()
 
 void GamePlay::initPoints()
 {
-    _acuPuntos = 0;
     aux = std::to_string(_acuPuntos);
     _points = new sf::Text;
     if(_points == nullptr)
@@ -70,12 +71,14 @@ void GamePlay::initPoints()
 
 }
 
-void GamePlay::setName(sf::Text name)
+void GamePlay::setName(std::string nombre)
 {
-    _playerName = name;
+    _playerName.setFont(*_font);
+    _playerName.setString(nombre);
     _playerName.setPosition({40 , 620});
     _playerName.setFillColor(sf::Color::Black);
 }
+
 
 void GamePlay::initPlayer()
 {
@@ -153,7 +156,7 @@ void GamePlay::chasePlayer(const sf::Vector2f& playerPos, float speed)
 {
     for(auto& enemy : _enemies) enemy->chase(playerPos, speed);
 }
-///
+
 
 void GamePlay::initTile()
 {

@@ -18,8 +18,9 @@ class Game
 
         void initMenu(const int& width, const int& height);
         void initNewGame();
-        void initGamePlay();
+        void initGamePlay(std::string nombre, int puntos = 0);
         void initCredit();
+        void initContinue();
 
         void setEstadoMenu(int& ops);
         bool savePartida(const int& puntos);
@@ -56,7 +57,7 @@ class Game
         int _width, _height;
 
 
-        sf::Text _playerName;
+        std::string _playerName;
         int _points;
 };
 

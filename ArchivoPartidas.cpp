@@ -14,11 +14,11 @@ ArchivoPartidas::~ArchivoPartidas()
 Partida ArchivoPartidas::leerRegistro(int pos){
     Partida reg;
     reg.setEstado(false);
-    FILE *p;
-    p=fopen(_fileName, "rb");
+    FILE *p=fopen(_fileName, "rb");
     if(p==NULL) return reg;
-    fseek(p, sizeof reg*pos,0);
-    fread(&reg, sizeof reg,1, p);
+
+    fseek(p, sizeof reg*pos, 0);
+    fread(&reg, sizeof(Partida), 1, p);
     fclose(p);
     return reg;
 }
@@ -35,7 +35,7 @@ int ArchivoPartidas::contarRegistros(){
 
 bool ArchivoPartidas::grabarRegistro(Partida reg){
     FILE *p;
-    p=fopen(_fileName, "ab");
+    p=fopen(_fileName, "wb");
     if(p==NULL) return false;
     bool escribio=fwrite(&reg, sizeof reg,1, p);
     fclose(p);

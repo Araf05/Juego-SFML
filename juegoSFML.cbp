@@ -49,6 +49,8 @@
 		<Unit filename="ArchivoPartidas.h" />
 		<Unit filename="Bala.cpp" />
 		<Unit filename="Bala.h" />
+		<Unit filename="Credit.cpp" />
+		<Unit filename="Credit.h" />
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.h" />
 		<Unit filename="Game.cpp" />
