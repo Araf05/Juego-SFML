@@ -19,7 +19,7 @@ class Personaje: public sf::Drawable
         const sf::FloatRect getNextPos() const;
 
         void setPosition(sf::Vector2f vec);
-        void setQuiet();
+        void setStill();
         void setFall(const float& dt);
         void isDead();
 

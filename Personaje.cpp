@@ -132,7 +132,7 @@ void Personaje::setFall(const float& dt)
 {
     _time+=dt;
     _isFall++;
-    if((_estado != ESTADOS_PERSONAJE::JUMP) && (_isFall >=20 || _time>3600) )
+    if((_estado != ESTADOS_PERSONAJE::JUMP) && (_isFall >=10 || _time>3600) )
     {
         _estado = ESTADOS_PERSONAJE::FALL;
         _isFall=0;
@@ -143,7 +143,7 @@ void Personaje::setFall(const float& dt)
 
 }
 
-void Personaje::setQuiet()
+void Personaje::setStill()
 {
     _estado = ESTADOS_PERSONAJE::IDLE;
     _isFall= 0;

@@ -294,8 +294,8 @@ void GamePlay::mapCollisionHandler(sf::Vector2f p, sf::FloatRect t, sf::FloatRec
         if(_map->checkIntersect(pb)){
             t = _map->checkTop(pb);
             if(t != sf::FloatRect{0,0,0,0}){
-                _player->setQuiet();
-                _player->setPosition({pb.left + 13, t.top + 6});
+                _player->setStill();
+                _player->setPosition({pb.left + 13, t.top + 8});
             }
         }
     }
