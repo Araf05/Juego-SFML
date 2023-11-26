@@ -8,6 +8,7 @@
 #include "MenuNewGame.h"
 #include "GamePlay.h"
 #include "Credit.h"
+#include "Score.h"
 
 
 class Game
@@ -21,6 +22,7 @@ class Game
         void initGamePlay(std::string nombre, int puntos = 0);
         void initCredit();
         void initContinue();
+        void initScore();
 
         void setEstadoMenu(int& ops);
         bool savePartida(const int& puntos);
@@ -51,6 +53,7 @@ class Game
         GamePlay *_runGame;
         MenuNewGame *_newGame;
         Credit *_credits;
+        Score *_score;
         bool _hayPartidasGuardadas=false;
         int  _time=0;
         int _holdTime = 480;

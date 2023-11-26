@@ -1373,10 +1373,10 @@
 	"ArchivoPartidas.h"
 	"Partida.h"
 
-1700949940 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1700968839 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1700947808 c:\users\noe_3\documents\github\juego-sfml\game.h
+1700968642 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ArchivoPartidas.h"
@@ -1385,6 +1385,7 @@
 	"MenuNewGame.h"
 	"GamePlay.h"
 	"Credit.h"
+	"Score.h"
 
 1700126773 source:c:\thefinalgame\juego-sfml\animation.cpp
 	"Animation.h"
@@ -1966,4 +1967,11 @@
 
 1700704986 source:c:\users\noe_3\documents\github\juego-sfml\credit.cpp
 	"Credit.h"
+
+1700968212 c:\users\noe_3\documents\github\juego-sfml\score.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1700968643 source:c:\users\noe_3\documents\github\juego-sfml\score.cpp
+	"Score.h"
 

@@ -14,6 +14,7 @@ Game::~Game()
     delete [] _menu;
     delete [] _runGame;
     delete [] _newGame;
+    delete [] _score;
 }
 
 void Game::initNewGame()
@@ -57,6 +58,16 @@ void Game::initCredit()
     }
 }
 
+void Game::initScore()
+{
+    _score = new Score;
+    if(_score == nullptr)
+    {
+        std::cout<<"Error de asignacion de Memoria: Score"<<std::endl;
+        exit(-1);
+    }
+}
+
 void Game::setEstadoMenu(int& ops)
 {
     switch(ops)
@@ -69,7 +80,9 @@ void Game::setEstadoMenu(int& ops)
              _estado = ESTADOS_GAME::CONTINUE;
              initContinue();
         break;
-        case 2: _estado = ESTADOS_GAME::SCORE;
+        case 2:
+            _estado = ESTADOS_GAME::SCORE;
+            initScore();
         break;
         case 3:
             _estado = ESTADOS_GAME::CREDITS;
@@ -140,7 +153,7 @@ void Game::cmd(const sf::Event& event)
             _runGame->cmd();
         break;
         case ESTADOS_GAME::SCORE:
-            std::cout<<"score"<<std::endl;
+            _score->cmd();
         break;
         case ESTADOS_GAME::CREDITS:
             _credits->cmd();
@@ -178,6 +191,11 @@ void Game::handlerState()
         initMenu(_width, _height);
         savePartida(_runGame->getPoints());
         _time=0;
+    }
+    if((_estado == ESTADOS_GAME::SCORE) && (_score->volverMenu()) )
+    {
+        _estado = ESTADOS_GAME::MENU;
+        initMenu(_width, _height);
     }
 }
 
@@ -225,6 +243,16 @@ void Game::update()
             }
         break;
         case ESTADOS_GAME::SCORE:
+            _score->update();
+            if(_score->volverMenu())
+            {
+                _time++;
+                if(_time >= 60)
+                {
+                    handlerState();
+                    _time=0;
+                }
+            }
         break;
         case ESTADOS_GAME::CREDITS:
             _credits->update();
@@ -261,7 +289,7 @@ void Game::draw( sf::RenderWindow& window)
             window.draw(*_runGame);
         break;
         case ESTADOS_GAME::SCORE:
-
+            window.draw(*_score);
         break;
         case ESTADOS_GAME::CREDITS:
             window.draw(*_credits);
