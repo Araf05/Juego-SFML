@@ -1,14 +1,13 @@
-#ifndef PARTIDA_H
-#define PARTIDA_H
+#ifndef PUNTAJE_H
+#define PUNTAJE_H
 #include <iostream>
 #include <cstring>
 
-class Partida
+class Puntaje
 {
     public:
-        Partida(){};
-        virtual ~Partida();
-
+        Puntaje(){};
+        virtual ~Puntaje();
         void setName(std::string name);
         void setPoints(const int& puntos);
         void setEstado(bool estado);
@@ -20,10 +19,7 @@ class Partida
     private:
         char _name[20];
         int _points;
-//        int _level;
-//        int _gold;
-//        int _gun;
         bool _estado = true;
 };
 
-#endif // PARTIDA_H
+#endif // PUNTAJE_H

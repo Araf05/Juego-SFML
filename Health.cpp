@@ -27,18 +27,20 @@ void Health::initSprite()
     for(int i=0; i<_healthPoint; i++ )
     {
         _spriteHP[i].setTexture(_texHP);
-        _spriteHP[i].setPosition({(float)40+(i*40), 580.f});
+        _spriteHP[i].setPosition({(float)50+(i*50), 585.f});
     }
 }
 
 void Health::initBack()
 {
 
-    _background.setSize({1280, 260});
-    _background.setFillColor(sf::Color(209,186,146,240));
+    _background.setSize({1280, 270});
+    //_background.setFillColor(sf::Color(209,186,146,240));
+    _background.setFillColor(sf::Color(140,137,159,240));
 
 
-    _background.setPosition(0.f, 546.f);
+
+    _background.setPosition(0.f, 544.f);
 
 }
 

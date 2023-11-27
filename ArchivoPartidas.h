@@ -1,6 +1,5 @@
 #ifndef ARCHIVOPARTIDAS_H_INCLUDED
 #define ARCHIVOPARTIDAS_H_INCLUDED
-
 #include <cstring>
 #include "Partida.h"
 

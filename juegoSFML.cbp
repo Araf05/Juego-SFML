@@ -47,6 +47,8 @@
 		<Unit filename="Animation.h" />
 		<Unit filename="ArchivoPartidas.cpp" />
 		<Unit filename="ArchivoPartidas.h" />
+		<Unit filename="ArchivoPuntajes.cpp" />
+		<Unit filename="ArchivoPuntajes.h" />
 		<Unit filename="Bala.cpp" />
 		<Unit filename="Bala.h" />
 		<Unit filename="Credit.cpp" />
@@ -71,6 +73,10 @@
 		<Unit filename="Partida.h" />
 		<Unit filename="Personaje.cpp" />
 		<Unit filename="Personaje.h" />
+		<Unit filename="Puntaje.cpp" />
+		<Unit filename="Puntaje.h" />
+		<Unit filename="Score.cpp" />
+		<Unit filename="Score.h" />
 		<Unit filename="Tile.cpp" />
 		<Unit filename="Tile.h" />
 		<Unit filename="main.cpp" />

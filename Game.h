@@ -25,6 +25,7 @@ class Game
         void initScore();
 
         void setEstadoMenu(int& ops);
+        void leerPartidas();
         bool savePartida(const int& puntos);
         void handlerState();
 
@@ -32,7 +33,7 @@ class Game
         void cmd(const sf::Event& event);
         void update();
         void draw( sf::RenderWindow& window);
-        void leerPartidas();
+
 
 
     private:

@@ -60,7 +60,7 @@ void Game::initCredit()
 
 void Game::initScore()
 {
-    _score = new Score;
+    _score = new Score(_playerName, _points);
     if(_score == nullptr)
     {
         std::cout<<"Error de asignacion de Memoria: Score"<<std::endl;
@@ -112,15 +112,15 @@ void Game::leerPartidas()
 {
     ArchivoPartidas file("player.dat");
     Partida reg;
-    int cantidadDeRegistros = file.contarRegistros();
-    std::cout << cantidadDeRegistros << std::endl;
-    if(cantidadDeRegistros == -1)
+    int cantReg = file.contarRegistros();
+    std::cout << cantReg << std::endl;
+    if(cantReg == -1)
     {
         std::cout << "No hay archivo de partidas" << std::endl;
         return;
     }
     _hayPartidasGuardadas = true;
-    for(int i = 0; i < cantidadDeRegistros; i++)
+    for(int i = 0; i < cantReg; i++)
     {
         reg = file.leerRegistro(i);
         _playerName = reg.getName();
@@ -129,6 +129,7 @@ void Game::leerPartidas()
     std::cout<<_playerName<<std::endl;
     std::cout<<_points<<std::endl;
 }
+
 
 void Game::initContinue()
 {
@@ -183,6 +184,7 @@ void Game::handlerState()
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         savePartida(_runGame->getPoints());
+       // _score->initVecPuntajes(_playerName,_runGame->getPoints());
         _time=0;
     }
     if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->isGameOver()) )
@@ -190,6 +192,7 @@ void Game::handlerState()
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         savePartida(_runGame->getPoints());
+       // _score->initVecPuntajes(_playerName,_runGame->getPoints());
         _time=0;
     }
     if((_estado == ESTADOS_GAME::SCORE) && (_score->volverMenu()) )

@@ -885,7 +885,7 @@
 1698952180 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1700966518 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1700970723 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1699991958 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
@@ -1333,7 +1333,7 @@
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1700965969 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
+1701029580 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
 1699895484 c:\users\noe_3\documents\github\juego-sfml\map.h
@@ -1373,10 +1373,10 @@
 	"ArchivoPartidas.h"
 	"Partida.h"
 
-1700968839 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1701123775 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1700968642 c:\users\noe_3\documents\github\juego-sfml\game.h
+1701050589 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ArchivoPartidas.h"
@@ -1920,7 +1920,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700534099 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
+1701028422 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
 	"Health.h"
 
 1700948311 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
@@ -1929,14 +1929,14 @@
 1700943239 source:c:\users\noe_3\documents\github\juego-sfml\partida.cpp
 	"Partida.h"
 
-1700953747 c:\users\noe_3\documents\github\juego-sfml\partida.h
+1701041758 c:\users\noe_3\documents\github\juego-sfml\partida.h
+	<iostream>
 	<cstring>
-	<SFML/Graphics.hpp>
 
 1700943023 source:c:\users\noe_3\documents\github\juego-sfml\archivopartidas.cpp
 	"ArchivoPartidas.h"
 
-1700131829 c:\users\noe_3\documents\github\juego-sfml\archivopartidas.h
+1701041935 c:\users\noe_3\documents\github\juego-sfml\archivopartidas.h
 	<cstring>
 	"Partida.h"
 
@@ -1968,10 +1968,26 @@
 1700704986 source:c:\users\noe_3\documents\github\juego-sfml\credit.cpp
 	"Credit.h"
 
-1700968212 c:\users\noe_3\documents\github\juego-sfml\score.h
+1701123035 c:\users\noe_3\documents\github\juego-sfml\score.h
 	<iostream>
 	<SFML/Graphics.hpp>
+	"Puntaje.h"
+	"ArchivoPuntajes.h"
 
-1700968643 source:c:\users\noe_3\documents\github\juego-sfml\score.cpp
+1701123643 source:c:\users\noe_3\documents\github\juego-sfml\score.cpp
 	"Score.h"
+
+1701041684 source:c:\users\noe_3\documents\github\juego-sfml\puntaje.cpp
+	"Puntaje.h"
+
+1701041721 c:\users\noe_3\documents\github\juego-sfml\puntaje.h
+	<iostream>
+	<cstring>
+
+1701122357 source:c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.cpp
+	"ArchivoPuntajes.h"
+
+1701057462 c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.h
+	<cstring>
+	"Puntaje.h"
 

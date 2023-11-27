@@ -2,16 +2,25 @@
 #define SCORE_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Puntaje.h"
+#include "ArchivoPuntajes.h"
 
 class Score: public sf::Drawable
 {
     public:
-        Score();
+        Score(const std::string& nombre, const int& puntos);
         virtual ~Score();
         void initFont();
         void initBackground();
         void initTitulo();
         void initScore();
+
+        void initCantReg();
+        void initVecPuntajes(const std::string& nombre, const int& puntos);
+        void ordenarPuntajes();
+        bool updateFile();
+        void updateScore();
+
 
         void cmd();
         void update();
@@ -24,10 +33,11 @@ class Score: public sf::Drawable
         sf::Sprite _bak;
         sf::RectangleShape _blackRec;
         sf::Font *_font;
-        sf::Text *_titulo;
-        sf::Text **_score;
+        sf::Text *_titulo, ***_score;
+        int _filas, _cols, _cantReg, _time = 0;
+        float _colum1=200, _colum2=450, _colum3=820, _scoreFila=200;
         bool _volver;
-        int _time = 0;
+        Puntaje *_vecPuntajes;
 };
 
 #endif // SCORE_H
