@@ -168,8 +168,8 @@ bool Game::saveScore(const int& puntos)
     std::cout<<"CATIDAD DE REGISTROS ANTES DE GRABAR"<< cantReg<<std::endl;
     if(cantReg<5)
     {
-        return file.grabarRegistro(reg);
-        //return file.ordenarRegistro();
+        file.grabarRegistro(reg);
+        return updateFileScore(reg);
     }
 
     return updateFileScore(reg);
