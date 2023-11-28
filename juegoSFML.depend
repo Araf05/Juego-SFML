@@ -1843,7 +1843,7 @@
 	"ArchivoPartidas.h"
 	"Partida.h"
 
-1701187495 c:\thefinalgame\juego-sfml\gameplay.h
+1701196851 c:\thefinalgame\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1893,10 +1893,11 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1701131005 source:c:\thefinalgame\juego-sfml\gameplay.cpp
+1701197418 source:c:\thefinalgame\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
+	<iostream>
 
 1701131005 source:c:\thefinalgame\juego-sfml\health.cpp
 	"Health.h"
@@ -2028,10 +2029,13 @@
 1701131005 source:c:\thefinalgame\juego-sfml\score.cpp
 	"Score.h"
 
-1701186690 source:c:\thefinalgame\juego-sfml\powerup.cpp
+1701197452 source:c:\thefinalgame\juego-sfml\powerup.cpp
 	"Powerup.h"
+	<iostream>
+	<random>
 
-1701186329 c:\thefinalgame\juego-sfml\powerup.h
+1701196602 c:\thefinalgame\juego-sfml\powerup.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
+	"Personaje.h"
 

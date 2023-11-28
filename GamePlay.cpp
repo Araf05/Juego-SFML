@@ -1,6 +1,7 @@
 #include "GamePlay.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 GamePlay::GamePlay( std::string nombre , int puntos )
     : _map()
@@ -16,6 +17,8 @@ GamePlay::GamePlay( std::string nombre , int puntos )
     createEnemies(2);
     _dt = 1.f;
     _gameOver = false;
+    initializePowerUp();
+
 }
 
 GamePlay::~GamePlay()
@@ -27,6 +30,11 @@ GamePlay::~GamePlay()
     delete _font;
     delete _points;
     delete _textPoint;
+}
+
+void GamePlay::initializePowerUp()
+{
+    _powerup = new Powerup(_powerup->getRandomPos(1280,500));
 }
 
 void GamePlay::initTextPoint()
@@ -352,6 +360,8 @@ int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
 
 
 
+
+
 void GamePlay::update()
 {
     _player->update(_dt);
@@ -410,6 +420,18 @@ void GamePlay::update()
         _gameOver = true;
     }
 
+    //POWERUP
+
+    if(_powerup->getGlobalBounds().intersects(_player->getGlobalBounds()))
+    {
+        delete _powerup;
+        _powerup = new Powerup(_powerup->getRandomPos(1260,500));
+        _powerup->update(_dt, _player);
+    }
+
+    //
+
+
 }
 
 
@@ -422,6 +444,7 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(_playerName, states);
     target.draw(*_points, states);
     target.draw(*_textPoint, states);
+    target.draw(*_powerup, states);
 
 }
 

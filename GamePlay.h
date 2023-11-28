@@ -48,6 +48,7 @@ class GamePlay: public sf::Drawable
 
 
         std::vector<sf::FloatRect> getGlobalBoundsOfPowerUps() const;
+        void initializePowerUp();
 
     private:
         Personaje *_player;
@@ -63,7 +64,9 @@ class GamePlay: public sf::Drawable
         int _acuPuntos = 0;
         std::string aux;
 
-        std::vector<Powerup> _powerUps;
+        Powerup *_powerup;
+        bool _playerHasPowerup;
+
 
         float _dt;
         int _level;

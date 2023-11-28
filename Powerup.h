@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Hitbox.h"
+#include "Personaje.h"
 
 
 class Powerup : public sf::Drawable
@@ -14,9 +15,11 @@ class Powerup : public sf::Drawable
     Powerup(const sf::Vector2f& pos);
     virtual ~Powerup();
     void initTexture();
-    void update(float dt);
+    void update(float dt, Personaje* player);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     sf::FloatRect getGlobalBounds() const;
+
+    sf::Vector2f getRandomPos(int mapWidth, int mapHeight);
 
     private:
 
