@@ -15,7 +15,6 @@ void Puntaje::setPoints(const int& puntos)
     _points = puntos;
 }
 
-
 void Puntaje::setEstado(bool estado)
 {
     _estado = estado;
@@ -36,4 +35,11 @@ int Puntaje::getPoints()
 bool Puntaje::getEstado()
 {
     return _estado;
+}
+
+
+void Puntaje::Mostrar()
+{
+    std::cout<<"Nombre: "<< _name<<std::endl;
+    std::cout<<"Puntaje: "<< _points<<std::endl;
 }

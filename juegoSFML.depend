@@ -1373,14 +1373,16 @@
 	"ArchivoPartidas.h"
 	"Partida.h"
 
-1701123775 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1701139063 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1701050589 c:\users\noe_3\documents\github\juego-sfml\game.h
+1701138091 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ArchivoPartidas.h"
 	"Partida.h"
+	"ArchivoPuntajes.h"
+	"Puntaje.h"
 	"Menu.h"
 	"MenuNewGame.h"
 	"GamePlay.h"
@@ -1923,13 +1925,13 @@
 1701028422 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
 	"Health.h"
 
-1700948311 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
+1701135859 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
 	"MenuNewGame.h"
 
-1700943239 source:c:\users\noe_3\documents\github\juego-sfml\partida.cpp
+1701138091 source:c:\users\noe_3\documents\github\juego-sfml\partida.cpp
 	"Partida.h"
 
-1701041758 c:\users\noe_3\documents\github\juego-sfml\partida.h
+1701138884 c:\users\noe_3\documents\github\juego-sfml\partida.h
 	<iostream>
 	<cstring>
 
@@ -1968,26 +1970,26 @@
 1700704986 source:c:\users\noe_3\documents\github\juego-sfml\credit.cpp
 	"Credit.h"
 
-1701123035 c:\users\noe_3\documents\github\juego-sfml\score.h
+1701142600 c:\users\noe_3\documents\github\juego-sfml\score.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Puntaje.h"
 	"ArchivoPuntajes.h"
 
-1701123643 source:c:\users\noe_3\documents\github\juego-sfml\score.cpp
+1701142808 source:c:\users\noe_3\documents\github\juego-sfml\score.cpp
 	"Score.h"
 
-1701041684 source:c:\users\noe_3\documents\github\juego-sfml\puntaje.cpp
+1701139337 source:c:\users\noe_3\documents\github\juego-sfml\puntaje.cpp
 	"Puntaje.h"
 
-1701041721 c:\users\noe_3\documents\github\juego-sfml\puntaje.h
+1701139406 c:\users\noe_3\documents\github\juego-sfml\puntaje.h
 	<iostream>
 	<cstring>
 
-1701122357 source:c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.cpp
+1701141919 source:c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.cpp
 	"ArchivoPuntajes.h"
 
-1701057462 c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.h
+1701137226 c:\users\noe_3\documents\github\juego-sfml\archivopuntajes.h
 	<cstring>
 	"Puntaje.h"
 

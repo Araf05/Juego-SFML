@@ -69,13 +69,13 @@ int keyTime = 0;
 
 void MenuNewGame::cmd(const sf::Event& event)
 {
-    _keyTime++;
-    //static sf::Uint32 prevChar = 0;
-    if( _keyTime > 4 )
+    //_keyTime++;
+    static sf::Uint32 prevChar = 0;
+   // if( _keyTime > 4 )
     {
-    if(event.type == sf::Event::TextEntered )//&& event.text.unicode!= prevChar)
+    if(event.type == sf::Event::TextEntered && event.text.unicode!= prevChar)
     {
-        //prevChar = event.text.unicode;
+        prevChar = event.text.unicode;
 
         switch (event.text.unicode)
         {

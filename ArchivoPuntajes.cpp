@@ -59,3 +59,47 @@ bool ArchivoPuntajes::modificar(const int&pos, const Puntaje& reg)
     return false;
 }
 
+void ArchivoPuntajes::cargarVector(Puntaje *vec, const int& cantReg)
+{
+    for(int i=0; i<cantReg; i++)
+    {
+        *vec= leerRegistro(i);
+    }
+}
+
+bool ArchivoPuntajes::ordenarRegistro()
+{
+    int posmax, cantReg = contarRegistros();
+    Puntaje aux, *v;
+
+    v = new Puntaje[cantReg];
+    if(v == nullptr)
+    {
+        std::cout<<"Error al asignar memoria al vector en Archivo Puntajes"<<std::endl;
+        delete [] v;
+        return false;
+    }
+    cargarVector(v, cantReg);
+
+    for(int i=0; i<cantReg-1; i++)
+    {
+        posmax = i;
+        for(int j=i+1; j<cantReg; j++)
+        {
+            if(v[j].getPoints() > v[posmax].getPoints())
+            {
+                posmax = j;
+                aux = v[i];
+                v[i] = v[j];
+                v[j] = aux;
+            }
+        }
+    }
+
+    for(int i=0; i<cantReg; i++)
+    {
+        modificar(i,v[i]);
+    }
+    return true;
+}
+

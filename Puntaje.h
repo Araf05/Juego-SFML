@@ -15,6 +15,7 @@ class Puntaje
         std::string getName() const;
         int getPoints();
         bool getEstado();
+        void Mostrar();
 
     private:
         char _name[20];

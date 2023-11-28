@@ -4,6 +4,8 @@
 #include <iostream>
 #include "ArchivoPartidas.h"
 #include "Partida.h"
+#include "ArchivoPuntajes.h"
+#include "Puntaje.h"
 #include "Menu.h"
 #include "MenuNewGame.h"
 #include "GamePlay.h"
@@ -27,6 +29,8 @@ class Game
         void setEstadoMenu(int& ops);
         void leerPartidas();
         bool savePartida(const int& puntos);
+        bool saveScore(const int& puntos);
+        bool updateFileScore(Puntaje nuevoPuntaje);
         void handlerState();
 
 

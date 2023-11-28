@@ -18,8 +18,8 @@ class Partida
         bool getEstado();
 
     private:
-        char _name[20];
-        int _points;
+        char _name[20]{};
+        int _points=0;
 //        int _level;
 //        int _gold;
 //        int _gun;

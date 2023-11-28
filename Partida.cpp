@@ -9,6 +9,7 @@ void Partida::setName(std::string nombre)
 {
     strcpy(_name, nombre.c_str());
 }
+
 void Partida::setPoints(const int& puntos)
 {
     _points = puntos;

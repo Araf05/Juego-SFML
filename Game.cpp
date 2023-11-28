@@ -60,7 +60,7 @@ void Game::initCredit()
 
 void Game::initScore()
 {
-    _score = new Score(_playerName, _points);
+    _score = new Score();
     if(_score == nullptr)
     {
         std::cout<<"Error de asignacion de Memoria: Score"<<std::endl;
@@ -113,7 +113,6 @@ void Game::leerPartidas()
     ArchivoPartidas file("player.dat");
     Partida reg;
     int cantReg = file.contarRegistros();
-    std::cout << cantReg << std::endl;
     if(cantReg == -1)
     {
         std::cout << "No hay archivo de partidas" << std::endl;
@@ -130,6 +129,51 @@ void Game::leerPartidas()
     std::cout<<_points<<std::endl;
 }
 
+bool Game::updateFileScore(Puntaje nuevoPuntaje)
+{
+    ArchivoPuntajes file("puntajes.dat");
+    Puntaje reg;
+    int cantReg = file.contarRegistros();
+    Puntaje aux;
+
+    for(int i=0; i<cantReg; i++)
+    {
+        reg = file.leerRegistro(i);
+        if(reg.getPoints() < nuevoPuntaje.getPoints())
+        {
+            aux = reg;
+            file.modificar(i, nuevoPuntaje);
+            for(int j=i+1; j<cantReg; j++)
+            {
+                reg = file.leerRegistro(j);
+                file.modificar(j, aux);
+                aux = reg;
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Game::saveScore(const int& puntos)
+{
+    ArchivoPuntajes file("puntajes.dat");
+    Puntaje reg;
+
+    reg.setName(_playerName);
+    reg.setPoints(puntos);
+    reg.setEstado(true);
+
+    int cantReg = file.contarRegistros();
+    std::cout<<"CATIDAD DE REGISTROS ANTES DE GRABAR"<< cantReg<<std::endl;
+    if(cantReg<5)
+    {
+        return file.grabarRegistro(reg);
+        //return file.ordenarRegistro();
+    }
+
+    return updateFileScore(reg);
+}
 
 void Game::initContinue()
 {
@@ -181,18 +225,18 @@ void Game::handlerState()
     }
     if((_estado == ESTADOS_GAME::GAMEPLAY) && (_runGame->isGameOver()) )
     {
+        savePartida(_runGame->getPoints());
+       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
-        savePartida(_runGame->getPoints());
-       // _score->initVecPuntajes(_playerName,_runGame->getPoints());
         _time=0;
     }
     if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->isGameOver()) )
     {
+        savePartida(_runGame->getPoints());
+        if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
-        savePartida(_runGame->getPoints());
-       // _score->initVecPuntajes(_playerName,_runGame->getPoints());
         _time=0;
     }
     if((_estado == ESTADOS_GAME::SCORE) && (_score->volverMenu()) )

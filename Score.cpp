@@ -1,13 +1,16 @@
 #include "Score.h"
 
-Score::Score(const std::string& nombre, const int& puntos)
+Score::Score()
 {
-//    initCantReg();
-//    initVecPuntajes(nombre, puntos);
+    initCantReg();
+    std::cout<<"Score registros leidos: "<< _cantReg<<std::endl;
+
+    initVecPuntajes();
     initBackground();
     initFont();
     initTitulo();
 
+    _filas = _cantReg;
     _cols = 3;
     initScore();
     updateScore();
@@ -83,12 +86,8 @@ void Score::initCantReg()
 }
 
 
-void Score::initVecPuntajes(const std::string& nombre, const int& puntos)
+void Score::initVecPuntajes()
 {
-    initCantReg();
-    if(_cantReg < 1) _cantReg = 1;
-    else if(_cantReg<6) _cantReg++;
-    std::cout<< _cantReg<<std::endl;
     _vecPuntajes = new Puntaje[_cantReg];
     if(_vecPuntajes == nullptr)
     {
@@ -96,75 +95,30 @@ void Score::initVecPuntajes(const std::string& nombre, const int& puntos)
         exit(-1);
     }
     ArchivoPuntajes file("puntajes.dat");
-    Puntaje reg;
-
-    if(_cantReg > 1)
-    {
-        for(int i=0; i<_cantReg; i++)
-        {
-            reg = file.leerRegistro(i);
-            _vecPuntajes[i].setName(reg.getName());
-            _vecPuntajes[i].setPoints(reg.getPoints());
-            _vecPuntajes[i].setEstado(reg.getEstado());
-        }
-    }
-    _vecPuntajes[_cantReg-1].setName(nombre);
-    _vecPuntajes[_cantReg-1].setPoints(puntos);
-    _vecPuntajes[_cantReg-1].setEstado(true);
-
-   if(_cantReg>1) ordenarPuntajes();
-
-    if(_cantReg == 6) _vecPuntajes[_cantReg-1].setEstado(false);
-
-    if(_cantReg == 1) file.grabarRegistro(_vecPuntajes[0]);
-    else updateFile();
-}
-
-void Score::ordenarPuntajes()
-{
-    int posmax;
-    Puntaje aux;
-    for(int i=0; i<_cantReg-1; i++)
-    {
-        posmax = i;
-        for(int j=i+1; j<_cantReg; j++)
-        {
-            if(_vecPuntajes[j].getPoints() > _vecPuntajes[posmax].getPoints())
-            {
-                posmax = j;
-                aux = _vecPuntajes[i];
-                _vecPuntajes[i] = _vecPuntajes[j];
-                _vecPuntajes[j] = aux;
-            }
-        }
-    }
-}
-
-bool Score::updateFile()
-{
-    ArchivoPuntajes file("puntajes.dat");
 
     for(int i=0; i<_cantReg; i++)
     {
-        file.modificar(i, _vecPuntajes[i]);
+        _vecPuntajes[i] = file.leerRegistro(i);
+        _vecPuntajes[i].Mostrar();
     }
-    return true;
 }
+
+
 
 void Score::initScore()
 {
-    _score = new sf::Text**[_filas];
+    _score = new sf::Text*[_filas];
     if(_score == nullptr)
     {
-        std::cout<<"Error de aisgnacion de memoria, matriz de Tiles (cols)"<<std::endl;
+        std::cout<<"Error de aisgnacion de memoria, matriz de score (filas)"<<std::endl;
         exit(-1);
     }
     for(int i=0; i<_filas; i++)
     {
-        _score[i] = new sf::Text*[_cols]{};
+        _score[i] = new sf::Text[_cols];
         if(_score[i] == nullptr)
         {
-            std::cout<<"Error de aisgnacion de memoria, matriz de Tiles (filas)"<<std::endl;
+            std::cout<<"Error de aisgnacion de memoria, matriz de score (cols)"<<std::endl;
             exit(-1);
         }
     }
@@ -173,31 +127,29 @@ void Score::initScore()
     {
         for(int j=0; j<_cols; j++)
         {
-            _score[i][j]->setFont(*_font);
+            _score[i][j].setFont(*_font);
         }
     }
+
 }
 
 void Score::updateScore()
 {
-    std::string aux;
     int j;
+    _scoreFila+=60;
     for(int i=0; i<_filas; i++)
     {
         j=0;
-        aux = std::to_string(i+1);
-        _score[i][j]->setString(aux);
-        _score[i][j]->setPosition({_colum1,_scoreFila+(60*j)});
+        _score[i][j].setString(std::to_string(i+1));
+        _score[i][j].setPosition({_colum1,_scoreFila+(60*i)});
 
-        j++;
-        aux = _vecPuntajes[i].getName();
-        _score[i][j]->setString(aux);
-        _score[i][j]->setPosition({_colum2, _scoreFila+(60*j)});
+        j=1;
+        _score[i][j].setString(_vecPuntajes[i].getName());
+        _score[i][j].setPosition({_colum2, _scoreFila+(60*i)});
 
-        j++;
-        aux = std::to_string(_vecPuntajes[i].getPoints());
-        _score[i][j]->setString(aux);
-        _score[i][j]->setPosition({_colum2, _scoreFila+(60*j)});
+        j=2;
+        _score[i][j].setString(std::to_string(_vecPuntajes[i].getPoints()));
+        _score[i][j].setPosition({_colum3, _scoreFila+(60*i)});
     }
 }
 
@@ -230,7 +182,7 @@ void Score::draw( sf::RenderTarget& target, sf::RenderStates states ) const
     {
         for(int j=0; j<_cols; j++)
         {
-           target.draw( *_score[i][j], states);
+           target.draw( _score[i][j], states);
         }
     }
 
