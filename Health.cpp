@@ -61,14 +61,14 @@ const int Health::setHurt()
     return _redHearts;
 }
 
-//void Health::recover()
-//{
-//    if( _redHearts < 3 )
-//    {
-//        _spriteHP[_redHearts].setColor(sf::Color::White);
-//        _redHearts++;
-//    }
-//}
+void Health::recover()
+{
+    if( _redHearts < 3 )
+    {
+        _spriteHP[_redHearts].setColor(sf::Color::White);
+        _redHearts++;
+    }
+}
 
 void Health::update(float dt)
 {

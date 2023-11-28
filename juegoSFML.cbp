@@ -57,6 +57,8 @@
 		<Unit filename="Enemy.h" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
+		<Unit filename="GameOver.cpp" />
+		<Unit filename="GameOver.h" />
 		<Unit filename="GamePlay.cpp" />
 		<Unit filename="GamePlay.h" />
 		<Unit filename="Health.cpp" />

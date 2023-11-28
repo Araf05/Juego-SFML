@@ -68,6 +68,8 @@ void Game::initScore()
     }
 }
 
+
+
 void Game::setEstadoMenu(int& ops)
 {
     switch(ops)
@@ -223,18 +225,18 @@ void Game::handlerState()
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
     }
-    if((_estado == ESTADOS_GAME::GAMEPLAY) && (_runGame->isGameOver()) )
+    if((_estado == ESTADOS_GAME::GAMEPLAY) && (_runGame->exitGame()) )
     {
-        savePartida(_runGame->getPoints());
-       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
+//        savePartida(_runGame->getPoints());
+//       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         _time=0;
     }
-    if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->isGameOver()) )
+    if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->exitGame()) )
     {
-        savePartida(_runGame->getPoints());
-        if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
+//        savePartida(_runGame->getPoints());
+//        if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         _time=0;
@@ -269,23 +271,25 @@ void Game::update()
         break;
         case ESTADOS_GAME::CONTINUE:
             _runGame->update();
-            if(_runGame->isGameOver())
+            if(_runGame->exitGame())
             {
                 _time++;
-                if(_time >= _holdTime)
+                if(_time>=40)
                 {
                    handlerState();
+                   _time = 0;
                 }
             }
         break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->update();
-            if(_runGame->isGameOver())
+            if(_runGame->exitGame())
             {
-                _time++;
-                if(_time >= _holdTime)
+                 _time++;
+                if(_time>=40)
                 {
-                    handlerState();
+                   handlerState();
+                   _time = 0;
                 }
             }
         break;

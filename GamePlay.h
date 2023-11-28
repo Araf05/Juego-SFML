@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Health.h"
 #include "Map.h"
+#include "GameOver.h"
 
 
 class GamePlay: public sf::Drawable
@@ -42,7 +43,7 @@ class GamePlay: public sf::Drawable
         int bulletCollisionHandler(std::vector<sf::FloatRect> eb);
         sf::FloatRect enemyCollisionHandler(sf::FloatRect pn, sf::FloatRect eb);
 
-        bool isGameOver();
+        bool exitGame();
         int getPoints();
 
     private:
@@ -67,13 +68,17 @@ class GamePlay: public sf::Drawable
         float tiempoDeRecuperacion = 0.0f;
         const float invulnerabilidad = 300.0f;
 
-         bool _gameOver;
-
         void initPlayer();
         void initMap();
         void initTile();
         void initPoints();
         void initTextPoint();
+        void initGameOver();
+
+        bool _isGameOver = false;
+        bool _exitGame = false;
+        int _vidaExtra = 1;
+        GameOver *_gameOver;
 };
 
 #endif // GAMEPLAY_H

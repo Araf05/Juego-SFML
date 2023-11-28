@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 
+
 int main()
 {
     const int WIDTH = 1280, HEIGHT = 800;

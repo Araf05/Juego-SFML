@@ -15,7 +15,7 @@ GamePlay::GamePlay( std::string nombre , int puntos )
     initTextPoint();
     createEnemies(2);
     _dt = 1.f;
-    _gameOver = false;
+    _isGameOver = false;
 }
 
 GamePlay::~GamePlay()
@@ -27,6 +27,7 @@ GamePlay::~GamePlay()
     delete _font;
     delete _points;
     delete _textPoint;
+    delete _gameOver;
 }
 
 void GamePlay::initTextPoint()
@@ -77,6 +78,16 @@ void GamePlay::setName(std::string nombre)
     _playerName.setString(nombre);
     _playerName.setPosition({40 , 620});
     _playerName.setFillColor(sf::Color::Black);
+}
+
+void GamePlay::initGameOver()
+{
+    _gameOver = new GameOver;
+    if(_gameOver == nullptr)
+    {
+        std::cout<<"Error de asignacion de Memoria: GameOver"<<std::endl;
+        exit(-1);
+    }
 }
 
 
@@ -266,10 +277,13 @@ void GamePlay::initMap()
 
 void GamePlay::cmd()
 {
-    _player->cmd();
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-    _player->disparar();
-}
+    if(!_isGameOver)
+    {
+        _player->cmd();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            _player->disparar();
+        }
+    } else _gameOver->cmd();
 }
 
 sf::Vector2f GamePlay::getPlayerPosition() const
@@ -354,80 +368,100 @@ int GamePlay::bulletCollisionHandler(std::vector<sf::FloatRect> eb)
 
 void GamePlay::update()
 {
-    _player->update(_dt);
-    _health->update(_dt);
-
-
-
-    sf::FloatRect playerBounds = _player->getHitBox();
-    if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
-    sf::FloatRect playerNext = _player->getNextPos();
-    sf::FloatRect tileBounds;
-    sf::Vector2f playerVel = _player->getVelocity();
-    sf::Vector2f playerPos = _player->getPosition();
-
-    chasePlayer(playerPos, 0.5f);
-
-    sf::FloatRect enemyBounds = enemyCollisionHandler(playerNext, enemyBounds);
-    mapCollisionHandler(playerVel, tileBounds, playerBounds);
-
-
-    if(checkPlayerCollision(playerBounds, enemyBounds) && !puedeRecibirDmg){
-        _health->setHurt();
-        puedeRecibirDmg = true;
-    }
-
-
-    ///BALAS
-    std::vector<sf::FloatRect> allEnemyBounds;
-    allEnemyBounds = getGlobalBoundsOfEnemies();
-    int almEnemyDead = bulletCollisionHandler(allEnemyBounds);
-    if(almEnemyDead != -1){
-       _enemies.erase(_enemies.begin() + almEnemyDead);
-       if(_enemies.empty()) spawnNewEnemies();
-       _acuPuntos += 50;
-       aux = std::to_string(_acuPuntos);
-       _points->setString(aux);
-    }
-
-
-    ///BALAS
-    _map->update(_dt);
-    updateEnemies(_dt);
-
-
-    tiempoDeRecuperacion += _dt;
-
-    //std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
-    if(tiempoDeRecuperacion >= invulnerabilidad){
-        puedeRecibirDmg = false;
-        tiempoDeRecuperacion = 0;
-    }
-
-    if(_health->getRedHeart() < 1)
+    if(!_isGameOver)
     {
-        _player->isDead();
-        _gameOver = true;
-    }
+        _player->update(_dt);
+        _health->update(_dt);
 
+        sf::FloatRect playerBounds = _player->getHitBox();
+        if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
+        sf::FloatRect playerNext = _player->getNextPos();
+        sf::FloatRect tileBounds;
+        sf::Vector2f playerVel = _player->getVelocity();
+        sf::Vector2f playerPos = _player->getPosition();
+
+        chasePlayer(playerPos, 0.5f);
+
+        sf::FloatRect enemyBounds = enemyCollisionHandler(playerNext, enemyBounds);
+        mapCollisionHandler(playerVel, tileBounds, playerBounds);
+
+
+        if(checkPlayerCollision(playerBounds, enemyBounds) && !puedeRecibirDmg){
+            _health->setHurt();
+            puedeRecibirDmg = true;
+        }
+
+
+        ///BALAS
+        std::vector<sf::FloatRect> allEnemyBounds;
+        allEnemyBounds = getGlobalBoundsOfEnemies();
+        int almEnemyDead = bulletCollisionHandler(allEnemyBounds);
+        if(almEnemyDead != -1){
+           _enemies.erase(_enemies.begin() + almEnemyDead);
+           if(_enemies.empty()) spawnNewEnemies();
+           _acuPuntos += 50;
+           aux = std::to_string(_acuPuntos);
+           _points->setString(aux);
+        }
+
+
+        ///BALAS
+        _map->update(_dt);
+        updateEnemies(_dt);
+
+
+        tiempoDeRecuperacion += _dt;
+
+        //std::cout << "TIEMPO: " << tiempoDeRecuperacion << std::endl;
+        if(tiempoDeRecuperacion >= invulnerabilidad){
+            puedeRecibirDmg = false;
+            tiempoDeRecuperacion = 0;
+        }
+
+        if(_health->getRedHeart() < 1)
+        {
+            _player->isDead();
+            _isGameOver = true;
+            initGameOver();
+        }
+    } else
+    {
+        if(_vidaExtra == 1)
+        {
+            _gameOver->update();
+            if(_gameOver->opsContinue() != -1)
+            {
+                if(_gameOver->opsContinue() == 0)
+                {
+                    _isGameOver = false;
+                    _health->recover();
+                    _player->setStill();
+                    _vidaExtra=0;
+                } else _exitGame = true;
+            }
+        } else _exitGame = true;
+    }
 }
 
 
 void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(*_map, states);
-    target.draw(*_player, states);
-    target.draw(*_health, states);
-    for(const auto& enemy : _enemies) target.draw(*enemy, states);
-    target.draw(_playerName, states);
-    target.draw(*_points, states);
-    target.draw(*_textPoint, states);
+    if(!_isGameOver)
+    {
+        target.draw(*_map, states);
+        target.draw(*_player, states);
+        target.draw(*_health, states);
+        for(const auto& enemy : _enemies) target.draw(*enemy, states);
+        target.draw(_playerName, states);
+        target.draw(*_points, states);
+        target.draw(*_textPoint, states);
+    } else if(_vidaExtra == 1) target.draw(*_gameOver, states);
 
 }
 
-bool GamePlay::isGameOver()
+bool GamePlay::exitGame()
 {
-    return _gameOver;
+    return _exitGame;
 }
 
 int GamePlay::getPoints()
