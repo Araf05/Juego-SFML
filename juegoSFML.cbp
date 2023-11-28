@@ -73,6 +73,8 @@
 		<Unit filename="Partida.h" />
 		<Unit filename="Personaje.cpp" />
 		<Unit filename="Personaje.h" />
+		<Unit filename="Powerup.cpp" />
+		<Unit filename="Powerup.h" />
 		<Unit filename="Puntaje.cpp" />
 		<Unit filename="Puntaje.h" />
 		<Unit filename="Score.cpp" />
