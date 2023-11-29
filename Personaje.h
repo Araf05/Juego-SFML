@@ -21,6 +21,9 @@ class Personaje: public sf::Drawable
         void setPosition(sf::Vector2f vec);
         void setStill();
         void setFall(const float& dt);
+        void setSpeed(float speed);
+        void setPuSpeed(float puSpeed);
+        int getCantRay() const;
         void isDead();
 
         const sf::FloatRect getGlobalBounds() const;
@@ -56,6 +59,8 @@ class Personaje: public sf::Drawable
         float _dirX = 1.f;
         float _speed = 2.f;
         float _fJump = 3.f;
+//        float _puSpeed = 0.0f;
+//        int cantRay = 0;
         sf::Vector2f _vel = { 0.0f, 0.0f };
         int _isFall = 0;
         float _time=0;

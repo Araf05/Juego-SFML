@@ -1391,13 +1391,13 @@
 	"Credit.h"
 	"Score.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\animation.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\animation.cpp
 	"Animation.h"
 
-1700126773 c:\thefinalgame\juego-sfml\animation.h
+1701293812 c:\thefinalgame\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/CircleShape.hpp>
@@ -1426,7 +1426,7 @@
 	<SFML/Graphics/VertexBuffer.hpp>
 	<SFML/Graphics/View.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Clipboard.hpp>
 	<SFML/Window/Context.hpp>
@@ -1443,7 +1443,7 @@
 	<SFML/Window/WindowHandle.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -1463,24 +1463,24 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\config.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\config.hpp
 	"TargetConditionals.h"
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\clock.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\clock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\export.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\time.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\err.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\err.hpp
 	<SFML/System/Export.hpp>
 	<ostream>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\fileinputstream.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\fileinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 	<SFML/System/InputStream.hpp>
@@ -1488,32 +1488,32 @@
 	<cstdio>
 	<string>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\inputstream.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\inputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\noncopyable.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\lock.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\lock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\memoryinputstream.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\memoryinputstream.hpp
 	<SFML/Config.hpp>
 	<SFML/System/InputStream.hpp>
 	<SFML/System/Export.hpp>
 	<cstdlib>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\mutex.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\sleep.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\sleep.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\string.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\string.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Utf.hpp>
 	<iterator>
@@ -1521,7 +1521,7 @@
 	<string>
 	<SFML/System/String.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\utf.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -1529,101 +1529,101 @@
 	<cstdlib>
 	<SFML/System/Utf.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\utf.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\utf.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\string.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\string.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\thread.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\thread.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\thread.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\thread.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocal.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocal.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocalptr.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocalptr.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\threadlocalptr.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector2.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector2.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector2.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector3.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector3.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\system\vector3.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\clipboard.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\clipboard.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\export.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\context.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\context.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\glresource.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\glresource.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\contextsettings.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\contextsettings.hpp
 	<SFML/Config.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\cursor.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\cursor.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\event.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/Joystick.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 	<SFML/Window/Sensor.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\joystick.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\joystick.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/String.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\keyboard.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\mouse.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\mouse.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\sensor.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\sensor.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/System/Time.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\touch.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\touch.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\videomode.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\videomode.hpp
 	<SFML/Window/Export.hpp>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\window.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\window.hpp
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/WindowBase.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowbase.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowbase.hpp
 	<SFML/Window/Cursor.hpp>
 	<SFML/Window/Export.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -1635,61 +1635,61 @@
 	<SFML/System/String.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\vulkan.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\vulkan.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/WindowHandle.hpp>
 	<vector>
 	<cstddef>
 	<stdint.h>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowhandle.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowstyle.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\window\windowstyle.hpp
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\blendmode.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\blendmode.hpp
 	<SFML/Graphics/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\export.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\circleshape.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\circleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\shape.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\drawable.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\renderstates.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\renderstates.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\transform.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\transform.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rect.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rect.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rect.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\transformable.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertexarray.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertexarray.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -1697,22 +1697,22 @@
 	<SFML/Graphics/Drawable.hpp>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertex.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertex.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\color.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\color.hpp
 	<SFML/Graphics/Export.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\primitivetype.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\primitivetype.hpp
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\convexshape.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\convexshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\font.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\font.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Texture.hpp>
@@ -1721,27 +1721,27 @@
 	<string>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glyph.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\texture.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\texture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\image.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\image.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rectangleshape.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rendertarget.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -1753,26 +1753,26 @@
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\view.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\view.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rendertexture.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Window/ContextSettings.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\renderwindow.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\shader.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\shader.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glsl.hpp>
 	<SFML/Window/GlResource.hpp>
@@ -1782,23 +1782,23 @@
 	<map>
 	<string>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glsl.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glsl.hpp
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 	<SFML/Graphics/Glsl.inl>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glsl.inl
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\glsl.inl
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\sprite.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\sprite.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\text.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\text.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -1809,41 +1809,47 @@
 	<string>
 	<vector>
 
-1700126773 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertexbuffer.hpp
+1701293812 c:\thefinalgame\juego-sfml\sfml\include\sfml\graphics\vertexbuffer.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1700126773 source:c:\thefinalgame\juego-sfml\enemy.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\enemy.cpp
 	"Enemy.h"
 	<cmath>
 
-1700126773 c:\thefinalgame\juego-sfml\enemy.h
+1701293812 c:\thefinalgame\juego-sfml\enemy.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
 
-1700126773 c:\thefinalgame\juego-sfml\hitbox.h
+1701293812 c:\thefinalgame\juego-sfml\hitbox.h
 	<SFML/Graphics.hpp>
 
-1700131644 source:c:\thefinalgame\juego-sfml\game.cpp
+1701298496 source:c:\thefinalgame\juego-sfml\game.cpp
 	"Game.h"
 
-1700131360 c:\thefinalgame\juego-sfml\game.h
+1701293812 c:\thefinalgame\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	"ArchivoPartidas.h"
 	"Partida.h"
+	"ArchivoPuntajes.h"
+	"Puntaje.h"
 	"Menu.h"
 	"MenuNewGame.h"
 	"GamePlay.h"
+	"Credit.h"
+	"Score.h"
 
-1700126773 c:\thefinalgame\juego-sfml\menu.h
+1701293812 c:\thefinalgame\juego-sfml\menu.h
 	<iostream>
 	<SFML/Graphics.hpp>
+	"ArchivoPartidas.h"
+	"Partida.h"
 
-1700131325 c:\thefinalgame\juego-sfml\gameplay.h
+1701298217 c:\thefinalgame\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -1851,60 +1857,62 @@
 	"Enemy.h"
 	"Health.h"
 	"Map.h"
+	"GameOver.h"
+	"Powerup.h"
 
-1700126773 c:\thefinalgame\juego-sfml\personaje.h
+1701297822 c:\thefinalgame\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 	"Animation.h"
 	"Bala.h"
 
-1700126773 c:\thefinalgame\juego-sfml\map.h
+1701293812 c:\thefinalgame\juego-sfml\map.h
 	<iostream>
 	<math.h>
 	<SFML/Graphics.hpp>
 	"Tile.h"
 
-1700126773 c:\thefinalgame\juego-sfml\tile.h
+1701293812 c:\thefinalgame\juego-sfml\tile.h
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\hitbox.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\hitbox.cpp
 	"Hitbox.h"
 
-1700128700 source:c:\thefinalgame\juego-sfml\main.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
 	"Game.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\map.cpp
+1701296927 source:c:\thefinalgame\juego-sfml\map.cpp
 	"Map.h"
 
-1700131603 source:c:\thefinalgame\juego-sfml\menu.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\menu.cpp
 	"Menu.h"
 
-1700127205 source:c:\thefinalgame\juego-sfml\personaje.cpp
+1701297836 source:c:\thefinalgame\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\tile.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\tile.cpp
 	"Tile.h"
 
-1700126773 c:\thefinalgame\juego-sfml\health.h
+1701293812 c:\thefinalgame\juego-sfml\health.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700131318 source:c:\thefinalgame\juego-sfml\gameplay.cpp
+1701298359 source:c:\thefinalgame\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1700126773 source:c:\thefinalgame\juego-sfml\health.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\health.cpp
 	"Health.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\bala.cpp
-	<iostream>
+1701293812 source:c:\thefinalgame\juego-sfml\bala.cpp
 	"Bala.h"
 
-1700126773 c:\thefinalgame\juego-sfml\bala.h
+1701293812 c:\thefinalgame\juego-sfml\bala.h
+	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
 
@@ -1944,24 +1952,25 @@
 	<cstring>
 	"Partida.h"
 
-1700131740 c:\thefinalgame\juego-sfml\archivopartidas.h
+1701293812 c:\thefinalgame\juego-sfml\archivopartidas.h
 	<cstring>
 	"Partida.h"
 
-1700129213 c:\thefinalgame\juego-sfml\partida.h
-	<SFML/Graphics.hpp>
+1701293812 c:\thefinalgame\juego-sfml\partida.h
+	<iostream>
+	<cstring>
 
-1700129061 c:\thefinalgame\juego-sfml\menunewgame.h
+1701293812 c:\thefinalgame\juego-sfml\menunewgame.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1700129071 source:c:\thefinalgame\juego-sfml\menunewgame.cpp
+1701294099 source:c:\thefinalgame\juego-sfml\menunewgame.cpp
 	"MenuNewGame.h"
 
-1700126773 source:c:\thefinalgame\juego-sfml\archivopartidas.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\archivopartidas.cpp
 	"ArchivoPartidas.h"
 
-1700129218 source:c:\thefinalgame\juego-sfml\partida.cpp
+1701293812 source:c:\thefinalgame\juego-sfml\partida.cpp
 	"Partida.h"
 
 1700704726 c:\users\noe_3\documents\github\juego-sfml\credit.h
@@ -2011,4 +2020,52 @@
 	"Powerup.h"
 	<iostream>
 	<random>
+
+1701293812 source:c:\thefinalgame\juego-sfml\archivopuntajes.cpp
+	"ArchivoPuntajes.h"
+
+1701293812 c:\thefinalgame\juego-sfml\archivopuntajes.h
+	<cstring>
+	"Puntaje.h"
+
+1701293812 c:\thefinalgame\juego-sfml\puntaje.h
+	<iostream>
+	<cstring>
+
+1701293812 source:c:\thefinalgame\juego-sfml\credit.cpp
+	"Credit.h"
+
+1701293812 c:\thefinalgame\juego-sfml\credit.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Animation.h"
+
+1701293812 c:\thefinalgame\juego-sfml\gameover.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1701293812 c:\thefinalgame\juego-sfml\powerup.h
+	<SFML/Graphics.hpp>
+	"Hitbox.h"
+	"Personaje.h"
+
+1701293812 c:\thefinalgame\juego-sfml\score.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Puntaje.h"
+	"ArchivoPuntajes.h"
+
+1701293812 source:c:\thefinalgame\juego-sfml\gameover.cpp
+	"GameOver.h"
+
+1701298395 source:c:\thefinalgame\juego-sfml\powerup.cpp
+	"Powerup.h"
+	<iostream>
+	<random>
+
+1701293812 source:c:\thefinalgame\juego-sfml\puntaje.cpp
+	"Puntaje.h"
+
+1701293812 source:c:\thefinalgame\juego-sfml\score.cpp
+	"Score.h"
 

@@ -18,19 +18,16 @@ Powerup::~Powerup()
 
 void Powerup::initTexture()
 {
-    if(!_texturaPowerup.loadFromFile("PowerUp/ray.png"))
+    if(!_texturaPowerup.loadFromFile("PowerUp/heart.png"))
     {
-        std::cout << "Error al cargar la imagen de rayo" << std::endl;
+        std::cout << "Error al cargar la imagen de corazon" << std::endl;
         exit(-1);
     }
 }
 
 void Powerup::update(float dt, Personaje* player)
 {
-    if(_sprite.getGlobalBounds().intersects(player->getGlobalBounds()))
-    {
-        player->setVelocity({10,5});
-    }
+
 }
 
 

@@ -67,13 +67,15 @@ class GamePlay: public sf::Drawable
         Powerup *_powerup;
         bool _playerHasPowerup;
 
+        int enemySpawn = 0;
+
         float _dt;
         int _level;
         int _activeEnemiesCount;
 
         bool puedeRecibirDmg = false;
         float tiempoDeRecuperacion = 0.0f;
-        const float invulnerabilidad = 300.0f;
+        const float invulnerabilidad = 120.0f;
 
         void initPlayer();
         void initMap();

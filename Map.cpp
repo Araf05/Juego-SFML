@@ -109,21 +109,22 @@ bool Map::checkIntersect(const sf::FloatRect &player)
 const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 {
     int posx;
-    posx = floor((player.left) /32)+1;
+    posx = floor((player.left) /32) + 1;
+    std::cout << posx << std::endl;
     sf::FloatRect tile = {};
 
     for(int i=posx; i<posx + 1; i++)
     {
         for(int j=0; j<_filas; j++)
         {
-            if( (i>=1 && i<=_cols ) && (_mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
+            if( (i >= 1  && i <=_cols ) && (_mTiles[j][i] != nullptr) &&( _mTiles[j][i]->isSolid()) )
             {
                 if(_mTiles[j][i]->getHitBox().top > player.top
                     && _mTiles[j][i]->getHitBox().top + _tileSize.y > player.top + player.height )
                 {
                     return tile = _mTiles[j][i]->getHitBox();
                 }
-            } else if( ( (i-1) >= 1) && (_mTiles[j][i-1] != nullptr) &&( _mTiles[j][i-1]->isSolid()) )
+            } else if(( (i-1) >= 1) && (_mTiles[j][i-1] != nullptr) &&( _mTiles[j][i-1]->isSolid()) )
             {
                 if( _mTiles[j][i-1]->getHitBox().top > player.top
                     && _mTiles[j][i-1]->getHitBox().top + _tileSize.y > player.top + player.height )

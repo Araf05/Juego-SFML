@@ -227,16 +227,16 @@ void Game::handlerState()
     }
     if((_estado == ESTADOS_GAME::GAMEPLAY) && (_runGame->exitGame()) )
     {
-//        savePartida(_runGame->getPoints());
-//       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
+        savePartida(_runGame->getPoints());
+       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         _time=0;
     }
     if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->exitGame()) )
     {
-//        savePartida(_runGame->getPoints());
-//        if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
+        savePartida(_runGame->getPoints());
+       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
         _time=0;

@@ -61,7 +61,7 @@ void Personaje::cmd()
         } else if(_estado == ESTADOS_PERSONAJE::JUMP )
         {
             dir.x -= 1.f;
-            _speed=5.f;
+            _speed=2.2f;
         }
     }
 
@@ -74,7 +74,7 @@ void Personaje::cmd()
         } else if (_estado == ESTADOS_PERSONAJE::JUMP)
         {
             dir.x += 1.f;
-            _speed=5.f;
+            _speed=2.2f;
         }
     }
 
@@ -213,6 +213,9 @@ void Personaje::update( float dt)
         _estado = ESTADOS_PERSONAJE::IDLE;
     }
 
+
+
+
     _hitbox->update();
 
 
@@ -297,3 +300,21 @@ void Personaje::isDead()
 {
     _estado = ESTADOS_PERSONAJE::DEATH;
 }
+
+void Personaje::setSpeed(float speed)
+{
+    _speed = speed;
+}
+
+//void Personaje::setPuSpeed(float puSpeed)
+//{
+//    _puSpeed += puSpeed;
+//    std::cout << _puSpeed << std::endl;
+//    if (_puSpeed == 1.0f)
+//    {
+//        cantRay += 1;
+//        _puSpeed = 0.0f;
+//        _fJump += 0.2f;
+//    }
+//}
+

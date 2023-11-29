@@ -65,7 +65,7 @@ void MenuNewGame::initFont()
     }
 }
 
-int keyTime = 0;
+
 
 void MenuNewGame::cmd(const sf::Event& event)
 {
@@ -103,7 +103,7 @@ void MenuNewGame::cmd(const sf::Event& event)
             break;
         }
     }
-        _keyTime = 0;
+
     }
 
 }

@@ -138,7 +138,9 @@ void GamePlay::checkEnemyStatus()
 
 void GamePlay::spawnNewEnemies()
 {
-    createEnemies(5);
+    enemySpawn += 2;
+    createEnemies(enemySpawn);
+
 }
 
 void GamePlay::cleanUpEnemies()
@@ -435,12 +437,14 @@ void GamePlay::update()
 
         //POWERUP
 
-        if(_powerup->getGlobalBounds().intersects(_player->getGlobalBounds()))
+        if(_health->getRedHeart() < 3 && _powerup->getGlobalBounds().intersects(_player->getGlobalBounds()))
         {
             delete _powerup;
             _powerup = new Powerup(_powerup->getRandomPos(1260,500));
-            _powerup->update(_dt, _player);
+            _health->recover();
         }
+
+
 
         //
 
