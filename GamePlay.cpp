@@ -16,6 +16,7 @@ GamePlay::GamePlay( std::string nombre , int puntos )
     createEnemies(2);
     _dt = 1.f;
     _isGameOver = false;
+    initializePowerUp();
 }
 
 GamePlay::~GamePlay()
@@ -28,6 +29,11 @@ GamePlay::~GamePlay()
     delete _points;
     delete _textPoint;
     delete _gameOver;
+}
+
+void GamePlay::initializePowerUp()
+{
+    _powerup = new Powerup(_powerup->getRandomPos(1280,500));
 }
 
 void GamePlay::initTextPoint()
@@ -371,7 +377,7 @@ void GamePlay::update()
     if(!_isGameOver)
     {
         _player->update(_dt);
-        _health->update(_dt);
+
 
         sf::FloatRect playerBounds = _player->getHitBox();
         if(!_map->checkBottomBool(playerBounds))_player->setFall(_dt);
@@ -424,6 +430,21 @@ void GamePlay::update()
             _isGameOver = true;
             initGameOver();
         }
+
+        _health->update(_dt);
+
+        //POWERUP
+
+        if(_powerup->getGlobalBounds().intersects(_player->getGlobalBounds()))
+        {
+            delete _powerup;
+            _powerup = new Powerup(_powerup->getRandomPos(1260,500));
+            _powerup->update(_dt, _player);
+        }
+
+        //
+
+
     } else
     {
         if(_vidaExtra == 1)
@@ -455,6 +476,7 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(_playerName, states);
         target.draw(*_points, states);
         target.draw(*_textPoint, states);
+        target.draw(*_powerup, states);
     } else if(_vidaExtra == 1) target.draw(*_gameOver, states);
 
 }

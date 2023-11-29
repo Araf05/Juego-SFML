@@ -439,12 +439,12 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1701209370 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1701277140 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1701208593 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1701277140 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -453,6 +453,7 @@
 	"Health.h"
 	"Map.h"
 	"GameOver.h"
+	"Powerup.h"
 
 1701205336 source:c:\users\noe_3\documents\github\juego-sfml\main.cpp
 	<SFML/Graphics.hpp>
@@ -2000,4 +2001,14 @@
 1701205272 c:\users\noe_3\documents\github\juego-sfml\gameover.h
 	<iostream>
 	<SFML/Graphics.hpp>
+
+1701276449 c:\users\noe_3\documents\github\juego-sfml\powerup.h
+	<SFML/Graphics.hpp>
+	"Hitbox.h"
+	"Personaje.h"
+
+1701276407 source:c:\users\noe_3\documents\github\juego-sfml\powerup.cpp
+	"Powerup.h"
+	<iostream>
+	<random>
 

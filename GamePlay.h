@@ -8,6 +8,7 @@
 #include "Health.h"
 #include "Map.h"
 #include "GameOver.h"
+#include "Powerup.h"
 
 
 class GamePlay: public sf::Drawable
@@ -46,6 +47,9 @@ class GamePlay: public sf::Drawable
         bool exitGame();
         int getPoints();
 
+        std::vector<sf::FloatRect> getGlobalBoundsOfPowerUps() const;
+        void initializePowerUp();
+
     private:
         Personaje *_player;
         std::vector<Enemy*> _enemies;
@@ -59,6 +63,9 @@ class GamePlay: public sf::Drawable
         sf::Text *_textPoint;
         int _acuPuntos = 0;
         std::string aux;
+
+        Powerup *_powerup;
+        bool _playerHasPowerup;
 
         float _dt;
         int _level;
