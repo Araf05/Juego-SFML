@@ -21,8 +21,9 @@ class Personaje: public sf::Drawable
         void setPosition(sf::Vector2f vec);
         void setStill();
         void setFall(const float& dt);
-        void setSpeed(float speed);
-        void setPuSpeed(float puSpeed);
+        void setColor(sf::Color color);
+//        void setSpeed(float speed);
+//        void setPuSpeed(float puSpeed);
         int getCantRay() const;
         void isDead();
 

@@ -302,5 +302,8 @@ void Personaje::isDead()
 //    _speed = speed;
 //}
 
-
+void Personaje::setColor(sf::Color color)
+{
+    _sprite.setColor(color);
+}
 

@@ -398,9 +398,10 @@ void GamePlay::update()
         sf::FloatRect enemyBounds = enemyCollisionHandler(playerNext, enemyBounds);
         mapCollisionHandler(playerVel, tileBounds, playerBounds);
 
-
+        //_player->setColor(sf::Color::White);
         if(checkPlayerCollision(playerBounds, enemyBounds) && !puedeRecibirDmg){
             _health->setHurt();
+            _player->setColor(sf::Color::Red);
             puedeRecibirDmg = true;
         }
 
@@ -427,6 +428,7 @@ void GamePlay::update()
         if(tiempoDeRecuperacion >= invulnerabilidad){
             puedeRecibirDmg = false;
             tiempoDeRecuperacion = 0;
+            _player->setColor(sf::Color::White);
         }
 
         if(_health->getRedHeart() < 1)
