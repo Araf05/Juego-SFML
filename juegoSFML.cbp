@@ -45,8 +45,6 @@
 		</Linker>
 		<Unit filename="Animation.cpp" />
 		<Unit filename="Animation.h" />
-		<Unit filename="ArchivoPartidas.cpp" />
-		<Unit filename="ArchivoPartidas.h" />
 		<Unit filename="ArchivoPuntajes.cpp" />
 		<Unit filename="ArchivoPuntajes.h" />
 		<Unit filename="Bala.cpp" />
@@ -71,8 +69,6 @@
 		<Unit filename="Menu.h" />
 		<Unit filename="MenuNewGame.cpp" />
 		<Unit filename="MenuNewGame.h" />
-		<Unit filename="Partida.cpp" />
-		<Unit filename="Partida.h" />
 		<Unit filename="Personaje.cpp" />
 		<Unit filename="Personaje.h" />
 		<Unit filename="Powerup.cpp" />

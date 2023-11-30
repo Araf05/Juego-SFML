@@ -184,8 +184,6 @@ void Personaje::update( float dt)
         break;
         case ESTADOS_PERSONAJE::FALL:
             _vel.y += 9.f;
-//            _animations[int(_currentAnimation)].update(dt);
-//            _animations[int(_currentAnimation)].applyToSprite(_sprite);
         break;
     }
 
@@ -272,8 +270,6 @@ void Personaje::disparar()
     estaDisparando = true;
     _tiempoUltimoDisparo = 0.0f;
 
-   // std::cout << "size " << _balas.size() << std::endl;
-
     if(_balas.size() >= 10)
     {
         _balas.clear();
@@ -301,20 +297,10 @@ void Personaje::isDead()
     _estado = ESTADOS_PERSONAJE::DEATH;
 }
 
-void Personaje::setSpeed(float speed)
-{
-    _speed = speed;
-}
-
-//void Personaje::setPuSpeed(float puSpeed)
+//void Personaje::setSpeed(float speed)
 //{
-//    _puSpeed += puSpeed;
-//    std::cout << _puSpeed << std::endl;
-//    if (_puSpeed == 1.0f)
-//    {
-//        cantRay += 1;
-//        _puSpeed = 0.0f;
-//        _fJump += 0.2f;
-//    }
+//    _speed = speed;
 //}
+
+
 

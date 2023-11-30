@@ -110,7 +110,6 @@ const sf::FloatRect Map::checkTop(const sf::FloatRect &player) const
 {
     int posx;
     posx = floor((player.left) /32) + 1;
-    std::cout << posx << std::endl;
     sf::FloatRect tile = {};
 
     for(int i=posx; i<posx + 1; i++)

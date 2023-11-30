@@ -2,14 +2,14 @@
 #define MENU_H
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "ArchivoPartidas.h"
-#include "Partida.h"
+#include "ArchivoPuntajes.h"
+#include "Puntaje.h"
 
 class Menu: public sf::Drawable
 {
     public:
         Menu(const float& width, const float& height);
-        bool buscarPartidas();
+        bool buscarScore();
         void initFont();
         void initBackground();
         void initOps(const float& width, const float& height);
@@ -38,7 +38,7 @@ class Menu: public sf::Drawable
         sf::RectangleShape _blackRec;
 
         bool _hayArchivo= false;
-        int _cantOps= 5;
+        int _cantOps= 4;
         int _selectOps;
         sf::Text *_options;
         ESTADOS_MENU _estado = ESTADOS_MENU::IDLE;

@@ -5,8 +5,6 @@ Game::Game(const int& width, const int& height)
     _width = width;
     _height = height;
     initMenu(_width, _height);
-//    leerPartidas();
-
 }
 
 Game::~Game()
@@ -79,56 +77,16 @@ void Game::setEstadoMenu(int& ops)
             initNewGame();
         break;
         case 1:
-             _estado = ESTADOS_GAME::CONTINUE;
-             initContinue();
-        break;
-        case 2:
             _estado = ESTADOS_GAME::SCORE;
             initScore();
         break;
-        case 3:
+        case 2:
             _estado = ESTADOS_GAME::CREDITS;
             initCredit();
         break;
-        case 4: _estado = ESTADOS_GAME::QUIT;
+        case 3: _estado = ESTADOS_GAME::QUIT;
         break;
     }
-}
-
-
-
-bool Game::savePartida(const int& puntos)
-{
-    ArchivoPartidas file("player.dat");
-    Partida reg;
-
-    std::cout << _playerName << std::endl;
-    reg.setName(_playerName);
-    reg.setPoints(puntos);
-    reg.setEstado(true);
-
-    return file.grabarRegistro(reg);
-}
-
-void Game::leerPartidas()
-{
-    ArchivoPartidas file("player.dat");
-    Partida reg;
-    int cantReg = file.contarRegistros();
-    if(cantReg == -1)
-    {
-        std::cout << "No hay archivo de partidas" << std::endl;
-        return;
-    }
-    _hayPartidasGuardadas = true;
-    for(int i = 0; i < cantReg; i++)
-    {
-        reg = file.leerRegistro(i);
-        _playerName = reg.getName();
-        _points = reg.getPoints();
-    }
-    std::cout<<_playerName<<std::endl;
-    std::cout<<_points<<std::endl;
 }
 
 bool Game::updateFileScore(Puntaje nuevoPuntaje)
@@ -167,7 +125,6 @@ bool Game::saveScore(const int& puntos)
     reg.setEstado(true);
 
     int cantReg = file.contarRegistros();
-    std::cout<<"CATIDAD DE REGISTROS ANTES DE GRABAR"<< cantReg<<std::endl;
     if(cantReg<5)
     {
         file.grabarRegistro(reg);
@@ -177,11 +134,6 @@ bool Game::saveScore(const int& puntos)
     return updateFileScore(reg);
 }
 
-void Game::initContinue()
-{
-    leerPartidas();
-    initGamePlay(_playerName, _points);
-}
 
 void Game::cmd(const sf::Event& event)
 {
@@ -192,9 +144,6 @@ void Game::cmd(const sf::Event& event)
         break;
         case ESTADOS_GAME::NEWGAME:
             _newGame->cmd(event);
-        break;
-        case ESTADOS_GAME::CONTINUE:
-            _runGame->cmd();
         break;
         case ESTADOS_GAME::GAMEPLAY:
             _runGame->cmd();
@@ -227,15 +176,7 @@ void Game::handlerState()
     }
     if((_estado == ESTADOS_GAME::GAMEPLAY) && (_runGame->exitGame()) )
     {
-        savePartida(_runGame->getPoints());
-       if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
-        _estado = ESTADOS_GAME::MENU;
-        initMenu(_width, _height);
-        _time=0;
-    }
-    if((_estado == ESTADOS_GAME::CONTINUE) && (_runGame->exitGame()) )
-    {
-        savePartida(_runGame->getPoints());
+        //savePartida(_runGame->getPoints());
        if( saveScore(_runGame->getPoints()) ) std::cout<<"Score actualizado"<<std::endl;
         _estado = ESTADOS_GAME::MENU;
         initMenu(_width, _height);
@@ -267,18 +208,6 @@ void Game::update()
             if(_newGame->ingreso)
             {
                 handlerState();
-            }
-        break;
-        case ESTADOS_GAME::CONTINUE:
-            _runGame->update();
-            if(_runGame->exitGame())
-            {
-                _time++;
-                if(_time>=40)
-                {
-                   handlerState();
-                   _time = 0;
-                }
             }
         break;
         case ESTADOS_GAME::GAMEPLAY:
@@ -332,9 +261,6 @@ void Game::draw( sf::RenderWindow& window)
         break;
         case ESTADOS_GAME::NEWGAME:
             window.draw(*_newGame);
-        break;
-        case ESTADOS_GAME::CONTINUE:
-            window.draw(*_runGame);
         break;
         case ESTADOS_GAME::GAMEPLAY:
             window.draw(*_runGame);

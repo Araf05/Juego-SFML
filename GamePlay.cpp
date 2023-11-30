@@ -17,6 +17,8 @@ GamePlay::GamePlay( std::string nombre , int puntos )
     _dt = 1.f;
     _isGameOver = false;
     initializePowerUp();
+    _vidaExtra = 1;
+    _time = 0;
 }
 
 GamePlay::~GamePlay()
@@ -254,7 +256,7 @@ void GamePlay::initMap()
     {   std::cout<<"Error no se pudo leer el archivo"<<std::endl;
        exit(-1);
     }
-    else std::cout<< "Se pudo leer el registro de mapa"<<std::endl;
+//    else std::cout<< "Se pudo leer el registro de mapa"<<std::endl;
     fclose(p);
 
 
@@ -291,7 +293,10 @@ void GamePlay::cmd()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             _player->disparar();
         }
-    } else _gameOver->cmd();
+    } else if(_vidaExtra== 1)
+    {
+       _gameOver->cmd();
+    }
 }
 
 sf::Vector2f GamePlay::getPlayerPosition() const
@@ -399,7 +404,6 @@ void GamePlay::update()
             puedeRecibirDmg = true;
         }
 
-
         ///BALAS
         std::vector<sf::FloatRect> allEnemyBounds;
         allEnemyBounds = getGlobalBoundsOfEnemies();
@@ -411,7 +415,6 @@ void GamePlay::update()
            aux = std::to_string(_acuPuntos);
            _points->setString(aux);
         }
-
 
         ///BALAS
         _map->update(_dt);
@@ -429,8 +432,13 @@ void GamePlay::update()
         if(_health->getRedHeart() < 1)
         {
             _player->isDead();
-            _isGameOver = true;
-            initGameOver();
+            _time++;
+
+            if(_time>= _holdTime)
+            {
+                _isGameOver = true;
+                initGameOver();
+            }
         }
 
         _health->update(_dt);
@@ -444,28 +452,25 @@ void GamePlay::update()
             _health->recover();
         }
 
-
-
         //
-
-
-    } else
+    } else if(_vidaExtra == 1 )
     {
-        if(_vidaExtra == 1)
+         _gameOver->update();
+
+        if( _gameOver->pressEnter())
         {
-            _gameOver->update();
-            if(_gameOver->opsContinue() != -1)
+            if(_gameOver->opsContinue() == 0)
             {
-                if(_gameOver->opsContinue() == 0)
-                {
-                    _isGameOver = false;
-                    _health->recover();
-                    _player->setStill();
-                    _vidaExtra=0;
-                } else _exitGame = true;
-            }
-        } else _exitGame = true;
-    }
+                _isGameOver = false;
+                _health->recover();
+                _player->setStill();
+                _player->setPosition({100,540});
+                _vidaExtra = 0;
+                _time = 0;
+            } else if(_gameOver->opsContinue() == 1) _exitGame = true;
+        }
+    } else _exitGame = true;
+
 }
 
 
@@ -481,7 +486,10 @@ void GamePlay::draw( sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(*_points, states);
         target.draw(*_textPoint, states);
         target.draw(*_powerup, states);
-    } else if(_vidaExtra == 1) target.draw(*_gameOver, states);
+    } else if(_vidaExtra == 1)
+    {
+        target.draw(*_gameOver, states);
+    }
 
 }
 

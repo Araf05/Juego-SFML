@@ -5,6 +5,9 @@ GameOver::GameOver()
     initBackground();
     initFont();
     initText();
+    _selectOps = 0;
+    _opsContinue = false;
+    _time = 0;
 }
 
 GameOver::~GameOver()
@@ -72,10 +75,13 @@ void GameOver::initText()
 
 int GameOver::opsContinue()
 {
-    if(_opsContinue) return _selectOps;
-    return -1;
+    return _selectOps;
 }
 
+bool GameOver::pressEnter()
+{
+    return _opsContinue;
+}
 
 void GameOver::moveLeft()
 {

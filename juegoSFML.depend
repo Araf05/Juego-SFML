@@ -439,12 +439,12 @@
 
 1698014896 c:\users\noe_3\documents\github\juegosfml\gameplay.h
 
-1701277140 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
+1701310616 source:c:\users\noe_3\documents\github\juego-sfml\gameplay.cpp
 	"GamePlay.h"
 	<cstdlib>
 	<ctime>
 
-1701277140 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
+1701310979 c:\users\noe_3\documents\github\juego-sfml\gameplay.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<vector>
@@ -877,7 +877,7 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1700966129 c:\users\noe_3\documents\github\juego-sfml\personaje.h
+1701298866 c:\users\noe_3\documents\github\juego-sfml\personaje.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"Hitbox.h"
@@ -887,7 +887,7 @@
 1698952180 c:\users\noe_3\documents\github\juego-sfml\animation.h
 	<SFML/Graphics.hpp>
 
-1700970723 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
+1701300872 source:c:\users\noe_3\documents\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
 1699991958 source:c:\users\noe_3\documents\github\juego-sfml\animation.cpp
@@ -1335,7 +1335,7 @@
 1698274995 source:c:\users\noe_3\onedrive\documentos\github\juego-sfml\personaje.cpp
 	"Personaje.h"
 
-1701029580 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
+1701300924 source:c:\users\noe_3\documents\github\juego-sfml\map.cpp
 	"Map.h"
 
 1699895484 c:\users\noe_3\documents\github\juego-sfml\map.h
@@ -1366,23 +1366,21 @@
 1699731696 source:c:\users\noe_3\documents\github\juego-sfml\hitbox.cpp
 	"Hitbox.h"
 
-1700946558 source:c:\users\noe_3\documents\github\juego-sfml\menu.cpp
+1701300075 source:c:\users\noe_3\documents\github\juego-sfml\menu.cpp
 	"Menu.h"
 
-1700686598 c:\users\noe_3\documents\github\juego-sfml\menu.h
+1701299707 c:\users\noe_3\documents\github\juego-sfml\menu.h
 	<iostream>
 	<SFML/Graphics.hpp>
-	"ArchivoPartidas.h"
-	"Partida.h"
+	"ArchivoPuntajes.h"
+	"Puntaje.h"
 
-1701209208 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
+1701310616 source:c:\users\noe_3\documents\github\juego-sfml\game.cpp
 	"Game.h"
 
-1701206388 c:\users\noe_3\documents\github\juego-sfml\game.h
+1701299945 c:\users\noe_3\documents\github\juego-sfml\game.h
 	<SFML/Graphics.hpp>
 	<iostream>
-	"ArchivoPartidas.h"
-	"Partida.h"
 	"ArchivoPuntajes.h"
 	"Puntaje.h"
 	"Menu.h"
@@ -1935,7 +1933,7 @@
 1701207390 source:c:\users\noe_3\documents\github\juego-sfml\health.cpp
 	"Health.h"
 
-1701201036 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
+1701298866 source:c:\users\noe_3\documents\github\juego-sfml\menunewgame.cpp
 	"MenuNewGame.h"
 
 1701138091 source:c:\users\noe_3\documents\github\juego-sfml\partida.cpp
@@ -2004,10 +2002,10 @@
 	<cstring>
 	"Puntaje.h"
 
-1701207915 source:c:\users\noe_3\documents\github\juego-sfml\gameover.cpp
+1701310802 source:c:\users\noe_3\documents\github\juego-sfml\gameover.cpp
 	"GameOver.h"
 
-1701205272 c:\users\noe_3\documents\github\juego-sfml\gameover.h
+1701308876 c:\users\noe_3\documents\github\juego-sfml\gameover.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
@@ -2016,7 +2014,7 @@
 	"Hitbox.h"
 	"Personaje.h"
 
-1701276407 source:c:\users\noe_3\documents\github\juego-sfml\powerup.cpp
+1701298866 source:c:\users\noe_3\documents\github\juego-sfml\powerup.cpp
 	"Powerup.h"
 	<iostream>
 	<random>

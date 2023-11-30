@@ -88,6 +88,7 @@ class GamePlay: public sf::Drawable
         bool _exitGame = false;
         int _vidaExtra = 1;
         GameOver *_gameOver;
+        int _time=0, _holdTime= 90;
 };
 
 #endif // GAMEPLAY_H

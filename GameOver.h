@@ -20,6 +20,7 @@ class GameOver: public sf::Drawable
         void moveRight();
 
         int opsContinue();
+        bool pressEnter();
 
     private:
         enum class ESTADOS_GAMEOVER
@@ -36,7 +37,7 @@ class GameOver: public sf::Drawable
         sf::RectangleShape _blackRec;
         sf::Font *_font;
         sf::Text _continue, *_options;
-        int _time=0, _holdTime=6, _selectOps;
+        int _time=0, _holdTime=6 , _selectOps;
         bool _opsContinue = false;
         ESTADOS_GAMEOVER _estado = ESTADOS_GAMEOVER::IDLE;
 };

@@ -2,8 +2,6 @@
 #define GAME_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "ArchivoPartidas.h"
-#include "Partida.h"
 #include "ArchivoPuntajes.h"
 #include "Puntaje.h"
 #include "Menu.h"
@@ -23,12 +21,9 @@ class Game
         void initNewGame();
         void initGamePlay(std::string nombre, int puntos = 0);
         void initCredit();
-        void initContinue();
         void initScore();
 
         void setEstadoMenu(int& ops);
-        void leerPartidas();
-        bool savePartida(const int& puntos);
         bool saveScore(const int& puntos);
         bool updateFileScore(Puntaje nuevoPuntaje);
         void handlerState();
@@ -45,7 +40,6 @@ class Game
         {
             MENU,
             NEWGAME,
-            CONTINUE,
             GAMEPLAY,
             SCORE,
             CREDITS,
@@ -59,7 +53,6 @@ class Game
         MenuNewGame *_newGame;
         Credit *_credits;
         Score *_score;
-        bool _hayPartidasGuardadas=false;
         int  _time=0;
         int _holdTime = 480;
         int _width, _height;
